@@ -1,16 +1,17 @@
 identity:
-  notebook_id: NB_37_B_ENGINEERING_PRIORITIES
-  stage: B
+  notebook_id: NB_37_C_ENGINEERING_SESSIONS
+  stage: C
   reading_point: RP_37
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_37_A_LEADING_SPECIFICATIONS
-  natural_foundation: Leading Specifications
-  engineering_objective: Direct engineering priorities from source-derived leading specifications.
+  inherited_from: NB_37_B_ENGINEERING_PRIORITIES
+  natural_foundation: Engineering Priorities
+  engineering_objective: Prepare engineering sessions from source-derived engineering priorities.
   engineering_statements:
   - Measured Engineering Improvement informs Leading Specifications.
   - Leading Specifications direct Engineering Priorities.
+  - Engineering Priorities prepare Engineering Sessions.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
@@ -27,8 +28,8 @@ reading_point:
   - Repository Contributions support Repository Development.
   - Repository Development supports Continued Specification.
   - Continued Specification supports Engineering Object.
-  forward_context: Engineering Sessions
-  status: developing
+  forward_context: Engineering Records
+  status: complete
 dialogue:
 - order: A
   artifact_id: 37_A_leading_specifications_trail
@@ -52,6 +53,17 @@ dialogue:
   - Engineering Constraints
   engineering_statement: Leading Specifications direct Engineering Priorities.
   status: admitted
+- order: C
+  artifact_id: 37_C_engineering_sessions_trail
+  concept: Engineering Sessions
+  title: 'Engineering Sessions Trail: Microcalorimeters'
+  first_label: Engineering Priorities
+  second_label: Engineering Sessions
+  supporting_context:
+  - Leading Specifications
+  - Engineering Questions
+  engineering_statement: Engineering Priorities prepare Engineering Sessions.
+  status: candidate
 engineering_object: Microcalorimeter
 engineering_direction: Toward next-generation microcalorimeters.
 source:
