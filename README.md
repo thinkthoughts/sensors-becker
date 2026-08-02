@@ -1,161 +1,70 @@
-# sensors-becker
+# Sensors Becker
 
-This repository specifies cryogenic quantum-sensor engineering activities.
+Engineering notebooks and Reading Point specifications for cryogenic quantum sensor development.
 
-Engineering development is organized through Reading Points that compile into engineering notebook bundles.
+This repository applies the **reading-point-template** framework to the engineering work of Daniel Becker and collaborators, emphasizing reusable engineering specifications, laboratory understanding, and repository development.
 
----
+## Engineering Statement
 
-## Engineering Purpose
-
-This repository develops engineering understanding through continued specification.
-
-Current engineering development emphasizes:
-
-- engineering objects
-- engineering systems
-- measured engineering states
-- engineering constraints
-- engineering refinements
-- measured engineering improvement
-- leading specifications
-
-Repository development begins with engineering understanding before implementation.
-
----
-
-## Engineering Context
-
-Current engineering context develops through increasing specification.
-
-```text
-Sensor development
-        │
-        ▼
-Quantum sensing
-        │
-        ▼
-Cryogenic sensing
-        │
-        ▼
-Superconducting detectors
-        │
-        ▼
-Transition-edge sensing
-        │
-        ▼
-Microcalorimeter spectroscopy
-```
-
-Current engineering work prepares technically meaningful collaboration through continued specification.
-
----
-
-## Repository Foundations
-
-Repository comprehension develops through four engineering foundations.
-
-### Reading Order
-
-`RO.md`
-
-Defines repository comprehension.
-
-### Engineering Statements
-
-`ES.md`
-
-Defines repository engineering language.
-
-### Notebook Compiler
-
-`NB_TEMPLATE.md`
-
-Defines the Reading Point compiler.
-
-### Reading Point Specification
-
-`RP_TEMPLATE.md`
-
-Defines Reading Point engineering specifications.
-
----
-
-## Repository Workflow
-
-```text
-Reading Order
-        ↓
-Engineering Statements
-        ↓
-Reading Point Specification
-        ↓
-NB_TEMPLATE
-        ↓
-Notebook Bundle
-```
-
----
+This repository specifies engineering understanding for cryogenic quantum sensing through Reading Points, engineering sessions, engineering reports, and repository contributions.
 
 ## Repository Structure
 
-```text
-templates/
-    NB_TEMPLATE.ipynb
-    RP_TEMPLATE.yaml
-    dialogue_renderer.py
-
-specifications/
-
+```
+authors-becker/
+authors-hawkley/
+docs/
+engineering_artifacts/
 notebooks/
-
-reports/
+src/
+tests/
 ```
 
----
+## Reading Point Sequence
 
-## Generated Notebook Bundle
+```
+RP_11
+RP_13
+RP_17
+RP_19
+RP_23
+RP_29
+```
 
-Each Reading Point produces:
+Each Reading Point develops a dialogue through three notebook stages:
 
-- engineering dialogue figures
-- accessibility text
-- README
-- notebook metadata
-- notebook manifest
-- release bundle
+```
+A
+B
+C
+```
 
----
+The dialogue renderer produces:
 
-## Engineering Audience
+- PNG figures
+- Alt-text
+- Repository metadata
+- Manifest files
 
-Primary engineering audience:
+from a single Reading Point specification.
 
-- Daniel Becker
+## Engineering Workflow
 
-Additional engineering audiences develop through continued engineering collaboration.
+```
+Reading Point
+    ↓
+Notebook
+    ↓
+Dialogue Figure
+    ↓
+Engineering Report
+    ↓
+Repository Contribution
+```
 
----
+## Repository Goal
 
-## Current Repository Status
-
-Current repository includes:
-
-- Reading Order
-- Engineering Statements
-- Notebook compiler
-- Reading Point specification
-- Generated notebook bundles
-
-Current engineering work develops additional Reading Points through continued specification.
-
----
-
-## Contact
-
-**Dan Hawkley**
-
-Text: **303.898.3295**
+Develop reusable engineering understanding supporting next-generation cryogenic quantum sensors.
 
 ---
 
