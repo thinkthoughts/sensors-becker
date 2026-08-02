@@ -1,5 +1,5 @@
 identity:
-  notebook_id: NB_37_A_DETECTOR_PERFORMANCE_TARGETS
+  notebook_id: NB_37_A_DETECTOR_TARGETS
   reading_point: RP_37
   stage: A
   version: 1.0.0
@@ -32,12 +32,12 @@ dialogue:
 - order: A
   artifact_id: 37_A_leading_specifications_trail
   concept: Leading Specifications
-  title: 'Detector Performance Targets: Microcalorimeters'
+  title: 'Detector Targets: Microcalorimeters'
   first_label: 140 cps · 150 eV · ~1.5 ms
   second_label: 200 cps · <100 eV · 750 µs
   supporting_context:
-  - Negligible Athermal Tails
-  - 1% Assay in 2 Minutes
+  - Negligible Athermal Tailing
+  - 1% Assay in 2 min
   engineering_statement: Measured detector performance specifies the next detector-performance targets.
   status: candidate
 engineering_object: Microcalorimeter

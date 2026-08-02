@@ -1,11 +1,11 @@
 identity:
-  notebook_id: NB_37_B_DETECTOR_REFINEMENT_PRIORITIES
+  notebook_id: NB_37_B_DETECTOR_REFINEMENTS
   reading_point: RP_37
   stage: B
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_37_A_DETECTOR_PERFORMANCE_TARGETS
+  inherited_from: NB_37_A_DETECTOR_TARGETS
   natural_foundation: Leading Specifications
   engineering_objective: Direct detector-refinement priorities from source-derived targets.
   engineering_statements:
@@ -33,18 +33,18 @@ dialogue:
 - order: A
   artifact_id: 37_A_leading_specifications_trail
   concept: Leading Specifications
-  title: 'Detector Performance Targets: Microcalorimeters'
+  title: 'Detector Targets: Microcalorimeters'
   first_label: 140 cps · 150 eV · ~1.5 ms
   second_label: 200 cps · <100 eV · 750 µs
   supporting_context:
-  - Negligible Athermal Tails
-  - 1% Assay in 2 Minutes
+  - Negligible Athermal Tailing
+  - 1% Assay in 2 min
   engineering_statement: Measured detector performance specifies the next detector-performance targets.
   status: admitted
 - order: B
   artifact_id: 37_B_engineering_priorities_trail
   concept: Engineering Priorities
-  title: 'Detector Refinement Priorities: Microcalorimeters'
+  title: 'Detector Refinements: Microcalorimeters'
   first_label: 200 cps · <100 eV · 750 µs
   second_label: Lower Tc · Increase Si Coupling
   supporting_context:
