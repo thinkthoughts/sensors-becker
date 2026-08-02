@@ -1,15 +1,16 @@
 identity:
-  notebook_id: NB_37_A_LEADING_SPECIFICATIONS
-  stage: A
+  notebook_id: NB_37_B_ENGINEERING_PRIORITIES
+  stage: B
   reading_point: RP_37
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_29_C_MEASURED_ENGINEERING_IMPROVEMENT
-  natural_foundation: Measured Engineering Improvement
-  engineering_objective: Specify source-derived leading specifications for microcalorimeter development.
+  inherited_from: NB_37_A_LEADING_SPECIFICATIONS
+  natural_foundation: Leading Specifications
+  engineering_objective: Direct engineering priorities from source-derived leading specifications.
   engineering_statements:
   - Measured Engineering Improvement informs Leading Specifications.
+  - Leading Specifications direct Engineering Priorities.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
@@ -26,7 +27,7 @@ reading_point:
   - Repository Contributions support Repository Development.
   - Repository Development supports Continued Specification.
   - Continued Specification supports Engineering Object.
-  forward_context: Engineering Priorities
+  forward_context: Engineering Sessions
   status: developing
 dialogue:
 - order: A
@@ -39,6 +40,17 @@ dialogue:
   - Engineering Refinements
   - Measured Engineering States
   engineering_statement: Measured Engineering Improvement informs Leading Specifications.
+  status: admitted
+- order: B
+  artifact_id: 37_B_engineering_priorities_trail
+  concept: Engineering Priorities
+  title: 'Engineering Priorities Trail: Microcalorimeters'
+  first_label: Leading Specifications
+  second_label: Engineering Priorities
+  supporting_context:
+  - Measured Engineering Improvement
+  - Engineering Constraints
+  engineering_statement: Leading Specifications direct Engineering Priorities.
   status: admitted
 engineering_object: Microcalorimeter
 engineering_direction: Toward next-generation microcalorimeters.
