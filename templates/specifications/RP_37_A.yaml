@@ -9,7 +9,7 @@ reading_point:
   natural_foundation: Measured Engineering Improvement
   engineering_objective: Specify source-derived detector-performance targets.
   engineering_statements:
-  - Measured Engineering Improvement informs Leading Specifications.
+  - Measured detector performance specifies the next detector-performance targets.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.

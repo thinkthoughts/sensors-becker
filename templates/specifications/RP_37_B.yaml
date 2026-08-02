@@ -9,8 +9,8 @@ reading_point:
   natural_foundation: Leading Specifications
   engineering_objective: Direct detector-refinement priorities from source-derived targets.
   engineering_statements:
-  - Measured Engineering Improvement informs Leading Specifications.
-  - Leading Specifications direct Engineering Priorities.
+  - Measured detector performance specifies the next detector-performance targets.
+  - Target detector performance directs detector-refinement priorities.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
