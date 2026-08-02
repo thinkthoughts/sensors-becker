@@ -1,0 +1,95 @@
+identity:
+  notebook_id: NB_37_C_ENGINEERING_SESSIONS
+  stage: C
+  reading_point: RP_37
+  version: 1.0.0
+  status: candidate
+reading_point:
+  inherited_from: NB_37_B_ENGINEERING_PRIORITIES
+  natural_foundation: Engineering Priorities
+  engineering_objective: Prepare engineering sessions from source-derived engineering priorities.
+  engineering_statements:
+  - Measured Engineering Improvement informs Leading Specifications.
+  - Leading Specifications direct Engineering Priorities.
+  - Engineering Priorities prepare Engineering Sessions.
+  repository_grammar:
+  - Engineering Object specifies Engineering System.
+  - Engineering System produces Measured Engineering States.
+  - Measurement records Measured Engineering States.
+  - Measured Engineering States identify Engineering Constraints.
+  - Engineering Constraints direct Engineering Refinements.
+  - Engineering Refinements support Measured Engineering Improvement.
+  - Measured Engineering Improvement informs Leading Specifications.
+  - Leading Specifications direct Engineering Priorities.
+  - Engineering Priorities prepare Engineering Sessions.
+  - Engineering Sessions produce Engineering Records.
+  - Engineering Records support Engineering Reports.
+  - Engineering Reports support Repository Contributions.
+  - Repository Contributions support Repository Development.
+  - Repository Development supports Continued Specification.
+  - Continued Specification supports Engineering Object.
+  forward_context: Engineering Records
+  status: complete
+dialogue:
+- order: A
+  artifact_id: 37_A_leading_specifications_trail
+  concept: Leading Specifications
+  title: 'Leading Specifications Trail: Microcalorimeters'
+  first_label: Measured Engineering Improvement
+  second_label: Leading Specifications
+  supporting_context:
+  - Engineering Refinements
+  - Measured Engineering States
+  engineering_statement: Measured Engineering Improvement informs Leading Specifications.
+  status: admitted
+- order: B
+  artifact_id: 37_B_engineering_priorities_trail
+  concept: Engineering Priorities
+  title: 'Engineering Priorities Trail: Microcalorimeters'
+  first_label: Leading Specifications
+  second_label: Engineering Priorities
+  supporting_context:
+  - Measured Engineering Improvement
+  - Engineering Constraints
+  engineering_statement: Leading Specifications direct Engineering Priorities.
+  status: admitted
+- order: C
+  artifact_id: 37_C_engineering_sessions_trail
+  concept: Engineering Sessions
+  title: 'Engineering Sessions Trail: Microcalorimeters'
+  first_label: Engineering Priorities
+  second_label: Engineering Sessions
+  supporting_context:
+  - Leading Specifications
+  - Engineering Questions
+  engineering_statement: Engineering Priorities prepare Engineering Sessions.
+  status: candidate
+engineering_object: Microcalorimeter
+engineering_direction: Toward next-generation microcalorimeters.
+source:
+  title: Achieving 1% Assay of Special Nuclear Materials in 2 Minutes with Microcalorimeter-Array Gamma-Ray
+    Spectroscopy
+  author: Dan Becker
+  event: ARPA-E Fission Annual Meeting
+  date: 2025-10-01/2025-10-02
+  source_file: Daniel Becker (1).pdf
+source_engineering_states:
+  measured_progress:
+  - 'Per-detector count rate: 140 counts per second.'
+  - 'Pulse fall time to 1% of peak: approximately 1.5 milliseconds.'
+  - 'Athermal tails: negligible.'
+  - 'Energy resolution: approximately 150 electronvolts at 100 kiloelectronvolts.'
+  - 'Detector speed improvement: approximately 14 times the pre-CURIE result.'
+  leading_specifications:
+  - Increase per-detector count rate toward 200 counts per second.
+  - Restore energy resolution to less than 100 electronvolts at 100 kiloelectronvolts.
+  - Preserve negligible athermal tails.
+  - Lower operating temperature and superconducting critical temperature.
+  - Continue refinement of the all-silicon, membrane-free detector architecture.
+  engineering_priorities:
+  - Lower superconducting critical temperature.
+  - Increase coupling to silicon.
+  - Solve absorber manufacturing constraints.
+  - Validate performance with relevant Idaho National Laboratory samples.
+  - Define requirements for product assembly.
+footer: Admissible generalizations trail leading specifications.
