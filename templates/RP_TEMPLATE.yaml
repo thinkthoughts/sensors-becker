@@ -1,15 +1,16 @@
 identity:
-  notebook_id: NB_37_A_DETECTOR_PERFORMANCE_TARGETS
+  notebook_id: NB_37_B_DETECTOR_REFINEMENT_PRIORITIES
   reading_point: RP_37
-  stage: A
+  stage: B
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_29_C_MEASURED_ENGINEERING_IMPROVEMENT
-  natural_foundation: Measured Engineering Improvement
-  engineering_objective: Specify source-derived detector-performance targets.
+  inherited_from: NB_37_A_DETECTOR_PERFORMANCE_TARGETS
+  natural_foundation: Leading Specifications
+  engineering_objective: Direct detector-refinement priorities from source-derived targets.
   engineering_statements:
   - Measured detector performance specifies the next detector-performance targets.
+  - Target detector performance directs detector-refinement priorities.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
@@ -26,7 +27,7 @@ reading_point:
   - Repository Contributions support Repository Development.
   - Repository Development supports Continued Specification.
   - Continued Specification supports Engineering Object.
-  forward_context: Engineering Priorities
+  forward_context: Engineering Sessions
   status: developing
 dialogue:
 - order: A
@@ -39,6 +40,17 @@ dialogue:
   - Negligible Athermal Tails
   - 1% Assay in 2 Minutes
   engineering_statement: Measured detector performance specifies the next detector-performance targets.
+  status: admitted
+- order: B
+  artifact_id: 37_B_engineering_priorities_trail
+  concept: Engineering Priorities
+  title: 'Detector Refinement Priorities: Microcalorimeters'
+  first_label: 200 cps · <100 eV · 750 µs
+  second_label: Lower Tc · Increase Si Coupling
+  supporting_context:
+  - All-Silicon Architecture
+  - Absorber Manufacturing
+  engineering_statement: Target detector performance directs detector-refinement priorities.
   status: candidate
 engineering_object: Microcalorimeter
 engineering_direction: Toward next-generation microcalorimeters.
