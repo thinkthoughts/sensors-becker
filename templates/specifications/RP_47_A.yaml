@@ -1,0 +1,162 @@
+identity:
+  notebook_id: NB_47_A_PROJECT_PARTICIPATION
+  reading_point: RP_47
+  stage: A
+  version: 1.0.0
+  status: candidate
+reading_point:
+  inherited_from: NB_43_C_INSTRUMENT_SCALING
+  natural_foundation: Instrument Scaling
+  engineering_objective: Specify proposed project participation from source-derived commercialization
+    progress.
+  engineering_statements:
+  - Detector progress supports a proposed General Atomics project plus-up.
+  repository_grammar:
+  - Engineering Object specifies Engineering System.
+  - Engineering System produces Measured Engineering States.
+  - Measurement records Measured Engineering States.
+  - Measured Engineering States identify Engineering Constraints.
+  - Engineering Constraints direct Engineering Refinements.
+  - Engineering Refinements support Measured Engineering Improvement.
+  - Measured Engineering Improvement informs Leading Specifications.
+  - Leading Specifications direct Engineering Priorities.
+  - Engineering Priorities prepare Engineering Sessions.
+  - Engineering Sessions produce Engineering Records.
+  - Engineering Records support Engineering Reports.
+  - Engineering Reports support Repository Contributions.
+  - Repository Contributions support Repository Development.
+  - Repository Development supports Continued Specification.
+  - Continued Specification supports Engineering Object.
+  forward_context: Commercial Evaluation
+  status: developing
+dialogue:
+- order: A
+  artifact_id: 47_A_project_participation_trail
+  concept: Project Participation
+  title: 'Project Participation: Microcalorimeters'
+  first_label: 140 cps Aids Commercialization
+  second_label: General Atomics Project Plus-Up
+  supporting_context:
+  - Near Target Speed
+  - Online Nuclear Monitoring
+  engineering_statement: Detector progress supports a proposed General Atomics project plus-up.
+  status: candidate
+engineering_object: Microcalorimeter Technology Transition
+engineering_direction: Toward source-supported project participation, commercial evaluation, and product-assembly
+  specification.
+source:
+  source_id: BECKER_2025_ARPA_E_MICROCALORIMETER_ASSAY
+  title: Achieving 1% Assay of Special Nuclear Materials in 2 Minutes with Microcalorimeter-Array Gamma-Ray
+    Spectroscopy
+  author: Dan Becker
+  organization: University of Colorado
+  event: ARPA-E Fission Annual Meeting
+  date: 2025-10-01/2025-10-02
+  source_file: Daniel Becker (1).pdf
+  page_count: 16
+  reviewed_pages:
+  - 14
+  - 15
+  - 16
+  engineering_object: Microcalorimeter Technology Transition
+  engineering_direction: Toward source-supported project participation, commercial evaluation, and product-assembly
+    specification.
+source_engineering_states:
+  business_evaluation:
+  - extraction_id: BE_001
+    category: business_evaluation
+    statement: Evaluate the commercial TES business opportunity.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: technology_to_market_scope
+    note: ''
+  product_requirement:
+  - extraction_id: PR_001
+    category: product_requirement
+    statement: Define requirements for product assembly.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: technology_to_market_scope
+    note: ''
+  deployment_scope:
+  - extraction_id: DS_001
+    category: deployment_scope
+    statement: Deploy a small 96-pixel module at the INL Analytical Laboratory.
+    page: 15
+    metric: module_pixel_count
+    value: 96
+    unit: pixels
+    comparison_state: current_scope
+    note: ''
+  - extraction_id: DS_002
+    category: deployment_scope
+    statement: Support measurements in 2 minutes through a 4,000-pixel instrument.
+    page: 15
+    metric: instrument_pixel_count
+    value: 4000
+    unit: pixels
+    comparison_state: long_term_goal
+    note: ''
+  project_participation:
+  - extraction_id: PP_001
+    category: project_participation
+    statement: General Atomics shows interest in joining the project through a plus-up to accelerate deployment
+      of fast next-generation online monitoring of nuclear materials.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: proposed_participation
+    note: ''
+  - extraction_id: PP_002
+    category: project_participation
+    statement: The project is seeking a plus-up to add General Atomics to the project team.
+    page: 16
+    metric: null
+    value: null
+    unit: null
+    comparison_state: proposed_participation
+    note: ''
+  commercialization_indicator:
+  - extraction_id: CI_001
+    category: commercialization_indicator
+    statement: Even 140 counts per second per detector aids commercialization.
+    page: 14
+    metric: per_detector_count_rate
+    value: 140
+    unit: counts_per_second
+    comparison_state: progress_indicator
+    note: ''
+  - extraction_id: CI_002
+    category: commercialization_indicator
+    statement: The project is very close to the target detector speed.
+    page: 14
+    metric: null
+    value: null
+    unit: null
+    comparison_state: progress_indicator
+    note: ''
+  technical_scope:
+  - extraction_id: TS_001
+    category: technical_scope
+    statement: Solve the absorber manufacturing problem.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: plus_up_technical_scope
+    note: ''
+  - extraction_id: TS_002
+    category: technical_scope
+    statement: Build up General Atomics microcalorimeter expertise.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: plus_up_technical_scope
+    note: ''
+footer: Admissible generalizations trail leading specifications.
