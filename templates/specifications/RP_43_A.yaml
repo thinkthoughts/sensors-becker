@@ -1,0 +1,164 @@
+identity:
+  notebook_id: NB_43_A_ABSORBER_MANUFACTURING
+  reading_point: RP_43
+  stage: A
+  version: 1.0.0
+  status: candidate
+reading_point:
+  inherited_from: NB_37_C_ENGINEERING_SESSIONS
+  natural_foundation: Detector Engineering Sessions
+  engineering_objective: Specify a repeatable absorber process from source-derived manufacturing constraints.
+  engineering_statements:
+  - Absorber manufacturing constraints direct a repeatable absorber process.
+  repository_grammar:
+  - Engineering Object specifies Engineering System.
+  - Engineering System produces Measured Engineering States.
+  - Measurement records Measured Engineering States.
+  - Measured Engineering States identify Engineering Constraints.
+  - Engineering Constraints direct Engineering Refinements.
+  - Engineering Refinements support Measured Engineering Improvement.
+  - Measured Engineering Improvement informs Leading Specifications.
+  - Leading Specifications direct Engineering Priorities.
+  - Engineering Priorities prepare Engineering Sessions.
+  - Engineering Sessions produce Engineering Records.
+  - Engineering Records support Engineering Reports.
+  - Engineering Reports support Repository Contributions.
+  - Repository Contributions support Repository Development.
+  - Repository Development supports Continued Specification.
+  - Continued Specification supports Engineering Object.
+  forward_context: Detector Module Assembly
+  status: developing
+dialogue:
+- order: A
+  artifact_id: 43_A_manufacturing_process_trail
+  concept: Manufacturing Process
+  title: 'Detector Manufacturing: Microcalorimeters'
+  first_label: Pre-CURIE Architecture
+  second_label: Repeatable Absorber Process
+  supporting_context:
+  - All-Silicon Architecture
+  - Increase Si Coupling
+  engineering_statement: Absorber manufacturing constraints direct a repeatable absorber process.
+  status: candidate
+engineering_object: Microcalorimeter Array
+engineering_direction: Toward repeatable detector manufacturing and instrument-scale deployment.
+source:
+  source_id: BECKER_2025_ARPA_E_MICROCALORIMETER_ASSAY
+  title: Achieving 1% Assay of Special Nuclear Materials in 2 Minutes with Microcalorimeter-Array Gamma-Ray
+    Spectroscopy
+  author: Dan Becker
+  organization: University of Colorado
+  event: ARPA-E Fission Annual Meeting
+  date: 2025-10-01/2025-10-02
+  source_file: Daniel Becker (1).pdf
+  page_count: 16
+  engineering_object: Microcalorimeter Array
+  engineering_direction: Toward repeatable detector manufacturing and instrument-scale deployment.
+source_engineering_states:
+  deployment_requirement:
+  - extraction_id: DR_001
+    category: deployment_requirement
+    statement: Validate detector performance with relevant INL samples.
+    page: 7
+    metric: null
+    value: null
+    unit: null
+    comparison_state: deployment
+    note: ''
+  - extraction_id: DR_002
+    category: deployment_requirement
+    statement: Build up microcalorimeter expertise for transition to market.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: deployment
+    note: ''
+  module_target:
+  - extraction_id: MT_001
+    category: module_target
+    statement: Deploy a small 96-pixel module at the INL Analytical Laboratory.
+    page: 15
+    metric: module_pixel_count
+    value: 96
+    unit: pixels
+    comparison_state: near_term_target
+    note: ''
+  instrument_target:
+  - extraction_id: IT_001
+    category: instrument_target
+    statement: Scale toward a 4,000-pixel instrument.
+    page: 15
+    metric: instrument_pixel_count
+    value: 4000
+    unit: pixels
+    comparison_state: long_term_target
+    note: ''
+  - extraction_id: IT_002
+    category: instrument_target
+    statement: Use the 4,000-pixel instrument to support measurements in 2 minutes.
+    page: 15
+    metric: measurement_time
+    value: 2
+    unit: minutes
+    comparison_state: long_term_target
+    note: ''
+  assembly_requirement:
+  - extraction_id: AR_001
+    category: assembly_requirement
+    statement: Define requirements for product assembly.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: requirement
+    note: ''
+  manufacturing_constraint:
+  - extraction_id: MC_001
+    category: manufacturing_constraint
+    statement: The pre-CURIE membrane architecture is finicky to assemble.
+    page: 9
+    metric: null
+    value: null
+    unit: null
+    comparison_state: constraint
+    note: ''
+  - extraction_id: MC_002
+    category: manufacturing_constraint
+    statement: The pre-CURIE membrane architecture is fragile.
+    page: 9
+    metric: null
+    value: null
+    unit: null
+    comparison_state: constraint
+    note: ''
+  - extraction_id: MC_003
+    category: manufacturing_constraint
+    statement: The project identifies an absorber manufacturing problem that must be solved.
+    page: 15
+    metric: null
+    value: null
+    unit: null
+    comparison_state: constraint
+    note: ''
+  manufacturing_refinement:
+  - extraction_id: MR_001
+    category: manufacturing_refinement
+    statement: Use an all-silicon, membrane-free detector architecture.
+    page: 10
+    metric: null
+    value: null
+    unit: null
+    comparison_state: refinement
+    note: Presented as forgiving to assemble, physically robust, and providing access to a wide range
+      of thermal conductance G.
+  - extraction_id: MR_002
+    category: manufacturing_refinement
+    statement: Increase coupling to silicon.
+    page: 14
+    metric: null
+    value: null
+    unit: null
+    comparison_state: refinement
+    note: ''
+footer: Admissible generalizations trail leading specifications.
