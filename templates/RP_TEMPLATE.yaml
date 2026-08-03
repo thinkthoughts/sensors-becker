@@ -1,15 +1,16 @@
 identity:
-  notebook_id: NB_43_A_ABSORBER_MANUFACTURING
+  notebook_id: NB_43_B_DETECTOR_MODULE
   reading_point: RP_43
-  stage: A
+  stage: B
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_37_C_ENGINEERING_SESSIONS
-  natural_foundation: Detector Engineering Sessions
-  engineering_objective: Specify a repeatable absorber process from source-derived manufacturing constraints.
+  inherited_from: NB_43_A_ABSORBER_MANUFACTURING
+  natural_foundation: Manufacturing Process
+  engineering_objective: Support 96-pixel detector-module assembly from a repeatable absorber process.
   engineering_statements:
   - Absorber manufacturing constraints direct a repeatable absorber process.
+  - A repeatable absorber process supports detector-module assembly.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
@@ -26,7 +27,7 @@ reading_point:
   - Repository Contributions support Repository Development.
   - Repository Development supports Continued Specification.
   - Continued Specification supports Engineering Object.
-  forward_context: Detector Module Assembly
+  forward_context: Instrument Scaling
   status: developing
 dialogue:
 - order: A
@@ -39,6 +40,17 @@ dialogue:
   - All-Silicon Architecture
   - Increase Si Coupling
   engineering_statement: Absorber manufacturing constraints direct a repeatable absorber process.
+  status: admitted
+- order: B
+  artifact_id: 43_B_detector_module_trail
+  concept: Detector Module
+  title: 'Detector Module: Microcalorimeters'
+  first_label: Repeatable Absorber Process
+  second_label: 96-Pixel Detector Module
+  supporting_context:
+  - Assembly Requirements
+  - INL Analytical Laboratory
+  engineering_statement: A repeatable absorber process supports detector-module assembly.
   status: candidate
 engineering_object: Microcalorimeter Array
 engineering_direction: Toward repeatable detector manufacturing and instrument-scale deployment.
