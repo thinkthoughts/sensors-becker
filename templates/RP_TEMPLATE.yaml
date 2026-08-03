@@ -1,16 +1,17 @@
 identity:
-  notebook_id: NB_43_B_DETECTOR_MODULE
+  notebook_id: NB_43_C_INSTRUMENT_SCALING
   reading_point: RP_43
-  stage: B
+  stage: C
   version: 1.0.0
   status: candidate
 reading_point:
-  inherited_from: NB_43_A_ABSORBER_MANUFACTURING
-  natural_foundation: Manufacturing Process
-  engineering_objective: Support 96-pixel detector-module assembly from a repeatable absorber process.
+  inherited_from: NB_43_B_DETECTOR_MODULE
+  natural_foundation: Detector Module
+  engineering_objective: Support scaling from a validated 96-pixel module toward a 4,000-pixel instrument.
   engineering_statements:
   - Absorber manufacturing constraints direct a repeatable absorber process.
   - A repeatable absorber process supports detector-module assembly.
+  - Validated detector modules support scaling toward a 4,000-pixel instrument.
   repository_grammar:
   - Engineering Object specifies Engineering System.
   - Engineering System produces Measured Engineering States.
@@ -27,8 +28,8 @@ reading_point:
   - Repository Contributions support Repository Development.
   - Repository Development supports Continued Specification.
   - Continued Specification supports Engineering Object.
-  forward_context: Instrument Scaling
-  status: developing
+  forward_context: Instrument Deployment
+  status: complete
 dialogue:
 - order: A
   artifact_id: 43_A_manufacturing_process_trail
@@ -51,6 +52,17 @@ dialogue:
   - Assembly Requirements
   - INL Analytical Laboratory
   engineering_statement: A repeatable absorber process supports detector-module assembly.
+  status: admitted
+- order: C
+  artifact_id: 43_C_instrument_scaling_trail
+  concept: Instrument Scaling
+  title: 'Instrument Scaling: Microcalorimeters'
+  first_label: 96-Pixel Detector Module
+  second_label: 4,000-Pixel Instrument
+  supporting_context:
+  - INL Validation
+  - 1% Assay / 2 min
+  engineering_statement: Validated detector modules support scaling toward a 4,000-pixel instrument.
   status: candidate
 engineering_object: Microcalorimeter Array
 engineering_direction: Toward repeatable detector manufacturing and instrument-scale deployment.
