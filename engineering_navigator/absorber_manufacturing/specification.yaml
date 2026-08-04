@@ -12,9 +12,21 @@ objective: >
   Develop a repeatable absorber manufacturing process suitable
   for scalable TES microcalorimeter production.
 
+why_it_matters: >
+  Absorber manufacturing directly influences detector performance,
+  manufacturing repeatability, detector-module assembly, and
+  instrument-scale deployment.
+
 current_status: >
   RP_43 establishes the current engineering specification for
   absorber manufacturing based on the reviewed Becker sources.
+
+current_emphasis:
+  - Repeatable absorber process
+  - All-silicon architecture
+  - Increased silicon coupling
+  - Product assembly requirements
+  - Instrument-scale deployment
 
 depends_on:
   - detector_architecture
@@ -30,13 +42,31 @@ supports:
 reading_points:
   - RP_43
 
+related_reading_points:
+  - id: RP_37
+    focus: Detector performance
+  - id: RP_43
+    focus: Detector manufacturing
+  - id: RP_47
+    focus: Commercial evaluation
+
 engineering_sessions:
   - NB_00_RP_43_SOURCE_EXTRACTION
+
+related_engineering_sessions:
+  - NB_00_RP_37_SOURCE_EXTRACTION
+  - NB_00_RP_43_SOURCE_EXTRACTION
+  - NB_00_RP_47_SOURCE_EXTRACTION
 
 engineering_artifacts:
   - RP_43_ENGINEERING_SESSION_REPORT
   - RP_43_CHANGELOG
   - RP_43_NOTES
+
+related_engineering_artifacts:
+  - RP_37_ENGINEERING_SESSION_REPORT
+  - RP_43_ENGINEERING_SESSION_REPORT
+  - RP_47_ENGINEERING_SESSION_REPORT
 
 generated_figures:
   - RP_43_A
@@ -53,7 +83,14 @@ future_sources:
 current_questions:
   - Which fabrication step limits manufacturing repeatability?
   - Which manufacturing tolerance dominates detector variability?
+  - Which absorber properties most strongly influence detector performance?
+  - Which measurements should be repeated after process changes?
   - Which engineering refinement should be evaluated next?
 
 next_engineering_driver:
   - detector_module
+
+continue_navigation:
+  - detector_module
+  - instrument_scaling
+  - product_assembly
