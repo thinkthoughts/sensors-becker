@@ -1,0 +1,36 @@
+id: absorber_manufacturing
+
+title: Absorber Manufacturing
+
+status: active
+
+objective: >
+  Develop a repeatable absorber manufacturing process suitable
+  for scalable TES microcalorimeter production.
+
+depends_on:
+  - detector_architecture
+  - silicon_coupling
+  - transition_temperature
+  - fabrication
+
+supports:
+  - detector_module
+  - instrument_scaling
+
+reading_points:
+  - RP_43
+
+engineering_sessions:
+  - NB_00_RP_43_SOURCE_EXTRACTION
+
+artifacts:
+  - RP_43_ENGINEERING_SESSION_REPORT
+
+sources:
+  - Daniel Becker ARPA-E 2025
+
+next_questions:
+  - Which fabrication step limits repeatability?
+  - Which manufacturing tolerance dominates yield?
+  - Which engineering refinement should be evaluated next?
