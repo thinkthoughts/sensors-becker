@@ -12,10 +12,14 @@ drivers:
   title: Absorber Manufacturing
   status: active
   engineering_object: TES Microcalorimeter
-  objective: Develop a repeatable absorber manufacturing process suitable for scalable TES microcalorimeter
+  objective: 'Develop a repeatable absorber manufacturing process suitable for scalable TES microcalorimeter
     production.
-  current_status: RP_43 establishes the current engineering specification for absorber manufacturing based
-    on the reviewed Becker sources.
+
+    '
+  current_status: 'RP_43 establishes the current engineering specification for absorber manufacturing
+    based on the reviewed Becker sources.
+
+    '
   reading_points:
   - RP_43
   engineering_sessions:
