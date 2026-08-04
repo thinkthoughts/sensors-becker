@@ -1,6 +1,4 @@
-# Engineering Navigator
-
-## Absorber Manufacturing
+# Absorber Manufacturing
 
 Engineering Driver
 
@@ -9,159 +7,99 @@ Engineering Driver
 ## Engineering Objective
 
 Develop a repeatable absorber manufacturing process suitable for scalable
-transition-edge-sensor microcalorimeter production.
+transition-edge-sensor (TES) microcalorimeter production.
 
 ---
 
-## Why This Matters
+## Why It Matters
 
-Absorber manufacturing presently limits detector scalability.
-
-Improving manufacturing repeatability supports detector modules, larger
-instrument arrays, and eventual deployment.
+Absorber manufacturing directly influences detector performance,
+manufacturing repeatability, module assembly, and instrument-scale
+deployment.
 
 ---
 
 ## Current Engineering Status
 
-Repository status
+Current repository emphasis:
 
-RP_43
-
-Current dialogue
-
-Pre-CURIE Architecture
-
-↓
-
-Repeatable Absorber Process
-
-Supporting engineering
-
-• All-Silicon Architecture
-
-• Increase Si Coupling
+- Repeatable absorber process
+- All-silicon architecture
+- Increased silicon coupling
+- Product assembly requirements
+- Instrument-scale deployment
 
 ---
 
-## Depends On
+## Engineering Dependencies
 
-Detector architecture
+This engineering driver depends on:
 
-Thermal conductance
-
-Silicon coupling
-
-Transition temperature
-
-Fabrication tolerances
-
-Assembly process
+- Detector architecture
+- Silicon coupling
+- Transition temperature (Tc)
+- Thermal conductance
+- Fabrication tolerances
+- Assembly procedures
 
 ---
 
-## Supports
+## Engineering Outcomes
 
-Repeatable manufacturing
+Progress in absorber manufacturing supports:
 
-↓
-
-96-pixel detector module
-
-↓
-
-4000-pixel instrument
-
-↓
-
-Two-minute assay
+- 96-pixel detector modules
+- 4,000-pixel instruments
+- Higher detector throughput
+- Improved assay performance
+- Commercial deployment
 
 ---
 
 ## Related Reading Points
 
-RP_37
-
-Detector performance
-
-RP_43
-
-Detector manufacturing
-
-RP_47
-
-Technology transition
+| Reading Point | Engineering Focus |
+|---------------|-------------------|
+| RP_37 | Detector performance |
+| RP_43 | Detector manufacturing |
+| RP_47 | Commercial evaluation |
 
 ---
 
-## Related Sources
+## Related Engineering Sessions
 
-Daniel Becker
-
-ARPA-E presentation
-
-Detector manufacturing discussion
-
-Product assembly discussion
-
-Commercial TES discussion
-
-Future publications
+- NB_00_RP_37_SOURCE_EXTRACTION.ipynb
+- NB_00_RP_43_SOURCE_EXTRACTION.ipynb
+- NB_00_RP_47_SOURCE_EXTRACTION.ipynb
 
 ---
 
-## Engineering Questions
+## Related Engineering Artifacts
 
-Current questions derived from repository engineering
-
-• Which fabrication step limits repeatability?
-
-• Which manufacturing tolerance dominates detector variability?
-
-• Which absorber parameter most strongly affects detector performance?
-
-• Which engineering change most reduces manufacturing uncertainty?
-
-• Which experiment should be performed next?
+- RP_37_ENGINEERING_SESSION_REPORT.md
+- RP_43_ENGINEERING_SESSION_REPORT.md
+- RP_47_ENGINEERING_SESSION_REPORT.md
 
 ---
 
-## Repository Navigation
+## Current Engineering Questions
 
-Notebook
-
-NB_43_A
-
-Generated Figure
-
-RP_43_A
-
-Engineering Session Report
-
-RP_43_ENGINEERING_SESSION_REPORT.md
-
-Source Extraction
-
-NB_00_RP_43_SOURCE_EXTRACTION.ipynb
+- Which fabrication step currently limits manufacturing repeatability?
+- Which absorber properties most strongly influence detector performance?
+- Which engineering refinements most improve production yield?
+- Which measurements should be repeated after process changes?
+- Which engineering dependencies require further specification?
 
 ---
 
-## Future Engineering
+## Continue Navigation
 
-Future work extends this engineering driver through
+→ Detector Module
 
-Detector Module
+→ Instrument Scaling
 
-↓
-
-Instrument Scaling
-
-↓
-
-Technology Transition
-
-rather than replacing the current manufacturing specification.
+→ Product Assembly
 
 ---
 
-Admissible generalizations trail leading specifications.
+*Admissible generalizations trail leading specifications.*
