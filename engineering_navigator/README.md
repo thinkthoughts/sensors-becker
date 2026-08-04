@@ -1,56 +1,92 @@
 # Engineering Navigator
 
-The Engineering Navigator organizes engineering work around **engineering
-drivers** rather than files.
+The Engineering Navigator organizes engineering work around **Engineering
+Drivers** rather than files.
 
 Instead of beginning with notebooks, figures, or source documents, the
-Navigator begins with the engineering problems that guide detector
-development. Each engineering driver connects engineering objectives,
-Reading Points, engineering sessions, generated artifacts, and future
+Navigator begins with the engineering problems that guide development.
+Each Engineering Driver connects engineering objectives, engineering
+sessions, Reading Points, generated engineering artifacts, and future
 engineering questions into a single navigation page.
 
-The Engineering Navigator is intended to evolve as engineering progresses.
-Reading Points document engineering sessions. Engineering drivers organize
-those sessions into a coherent engineering program.
+The Engineering Navigator evolves as engineering progresses.
+
+Reading Points document engineering sessions.
+
+Engineering Drivers organize those sessions into a coherent engineering
+program.
+
+---
+
+# Engineering Model
+
+The Engineering Navigator organizes engineering knowledge around
+**Engineering Drivers**.
+
+```
+Engineering Navigator
+        ↓
+Engineering Driver
+        ↓
+Engineering Objective
+        ↓
+Engineering Questions
+        ↓
+Engineering Sessions
+        ↓
+Reading Points
+        ↓
+Generated Engineering Artifacts
+        ↓
+Engineering Refinement
+        ↓
+Next Engineering Questions
+```
+
+Each Engineering Driver represents a continuing engineering problem.
+
+Engineering Sessions contribute new observations.
+
+Reading Points summarize engineering sessions.
+
+Generated Engineering Artifacts preserve engineering outputs.
+
+Engineering Refinement updates the Engineering Driver and guides the next
+engineering session.
 
 ---
 
 # Engineering Workflow
 
+Engineering work progresses through a repeating engineering cycle.
+
 ```
 Engineering Driver
-
-↓
-
+        ↓
+Engineering Objective
+        ↓
 Engineering Questions
-
-↓
-
-Engineering Sessions
-
-↓
-
-Reading Points
-
-↓
-
-Generated Figures
-
-↓
-
-Engineering Reports
-
-↓
-
+        ↓
+Engineering Session
+        ↓
+Reading Point
+        ↓
+Generated Engineering Artifacts
+        ↓
+Engineering Refinement
+        ↓
 Next Engineering Questions
 ```
 
-Every engineering session contributes evidence toward one or more
-engineering drivers.
+Every Engineering Session contributes evidence toward one or more
+Engineering Drivers.
 
 ---
 
 # Engineering Drivers
+
+Engineering Drivers represent continuing engineering problems rather than
+individual documents.
 
 ## Detector Performance
 
@@ -67,7 +103,7 @@ Repeatable absorber fabrication supporting scalable detector production.
 
 Status: Active
 
-Directory:
+Directory
 
 ```
 absorber_manufacturing/
@@ -119,7 +155,7 @@ Status: Planned
 
 ## Deployment
 
-Engineering considerations for field deployment and operational systems.
+Engineering considerations for operational detector systems.
 
 Status: Planned
 
@@ -127,101 +163,104 @@ Status: Planned
 
 # Engineering Driver Structure
 
-Each engineering driver follows the same structure.
+Each Engineering Driver follows the same structure.
 
 ```
 Engineering Objective
-
-↓
-
+        ↓
 Current Status
-
-↓
-
+        ↓
 Engineering Dependencies
-
-↓
-
+        ↓
+Supporting Evidence
+        ↓
 Engineering Outcomes
-
-↓
-
-Reading Points
-
-↓
-
-Engineering Sessions
-
-↓
-
-Generated Figures
-
-↓
-
-Engineering Reports
-
-↓
-
+        ↓
 Current Engineering Questions
+        ↓
+Next Engineering Session
 ```
+
+Supporting Evidence may include
+
+- Reading Points
+- Engineering Sessions
+- Generated Engineering Artifacts
+- Source Material
 
 This structure allows engineering knowledge to evolve without changing the
 overall organization of the repository.
 
 ---
 
-# Repository Relationships
+# Repository Architecture
 
 ```
-Engineering Navigator
+Sensors-Becker Repository
 
-↓
+│
 
-Engineering Driver
-
-↓
-
-Reading Point
-
-↓
-
-Notebook
-
-↓
-
-Generated Figures
-
-↓
-
-Engineering Session Report
+├── Engineering Navigator
+│
+├── Reading Points
+│
+├── Engineering Sessions
+│
+├── Generated Engineering Artifacts
+│
+└── Source Material
 ```
+
+The Engineering Navigator organizes repository knowledge.
 
 Reading Points provide engineering evidence.
 
-Engineering drivers provide engineering navigation.
+Engineering Sessions generate new engineering observations.
+
+Generated Engineering Artifacts preserve engineering outputs.
+
+Source Material provides engineering provenance.
 
 ---
 
-# Current Engineering Drivers
+# Implemented Engineering Drivers
 
-| Driver | Reading Points |
-|---------|----------------|
+| Engineering Driver | Reading Points |
+|--------------------|----------------|
 | Detector Performance | RP_37 |
 | Absorber Manufacturing | RP_43 |
 | Commercial Evaluation | RP_47 |
 
-Additional engineering drivers will be added as the engineering program
+Additional Engineering Drivers will be added as the engineering program
 expands.
 
 ---
 
 # Design Principles
 
-- Organize engineering by problems rather than files.
-- Connect engineering decisions to supporting evidence.
-- Preserve traceability from engineering questions to generated artifacts.
-- Update engineering status without restructuring repository organization.
-- Extend engineering knowledge through successive engineering sessions.
+- Organize engineering around engineering problems rather than files.
+- Connect engineering objectives to supporting evidence.
+- Preserve traceability from engineering questions to generated engineering artifacts.
+- Support continuing engineering refinement through successive engineering sessions.
+- Maintain reusable engineering structure across repositories.
+
+---
+
+# Engineering Driver Lifecycle
+
+Engineering Drivers are persistent engineering objects.
+
+Engineering Sessions contribute new engineering observations.
+
+Reading Points summarize engineering sessions.
+
+Generated Engineering Artifacts preserve engineering outputs.
+
+Engineering Refinement updates Engineering Drivers and defines subsequent
+engineering sessions.
+
+Engineering Drivers evolve continuously as new engineering evidence becomes
+available.
 
 ---
 
@@ -230,9 +269,8 @@ expands.
 The Engineering Navigator serves as the primary engineering interface for
 the Sensors-Becker repository.
 
-Its purpose is to support engineering exploration, engineering refinement,
-and engineering decision-making by organizing repository knowledge around
-the leading engineering specifications that drive detector development.
+Its purpose is to organize engineering objectives, engineering evidence,
+and engineering refinement into a navigable engineering program.
 
 ---
 
