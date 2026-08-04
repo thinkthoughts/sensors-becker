@@ -1,0 +1,32 @@
+id: commercial_evaluation
+title: Commercial Evaluation
+status: active
+repository: sensors-becker
+engineering_object: TES Microcalorimeter
+objective: Evaluate technology transition and commercial engineering opportunities.
+current_status: RP_47 establishes the current engineering specification.
+depends_on:
+- instrument_scaling
+supports:
+- product_assembly
+reading_points:
+- RP_47
+engineering_sessions:
+- NB_00_RP_47_SOURCE_EXTRACTION
+engineering_artifacts:
+- RP_47_ENGINEERING_SESSION_REPORT
+- RP_47_CHANGELOG
+- RP_47_NOTES
+generated_figures:
+- RP_47_A
+- RP_47_B
+- RP_47_C
+primary_sources:
+- Daniel Becker ARPA-E 2025 Presentation
+future_sources:
+- Becker arXiv papers
+- Future Becker seminars
+current_questions:
+- Which engineering requirements support technology transition?
+next_engineering_driver:
+- product_assembly

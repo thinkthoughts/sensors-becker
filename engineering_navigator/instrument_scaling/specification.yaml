@@ -1,0 +1,24 @@
+id: instrument_scaling
+title: Instrument Scaling
+status: planned
+repository: sensors-becker
+engineering_object: TES Microcalorimeter
+objective: Scale detector modules toward instrument-scale systems.
+current_status: Defined by RP_43 progression.
+depends_on:
+- detector_module
+supports:
+- commercial_evaluation
+reading_points:
+- RP_43
+engineering_sessions: []
+engineering_artifacts: []
+generated_figures: []
+primary_sources:
+- Daniel Becker ARPA-E 2025 Presentation
+future_sources:
+- Future Becker papers
+current_questions:
+- What limits scaling beyond module level?
+next_engineering_driver:
+- commercial_evaluation

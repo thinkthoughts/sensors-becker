@@ -1,0 +1,35 @@
+id: detector_performance
+title: Detector Performance
+status: planned
+repository: sensors-becker
+engineering_object: TES Microcalorimeter
+objective: Improve measurable detector performance for TES microcalorimeter arrays.
+current_status: RP_37 establishes the current engineering specification for detector performance.
+depends_on:
+- detector_architecture
+- thermal_design
+- readout
+supports:
+- absorber_manufacturing
+- detector_module
+reading_points:
+- RP_37
+engineering_sessions:
+- NB_00_RP_37_SOURCE_EXTRACTION
+engineering_artifacts:
+- RP_37_ENGINEERING_SESSION_REPORT
+- RP_37_CHANGELOG
+- RP_37_NOTES
+generated_figures:
+- RP_37_A
+- RP_37_B
+- RP_37_C
+primary_sources:
+- Daniel Becker ARPA-E 2025 Presentation
+future_sources:
+- Becker arXiv papers
+- Future Becker seminars
+current_questions:
+- Which detector parameter most limits performance?
+next_engineering_driver:
+- absorber_manufacturing

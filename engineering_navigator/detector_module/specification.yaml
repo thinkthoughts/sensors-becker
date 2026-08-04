@@ -1,0 +1,24 @@
+id: detector_module
+title: Detector Module
+status: planned
+repository: sensors-becker
+engineering_object: TES Microcalorimeter
+objective: Integrate validated detector components into repeatable detector modules.
+current_status: Planned from RP_43 engineering progression.
+depends_on:
+- absorber_manufacturing
+supports:
+- instrument_scaling
+reading_points:
+- RP_43
+engineering_sessions: []
+engineering_artifacts: []
+generated_figures: []
+primary_sources:
+- Daniel Becker ARPA-E 2025 Presentation
+future_sources:
+- Future Becker papers
+current_questions:
+- Which module integration step limits scalability?
+next_engineering_driver:
+- instrument_scaling
