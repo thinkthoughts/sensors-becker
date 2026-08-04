@@ -17,7 +17,7 @@ except ModuleNotFoundError as exc:
         "PyYAML is required. Install it with: python -m pip install pyyaml"
     ) from exc
 
-GENERATED_MARKER = "<!-- generated-by: engineering-navigator-generator-v1 -->"
+GENERATED_MARKER = "<!-- generated-by: engineering-navigator-generator-v2 -->"
 
 REQUIRED_FIELDS = {
     "id": str,
@@ -37,6 +37,15 @@ REQUIRED_FIELDS = {
     "future_sources": list,
     "current_questions": list,
     "next_engineering_driver": list,
+}
+
+OPTIONAL_FIELDS = {
+    "why_it_matters": str,
+    "current_emphasis": list,
+    "related_reading_points": list,
+    "related_engineering_sessions": list,
+    "related_engineering_artifacts": list,
+    "continue_navigation": list,
 }
 
 
@@ -129,6 +138,65 @@ def validate_specification(spec: dict[str, Any], path: Path) -> None:
             raise SpecificationError(f"{path}: field {field!r} contains duplicates")
 
 
+    for field, expected_type in OPTIONAL_FIELDS.items():
+        if field in spec and not isinstance(spec[field], expected_type):
+            raise SpecificationError(
+                f"{path}: optional field {field!r} must be "
+                f"{expected_type.__name__}"
+            )
+
+    for field in (
+        "current_emphasis",
+        "related_engineering_sessions",
+        "related_engineering_artifacts",
+        "continue_navigation",
+    ):
+        values = spec.get(field, [])
+        if any(not isinstance(value, str) or not value.strip() for value in values):
+            raise SpecificationError(
+                f"{path}: field {field!r} must contain nonempty strings"
+            )
+        if len(values) != len(set(values)):
+            raise SpecificationError(f"{path}: field {field!r} contains duplicates")
+
+    related_reading_points = spec.get("related_reading_points", [])
+    seen_reading_points: set[str] = set()
+
+    for index, item in enumerate(related_reading_points):
+        if not isinstance(item, dict):
+            raise SpecificationError(
+                f"{path}: related_reading_points[{index}] must be a mapping"
+            )
+
+        if set(item) != {"id", "focus"}:
+            raise SpecificationError(
+                f"{path}: related_reading_points[{index}] must contain "
+                "exactly 'id' and 'focus'"
+            )
+
+        reading_point_id = item["id"]
+        focus = item["focus"]
+
+        if not isinstance(reading_point_id, str) or not reading_point_id.strip():
+            raise SpecificationError(
+                f"{path}: related_reading_points[{index}].id "
+                "must be a nonempty string"
+            )
+
+        if not isinstance(focus, str) or not focus.strip():
+            raise SpecificationError(
+                f"{path}: related_reading_points[{index}].focus "
+                "must be a nonempty string"
+            )
+
+        if reading_point_id in seen_reading_points:
+            raise SpecificationError(
+                f"{path}: duplicate related Reading Point {reading_point_id!r}"
+            )
+
+        seen_reading_points.add(reading_point_id)
+
+
 def humanize(identifier: str) -> str:
     special = {"tes": "TES", "tc": "Tc", "si": "Si", "inl": "INL", "ga": "GA"}
     words = identifier.replace("-", "_").split("_")
@@ -156,8 +224,24 @@ def driver_items(values: list[str], known_driver_ids: set[str]) -> str:
     return "\n".join(f"- {driver_link(v, known_driver_ids)}" for v in values)
 
 
+def related_reading_point_items(values: list[dict[str, str]]) -> str:
+    if not values:
+        return "_None recorded._"
+
+    lines = [
+        "| Reading Point | Engineering Focus |",
+        "|---|---|",
+    ]
+    lines.extend(
+        f"| `{item['id']}` | {item['focus']} |"
+        for item in values
+    )
+    return "\n".join(lines)
+
+
 def render_markdown(spec: dict[str, Any], known_driver_ids: set[str]) -> str:
     status = spec["status"].strip().capitalize()
+
     parts = [
         GENERATED_MARKER,
         f"# {spec['title']}",
@@ -173,73 +257,168 @@ def render_markdown(spec: dict[str, Any], known_driver_ids: set[str]) -> str:
         "",
         spec["objective"].strip(),
         "",
-        "---",
-        "",
-        "## Current Status",
-        "",
-        spec["current_status"].strip(),
-        "",
-        "---",
-        "",
-        "## Engineering Dependencies",
-        "",
-        driver_items(spec["depends_on"], known_driver_ids),
-        "",
-        "---",
-        "",
-        "## Engineering Outcomes",
-        "",
-        driver_items(spec["supports"], known_driver_ids),
-        "",
-        "---",
-        "",
-        "## Supporting Evidence",
-        "",
-        "### Reading Points",
-        "",
-        code_items(spec["reading_points"]),
-        "",
-        "### Engineering Sessions",
-        "",
-        code_items(spec["engineering_sessions"]),
-        "",
-        "### Engineering Artifacts",
-        "",
-        code_items(spec["engineering_artifacts"]),
-        "",
-        "### Generated Figures",
-        "",
-        code_items(spec["generated_figures"]),
-        "",
-        "---",
-        "",
-        "## Primary Sources",
-        "",
-        text_items(spec["primary_sources"]),
-        "",
-        "---",
-        "",
-        "## Future Sources",
-        "",
-        text_items(spec["future_sources"]),
-        "",
-        "---",
-        "",
-        "## Current Engineering Questions",
-        "",
-        text_items(spec["current_questions"]),
-        "",
-        "---",
-        "",
-        "## Next Engineering Driver",
-        "",
-        driver_items(spec["next_engineering_driver"], known_driver_ids),
-        "",
-        "---",
-        "",
-        "*Admissible generalizations trail leading specifications.*",
-        "",
     ]
+
+    if spec.get("why_it_matters"):
+        parts.extend(
+            [
+                "---",
+                "",
+                "## Why It Matters",
+                "",
+                spec["why_it_matters"].strip(),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "---",
+            "",
+            "## Current Status",
+            "",
+            spec["current_status"].strip(),
+            "",
+        ]
+    )
+
+    if spec.get("current_emphasis"):
+        parts.extend(
+            [
+                "### Current Emphasis",
+                "",
+                text_items(spec["current_emphasis"]),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "---",
+            "",
+            "## Engineering Dependencies",
+            "",
+            driver_items(spec["depends_on"], known_driver_ids),
+            "",
+            "---",
+            "",
+            "## Engineering Outcomes",
+            "",
+            driver_items(spec["supports"], known_driver_ids),
+            "",
+            "---",
+            "",
+            "## Supporting Evidence",
+            "",
+            "### Reading Points",
+            "",
+            code_items(spec["reading_points"]),
+            "",
+        ]
+    )
+
+    if spec.get("related_reading_points"):
+        parts.extend(
+            [
+                "### Related Reading Points",
+                "",
+                related_reading_point_items(spec["related_reading_points"]),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "### Engineering Sessions",
+            "",
+            code_items(spec["engineering_sessions"]),
+            "",
+        ]
+    )
+
+    if spec.get("related_engineering_sessions"):
+        parts.extend(
+            [
+                "### Related Engineering Sessions",
+                "",
+                code_items(spec["related_engineering_sessions"]),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "### Engineering Artifacts",
+            "",
+            code_items(spec["engineering_artifacts"]),
+            "",
+        ]
+    )
+
+    if spec.get("related_engineering_artifacts"):
+        parts.extend(
+            [
+                "### Related Engineering Artifacts",
+                "",
+                code_items(spec["related_engineering_artifacts"]),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "### Generated Figures",
+            "",
+            code_items(spec["generated_figures"]),
+            "",
+            "---",
+            "",
+            "## Primary Sources",
+            "",
+            text_items(spec["primary_sources"]),
+            "",
+            "---",
+            "",
+            "## Future Sources",
+            "",
+            text_items(spec["future_sources"]),
+            "",
+            "---",
+            "",
+            "## Current Engineering Questions",
+            "",
+            text_items(spec["current_questions"]),
+            "",
+            "---",
+            "",
+            "## Next Engineering Driver",
+            "",
+            driver_items(spec["next_engineering_driver"], known_driver_ids),
+            "",
+        ]
+    )
+
+    if spec.get("continue_navigation"):
+        parts.extend(
+            [
+                "---",
+                "",
+                "## Continue Navigation",
+                "",
+                driver_items(spec["continue_navigation"], known_driver_ids),
+                "",
+            ]
+        )
+
+    parts.extend(
+        [
+            "---",
+            "",
+            "*Admissible generalizations trail leading specifications.*",
+            "",
+        ]
+    )
+
     return "\n".join(parts)
 
 
