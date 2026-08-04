@@ -4,9 +4,17 @@ title: Absorber Manufacturing
 
 status: active
 
+repository: sensors-becker
+
+engineering_object: TES Microcalorimeter
+
 objective: >
   Develop a repeatable absorber manufacturing process suitable
   for scalable TES microcalorimeter production.
+
+current_status: >
+  RP_43 establishes the current engineering specification for
+  absorber manufacturing based on the reviewed Becker sources.
 
 depends_on:
   - detector_architecture
@@ -17,6 +25,7 @@ depends_on:
 supports:
   - detector_module
   - instrument_scaling
+  - product_assembly
 
 reading_points:
   - RP_43
@@ -24,13 +33,27 @@ reading_points:
 engineering_sessions:
   - NB_00_RP_43_SOURCE_EXTRACTION
 
-artifacts:
+engineering_artifacts:
   - RP_43_ENGINEERING_SESSION_REPORT
+  - RP_43_CHANGELOG
+  - RP_43_NOTES
 
-sources:
-  - Daniel Becker ARPA-E 2025
+generated_figures:
+  - RP_43_A
+  - RP_43_B
+  - RP_43_C
 
-next_questions:
-  - Which fabrication step limits repeatability?
-  - Which manufacturing tolerance dominates yield?
+primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+
+future_sources:
+  - Becker arXiv papers
+  - Future Becker seminars
+
+current_questions:
+  - Which fabrication step limits manufacturing repeatability?
+  - Which manufacturing tolerance dominates detector variability?
   - Which engineering refinement should be evaluated next?
+
+next_engineering_driver:
+  - detector_module
