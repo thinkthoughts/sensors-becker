@@ -1,0 +1,355 @@
+graph:
+  id: sensors_becker_engineering_graph
+  version: 1.0.0
+  generated_by: build_engineering_graph.py
+  repositories:
+  - sensors-becker
+  driver_count: 5
+  edge_count: 26
+  unresolved_reference_count: 11
+drivers:
+- id: absorber_manufacturing
+  title: Absorber Manufacturing
+  status: active
+  engineering_object: TES Microcalorimeter
+  objective: Develop a repeatable absorber manufacturing process suitable for scalable TES microcalorimeter
+    production.
+  current_status: RP_43 establishes the current engineering specification for absorber manufacturing based
+    on the reviewed Becker sources.
+  reading_points:
+  - RP_43
+  engineering_sessions:
+  - NB_00_RP_43_SOURCE_EXTRACTION
+  engineering_artifacts:
+  - RP_43_ENGINEERING_SESSION_REPORT
+  - RP_43_CHANGELOG
+  - RP_43_NOTES
+  generated_figures:
+  - RP_43_A
+  - RP_43_B
+  - RP_43_C
+  primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+  future_sources:
+  - Becker arXiv papers
+  - Future Becker seminars
+  current_questions:
+  - Which fabrication step limits manufacturing repeatability?
+  - Which manufacturing tolerance dominates detector variability?
+  - Which absorber properties most strongly influence detector performance?
+  - Which measurements should be repeated after process changes?
+  - Which engineering refinement should be evaluated next?
+  specification: absorber_manufacturing/specification.yaml
+  page: absorber_manufacturing/index.md
+- id: commercial_evaluation
+  title: Commercial Evaluation
+  status: active
+  engineering_object: TES Microcalorimeter
+  objective: Evaluate technology transition and commercial engineering opportunities.
+  current_status: RP_47 establishes the current engineering specification.
+  reading_points:
+  - RP_47
+  engineering_sessions:
+  - NB_00_RP_47_SOURCE_EXTRACTION
+  engineering_artifacts:
+  - RP_47_ENGINEERING_SESSION_REPORT
+  - RP_47_CHANGELOG
+  - RP_47_NOTES
+  generated_figures:
+  - RP_47_A
+  - RP_47_B
+  - RP_47_C
+  primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+  future_sources:
+  - Becker arXiv papers
+  - Future Becker seminars
+  current_questions:
+  - Which engineering requirements support technology transition?
+  specification: commercial_evaluation/specification.yaml
+  page: commercial_evaluation/index.md
+- id: detector_module
+  title: Detector Module
+  status: planned
+  engineering_object: TES Microcalorimeter
+  objective: Integrate validated detector components into repeatable detector modules.
+  current_status: Planned from RP_43 engineering progression.
+  reading_points:
+  - RP_43
+  engineering_sessions: []
+  engineering_artifacts: []
+  generated_figures: []
+  primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+  future_sources:
+  - Future Becker papers
+  current_questions:
+  - Which module integration step limits scalability?
+  specification: detector_module/specification.yaml
+  page: detector_module/index.md
+- id: detector_performance
+  title: Detector Performance
+  status: planned
+  engineering_object: TES Microcalorimeter
+  objective: Improve measurable detector performance for TES microcalorimeter arrays.
+  current_status: RP_37 establishes the current engineering specification for detector performance.
+  reading_points:
+  - RP_37
+  engineering_sessions:
+  - NB_00_RP_37_SOURCE_EXTRACTION
+  engineering_artifacts:
+  - RP_37_ENGINEERING_SESSION_REPORT
+  - RP_37_CHANGELOG
+  - RP_37_NOTES
+  generated_figures:
+  - RP_37_A
+  - RP_37_B
+  - RP_37_C
+  primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+  future_sources:
+  - Becker arXiv papers
+  - Future Becker seminars
+  current_questions:
+  - Which detector parameter most limits performance?
+  specification: detector_performance/specification.yaml
+  page: detector_performance/index.md
+- id: instrument_scaling
+  title: Instrument Scaling
+  status: planned
+  engineering_object: TES Microcalorimeter
+  objective: Scale detector modules toward instrument-scale systems.
+  current_status: Defined by RP_43 progression.
+  reading_points:
+  - RP_43
+  engineering_sessions: []
+  engineering_artifacts: []
+  generated_figures: []
+  primary_sources:
+  - Daniel Becker ARPA-E 2025 Presentation
+  future_sources:
+  - Future Becker papers
+  current_questions:
+  - What limits scaling beyond module level?
+  specification: instrument_scaling/specification.yaml
+  page: instrument_scaling/index.md
+relationships:
+- source: detector_architecture
+  relation: supports
+  target: absorber_manufacturing
+  declared_by: absorber_manufacturing
+  declared_as: depends_on
+- source: silicon_coupling
+  relation: supports
+  target: absorber_manufacturing
+  declared_by: absorber_manufacturing
+  declared_as: depends_on
+- source: transition_temperature
+  relation: supports
+  target: absorber_manufacturing
+  declared_by: absorber_manufacturing
+  declared_as: depends_on
+- source: fabrication
+  relation: supports
+  target: absorber_manufacturing
+  declared_by: absorber_manufacturing
+  declared_as: depends_on
+- source: absorber_manufacturing
+  relation: supports
+  target: detector_module
+  declared_by: absorber_manufacturing
+  declared_as: supports
+- source: absorber_manufacturing
+  relation: supports
+  target: instrument_scaling
+  declared_by: absorber_manufacturing
+  declared_as: supports
+- source: absorber_manufacturing
+  relation: supports
+  target: product_assembly
+  declared_by: absorber_manufacturing
+  declared_as: supports
+- source: absorber_manufacturing
+  relation: continues_to
+  target: detector_module
+  declared_by: absorber_manufacturing
+  declared_as: next_engineering_driver
+- source: absorber_manufacturing
+  relation: navigates_to
+  target: detector_module
+  declared_by: absorber_manufacturing
+  declared_as: continue_navigation
+- source: absorber_manufacturing
+  relation: navigates_to
+  target: instrument_scaling
+  declared_by: absorber_manufacturing
+  declared_as: continue_navigation
+- source: absorber_manufacturing
+  relation: navigates_to
+  target: product_assembly
+  declared_by: absorber_manufacturing
+  declared_as: continue_navigation
+- source: instrument_scaling
+  relation: supports
+  target: commercial_evaluation
+  declared_by: commercial_evaluation
+  declared_as: depends_on
+- source: commercial_evaluation
+  relation: supports
+  target: product_assembly
+  declared_by: commercial_evaluation
+  declared_as: supports
+- source: commercial_evaluation
+  relation: continues_to
+  target: product_assembly
+  declared_by: commercial_evaluation
+  declared_as: next_engineering_driver
+- source: absorber_manufacturing
+  relation: supports
+  target: detector_module
+  declared_by: detector_module
+  declared_as: depends_on
+- source: detector_module
+  relation: supports
+  target: instrument_scaling
+  declared_by: detector_module
+  declared_as: supports
+- source: detector_module
+  relation: continues_to
+  target: instrument_scaling
+  declared_by: detector_module
+  declared_as: next_engineering_driver
+- source: detector_architecture
+  relation: supports
+  target: detector_performance
+  declared_by: detector_performance
+  declared_as: depends_on
+- source: thermal_design
+  relation: supports
+  target: detector_performance
+  declared_by: detector_performance
+  declared_as: depends_on
+- source: readout
+  relation: supports
+  target: detector_performance
+  declared_by: detector_performance
+  declared_as: depends_on
+- source: detector_performance
+  relation: supports
+  target: absorber_manufacturing
+  declared_by: detector_performance
+  declared_as: supports
+- source: detector_performance
+  relation: supports
+  target: detector_module
+  declared_by: detector_performance
+  declared_as: supports
+- source: detector_performance
+  relation: continues_to
+  target: absorber_manufacturing
+  declared_by: detector_performance
+  declared_as: next_engineering_driver
+- source: detector_module
+  relation: supports
+  target: instrument_scaling
+  declared_by: instrument_scaling
+  declared_as: depends_on
+- source: instrument_scaling
+  relation: supports
+  target: commercial_evaluation
+  declared_by: instrument_scaling
+  declared_as: supports
+- source: instrument_scaling
+  relation: continues_to
+  target: commercial_evaluation
+  declared_by: instrument_scaling
+  declared_as: next_engineering_driver
+indexes:
+  reading_points:
+    RP_43:
+    - absorber_manufacturing
+    - detector_module
+    - instrument_scaling
+    RP_47:
+    - commercial_evaluation
+    RP_37:
+    - detector_performance
+  engineering_sessions:
+    NB_00_RP_43_SOURCE_EXTRACTION:
+    - absorber_manufacturing
+    NB_00_RP_47_SOURCE_EXTRACTION:
+    - commercial_evaluation
+    NB_00_RP_37_SOURCE_EXTRACTION:
+    - detector_performance
+  engineering_artifacts:
+    RP_43_ENGINEERING_SESSION_REPORT:
+    - absorber_manufacturing
+    RP_43_CHANGELOG:
+    - absorber_manufacturing
+    RP_43_NOTES:
+    - absorber_manufacturing
+    RP_47_ENGINEERING_SESSION_REPORT:
+    - commercial_evaluation
+    RP_47_CHANGELOG:
+    - commercial_evaluation
+    RP_47_NOTES:
+    - commercial_evaluation
+    RP_37_ENGINEERING_SESSION_REPORT:
+    - detector_performance
+    RP_37_CHANGELOG:
+    - detector_performance
+    RP_37_NOTES:
+    - detector_performance
+  generated_figures:
+    RP_43_A:
+    - absorber_manufacturing
+    RP_43_B:
+    - absorber_manufacturing
+    RP_43_C:
+    - absorber_manufacturing
+    RP_47_A:
+    - commercial_evaluation
+    RP_47_B:
+    - commercial_evaluation
+    RP_47_C:
+    - commercial_evaluation
+    RP_37_A:
+    - detector_performance
+    RP_37_B:
+    - detector_performance
+    RP_37_C:
+    - detector_performance
+unresolved_driver_references:
+- id: detector_architecture
+  referenced_by: absorber_manufacturing
+  field: depends_on
+- id: silicon_coupling
+  referenced_by: absorber_manufacturing
+  field: depends_on
+- id: transition_temperature
+  referenced_by: absorber_manufacturing
+  field: depends_on
+- id: fabrication
+  referenced_by: absorber_manufacturing
+  field: depends_on
+- id: product_assembly
+  referenced_by: absorber_manufacturing
+  field: supports
+- id: product_assembly
+  referenced_by: absorber_manufacturing
+  field: continue_navigation
+- id: product_assembly
+  referenced_by: commercial_evaluation
+  field: supports
+- id: product_assembly
+  referenced_by: commercial_evaluation
+  field: next_engineering_driver
+- id: detector_architecture
+  referenced_by: detector_performance
+  field: depends_on
+- id: thermal_design
+  referenced_by: detector_performance
+  field: depends_on
+- id: readout
+  referenced_by: detector_performance
+  field: depends_on
