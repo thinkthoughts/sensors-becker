@@ -1,27 +1,30 @@
+<!-- generated-by: engineering-navigator-generator-v2 -->
 # Absorber Manufacturing
 
-Engineering Driver
+**Engineering Driver**  
+**Status:** Active  
+**Repository:** `sensors-becker`  
+**Engineering Object:** TES Microcalorimeter
 
 ---
 
 ## Engineering Objective
 
-Develop a repeatable absorber manufacturing process suitable for scalable
-transition-edge-sensor (TES) microcalorimeter production.
+Develop a repeatable absorber manufacturing process suitable for scalable TES microcalorimeter production.
 
 ---
 
 ## Why It Matters
 
-Absorber manufacturing directly influences detector performance,
-manufacturing repeatability, module assembly, and instrument-scale
-deployment.
+Absorber manufacturing directly influences detector performance, manufacturing repeatability, detector-module assembly, and instrument-scale deployment.
 
 ---
 
-## Current Engineering Status
+## Current Status
 
-Current repository emphasis:
+RP_43 establishes the current engineering specification for absorber manufacturing based on the reviewed Becker sources.
+
+### Current Emphasis
 
 - Repeatable absorber process
 - All-silicon architecture
@@ -33,72 +36,99 @@ Current repository emphasis:
 
 ## Engineering Dependencies
 
-This engineering driver depends on:
-
-- Detector architecture
-- Silicon coupling
-- Transition temperature (Tc)
-- Thermal conductance
-- Fabrication tolerances
-- Assembly procedures
+- `detector_architecture`
+- `silicon_coupling`
+- `transition_temperature`
+- `fabrication`
 
 ---
 
 ## Engineering Outcomes
 
-Progress in absorber manufacturing supports:
-
-- 96-pixel detector modules
-- 4,000-pixel instruments
-- Higher detector throughput
-- Improved assay performance
-- Commercial deployment
+- [Detector Module](../detector_module/)
+- [Instrument Scaling](../instrument_scaling/)
+- `product_assembly`
 
 ---
 
-## Related Reading Points
+## Supporting Evidence
+
+### Reading Points
+
+- `RP_43`
+
+### Related Reading Points
 
 | Reading Point | Engineering Focus |
-|---------------|-------------------|
-| RP_37 | Detector performance |
-| RP_43 | Detector manufacturing |
-| RP_47 | Commercial evaluation |
+|---|---|
+| `RP_37` | Detector performance |
+| `RP_43` | Detector manufacturing |
+| `RP_47` | Commercial evaluation |
+
+### Engineering Sessions
+
+- `NB_00_RP_43_SOURCE_EXTRACTION`
+
+### Related Engineering Sessions
+
+- `NB_00_RP_37_SOURCE_EXTRACTION`
+- `NB_00_RP_43_SOURCE_EXTRACTION`
+- `NB_00_RP_47_SOURCE_EXTRACTION`
+
+### Engineering Artifacts
+
+- `RP_43_ENGINEERING_SESSION_REPORT`
+- `RP_43_CHANGELOG`
+- `RP_43_NOTES`
+
+### Related Engineering Artifacts
+
+- `RP_37_ENGINEERING_SESSION_REPORT`
+- `RP_43_ENGINEERING_SESSION_REPORT`
+- `RP_47_ENGINEERING_SESSION_REPORT`
+
+### Generated Figures
+
+- `RP_43_A`
+- `RP_43_B`
+- `RP_43_C`
 
 ---
 
-## Related Engineering Sessions
+## Primary Sources
 
-- NB_00_RP_37_SOURCE_EXTRACTION.ipynb
-- NB_00_RP_43_SOURCE_EXTRACTION.ipynb
-- NB_00_RP_47_SOURCE_EXTRACTION.ipynb
+- Daniel Becker ARPA-E 2025 Presentation
 
 ---
 
-## Related Engineering Artifacts
+## Future Sources
 
-- RP_37_ENGINEERING_SESSION_REPORT.md
-- RP_43_ENGINEERING_SESSION_REPORT.md
-- RP_47_ENGINEERING_SESSION_REPORT.md
+- Becker arXiv papers
+- Future Becker seminars
 
 ---
 
 ## Current Engineering Questions
 
-- Which fabrication step currently limits manufacturing repeatability?
+- Which fabrication step limits manufacturing repeatability?
+- Which manufacturing tolerance dominates detector variability?
 - Which absorber properties most strongly influence detector performance?
-- Which engineering refinements most improve production yield?
 - Which measurements should be repeated after process changes?
-- Which engineering dependencies require further specification?
+- Which engineering refinement should be evaluated next?
+
+---
+
+## Next Engineering Driver
+
+- [Detector Module](../detector_module/)
 
 ---
 
 ## Continue Navigation
 
-→ Detector Module
-
-→ Instrument Scaling
-
-→ Product Assembly
+- [Detector Module](../detector_module/)
+- [Instrument Scaling](../instrument_scaling/)
+- `product_assembly`
 
 ---
 
