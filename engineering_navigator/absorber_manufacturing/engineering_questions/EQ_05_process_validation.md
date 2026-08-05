@@ -41,5 +41,12 @@ part of the manufacturing process.
 - Which validation metric should become the primary manufacturing benchmark?
 
 ---
+## Related Engineering Questions
 
+- Manufacturing Repeatability
+- Fabrication Sequence
+- Detector Variability
+- Absorber Yield
+
+---
 *Admissible generalizations trail leading specifications.*
