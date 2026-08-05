@@ -4,51 +4,56 @@
 
 ## Engineering Question
 
-Which fabrication step currently limits absorber-manufacturing repeatability?
+Which engineering refinements produce a repeatable absorber manufacturing process?
+
+## Why It Matters
+
+Repeatable manufacturing is required before detector modules can be
+assembled consistently and scaled toward instrument deployment.
 
 ## Current Evidence
 
-- RP_43 identifies absorber manufacturing as an engineering constraint.
-- The all-silicon architecture supports a more repeatable detector process.
-- Increased silicon coupling remains connected to detector refinement.
-- Product-assembly requirements depend on repeatable manufacturing.
+- RP_43 identifies absorber manufacturing as a primary engineering driver.
+- The all-silicon architecture supports manufacturing consistency.
+- Increased silicon coupling remains an active engineering refinement.
+- Repeatability supports detector-module production.
 
-## Depends On
+## Engineering Dependencies
 
 - Detector architecture
 - Fabrication sequence
 - Silicon coupling
 - Transition temperature
 - Manufacturing tolerances
-- Assembly procedures
 
-## Affects
+## Engineering Outcomes
 
-- Detector variability
-- Detector-module assembly
+- Improved detector consistency
+- Higher manufacturing yield
+- Detector-module production
 - Instrument scaling
-- Product assembly
-- Detector performance
 
-## Measurements Needed
+## Measurements
 
-- Fabrication yield by process step
-- Device-to-device variability
-- Absorber geometry variation
+- Device-to-device variation
+- Energy resolution
 - Thermal-response variation
-- Energy-resolution variation
-- Recovery-time variation
+- Recovery time
+- Manufacturing yield
 
-## Next Engineering Session
+## Related Reading Points
 
-Compare fabrication-step variation against measured detector variation to identify the process step that most strongly limits repeatability.
+- RP_43
 
-## Related Evidence
+## Related Engineering Session
 
-- `RP_37`
-- `RP_43`
-- `NB_00_RP_43_SOURCE_EXTRACTION`
-- `RP_43_ENGINEERING_SESSION_REPORT`
+- NB_00_RP_43_SOURCE_EXTRACTION
+
+## Current Engineering Questions
+
+- Which fabrication step contributes the largest variability?
+- Which process is currently least repeatable?
+- Which refinement should be evaluated next?
 
 ---
 
