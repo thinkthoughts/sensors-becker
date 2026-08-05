@@ -42,5 +42,11 @@ Yield determines whether detector production can scale efficiently.
 - Which refinement produces the largest yield improvement?
 
 ---
+## Related Engineering Questions
 
+- Manufacturing Repeatability
+- Process Validation
+- Detector Variability
+
+---
 *Admissible generalizations trail leading specifications.*
