@@ -2,51 +2,8 @@
 
 **Engineering Driver:** [Absorber Manufacturing](../)
 
-## Engineering Question
+## Engineering Question Sequence
 
-Which measurements demonstrate that manufacturing refinements improved the process?
+← [EQ_04 Detector Variability](EQ_04_detector_variability.md)
 
-## Why It Matters
-
-Engineering refinements require measurable validation before they become
-part of the manufacturing process.
-
-## Validation Measurements
-
-- Energy resolution
-- Count rate
-- Recovery time
-- Manufacturing yield
-- Device repeatability
-
-## Engineering Dependencies
-
-- Manufacturing repeatability
-- Detector performance
-- Module validation
-
-## Engineering Outcomes
-
-- Verified engineering refinements
-- Improved manufacturing confidence
-- Engineering specifications for future production
-
-## Related Reading Points
-
-- RP_37
-- RP_43
-
-## Current Engineering Questions
-
-- Which validation metric should become the primary manufacturing benchmark?
-
----
-## Related Engineering Questions
-
-- Manufacturing Repeatability
-- Fabrication Sequence
-- Detector Variability
-- Absorber Yield
-
----
-*Admissible generalizations trail leading specifications.*
+End of Engineering Question Sequence

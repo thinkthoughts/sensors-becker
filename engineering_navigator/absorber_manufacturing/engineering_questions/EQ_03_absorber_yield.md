@@ -2,51 +2,10 @@
 
 **Engineering Driver:** [Absorber Manufacturing](../)
 
-## Engineering Question
+## Engineering Question Sequence
 
-Which engineering refinements most improve manufacturing yield?
+← [EQ_02 Manufacturing Tolerances](EQ_02_manufacturing_tolerances.md)
 
-## Why It Matters
+↓
 
-Yield determines whether detector production can scale efficiently.
-
-## Current Evidence
-
-- Repeatable absorber fabrication supports detector production.
-- Manufacturing improvements directly influence deployment.
-
-## Engineering Dependencies
-
-- Manufacturing repeatability
-- Fabrication tolerances
-- Process validation
-
-## Measurements
-
-- Successful devices
-- Manufacturing yield
-- Rework rate
-
-## Engineering Outcomes
-
-- Lower production cost
-- Higher throughput
-- Scalable manufacturing
-
-## Related Reading Points
-
-- RP_43
-
-## Current Engineering Questions
-
-- Which refinement produces the largest yield improvement?
-
----
-## Related Engineering Questions
-
-- Manufacturing Repeatability
-- Process Validation
-- Detector Variability
-
----
-*Admissible generalizations trail leading specifications.*
+→ [EQ_04 Detector Variability](EQ_04_detector_variability.md)

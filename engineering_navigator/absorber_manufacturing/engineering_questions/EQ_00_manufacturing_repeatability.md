@@ -2,66 +2,17 @@
 
 **Engineering Driver:** [Absorber Manufacturing](../)
 
-## Engineering Question
+## Engineering Question Sequence
 
-Which engineering refinements produce a repeatable absorber manufacturing process?
+Start Here
+
+Next →
+[EQ_01 Fabrication Sequence](EQ_01_fabrication_sequence.md)
+
 ## Related Engineering Questions
 
-- [Fabrication Sequence](fabrication_sequence.md)
-- [Manufacturing Tolerances](manufacturing_tolerances.md)
-- [Absorber Yield](absorber_yield.md)
-- [Detector Variability](detector_variability.md)
-- [Process Validation](process_validation.md)
-  
-## Why It Matters
-
-Repeatable manufacturing is required before detector modules can be
-assembled consistently and scaled toward instrument deployment.
-
-## Current Evidence
-
-- RP_43 identifies absorber manufacturing as a primary engineering driver.
-- The all-silicon architecture supports manufacturing consistency.
-- Increased silicon coupling remains an active engineering refinement.
-- Repeatability supports detector-module production.
-
-## Engineering Dependencies
-
-- Detector architecture
-- Fabrication sequence
-- Silicon coupling
-- Transition temperature
-- Manufacturing tolerances
-
-## Engineering Outcomes
-
-- Improved detector consistency
-- Higher manufacturing yield
-- Detector-module production
-- Instrument scaling
-
-## Measurements
-
-- Device-to-device variation
-- Energy resolution
-- Thermal-response variation
-- Recovery time
-- Manufacturing yield
-
-## Related Reading Points
-
-- RP_43
-
-## Related Engineering Session
-
-- NB_00_RP_43_SOURCE_EXTRACTION
-
-## Current Engineering Questions
-
-- Which fabrication step contributes the largest variability?
-- Which process is currently least repeatable?
-- Which refinement should be evaluated next?
-
----
-
-*Admissible generalizations trail leading specifications.*
+- [EQ_01 Fabrication Sequence](EQ_01_fabrication_sequence.md)
+- [EQ_02 Manufacturing Tolerances](EQ_02_manufacturing_tolerances.md)
+- [EQ_03 Absorber Yield](EQ_03_absorber_yield.md)
+- [EQ_04 Detector Variability](EQ_04_detector_variability.md)
+- [EQ_05 Process Validation](EQ_05_process_validation.md)

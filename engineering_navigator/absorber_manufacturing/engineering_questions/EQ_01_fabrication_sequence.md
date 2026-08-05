@@ -2,71 +2,10 @@
 
 **Engineering Driver:** [Absorber Manufacturing](../)
 
-## Engineering Question
+## Engineering Question Sequence
 
-Which fabrication steps determine final detector quality?
-
-## Why It Matters
-
-Understanding fabrication dependencies identifies where engineering
-refinements most improve detector performance.
-
-## Current Evidence
-
-- RP_43 emphasizes repeatable absorber fabrication.
-- Manufacturing depends on multiple connected fabrication steps.
-
-## Engineering Sequence
-
-Raw Materials
+← [EQ_00 Manufacturing Repeatability](EQ_00_manufacturing_repeatability.md)
 
 ↓
 
-Deposition
-
-↓
-
-Patterning
-
-↓
-
-Absorber Fabrication
-
-↓
-
-Assembly
-
-↓
-
-Validation
-
-## Engineering Dependencies
-
-- Materials
-- Process control
-- Silicon coupling
-- Detector architecture
-
-## Engineering Outcomes
-
-- Repeatable fabrication
-- Reduced process variation
-- Higher detector quality
-
-## Related Reading Points
-
-- RP_43
-
-## Current Engineering Questions
-
-- Which fabrication step dominates detector variation?
-- Which step should be measured more precisely?
-
----
-## Related Engineering Questions
-
-- [Manufacturing Repeatability](manufacturing_repeatability.md)
-- [Manufacturing Tolerances](manufacturing_tolerances.md)
-- [Process Validation](process_validation.md)
-
-*Admissible generalizations trail leading specifications.*
+→ [EQ_02 Manufacturing Tolerances](EQ_02_manufacturing_tolerances.md)

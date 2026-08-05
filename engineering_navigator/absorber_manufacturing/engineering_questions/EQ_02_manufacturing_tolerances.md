@@ -2,49 +2,10 @@
 
 **Engineering Driver:** [Absorber Manufacturing](../)
 
-## Engineering Question
+## Engineering Question Sequence
 
-Which manufacturing tolerances dominate detector performance?
+← [EQ_01 Fabrication Sequence](EQ_01_fabrication_sequence.md)
 
-## Why It Matters
+↓
 
-Manufacturing tolerances determine whether detector performance can be
-reproduced consistently.
-
-## Candidate Tolerances
-
-- Absorber dimensions
-- Film thickness
-- Alignment
-- Transition temperature
-- Thermal conductance
-
-## Engineering Outcomes
-
-- Lower detector variability
-- Higher manufacturing repeatability
-
-## Measurements
-
-- Thickness variation
-- Alignment variation
-- Tc variation
-- Energy resolution
-
-## Related Reading Points
-
-- RP_43
-
-## Current Engineering Questions
-
-- Which tolerance contributes most strongly to detector performance?
-
----
-## Related Engineering Questions
-
-- Manufacturing Repeatability
-- Fabrication Sequence
-- Detector Variability
-- Process Validation
-
-*Admissible generalizations trail leading specifications.*
+→ [EQ_03 Absorber Yield](EQ_03_absorber_yield.md)
