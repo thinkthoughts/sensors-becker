@@ -40,5 +40,11 @@ reproduced consistently.
 - Which tolerance contributes most strongly to detector performance?
 
 ---
+## Related Engineering Questions
+
+- Manufacturing Repeatability
+- Fabrication Sequence
+- Detector Variability
+- Process Validation
 
 *Admissible generalizations trail leading specifications.*
