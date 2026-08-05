@@ -1,0 +1,35 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+record_status: scaffold
+extraction_status: not_started
+source_id: SOURCE_03_tomcat_array_yield
+title: 'A tabletop x-ray tomography instrument for nanometer-scale imaging: demonstration of the 1,000-element
+  transition-edge sensor subarray'
+year: 2022
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:2212.12073
+source_url: https://arxiv.org/abs/2212.12073
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+priority_variables_to_extract:
+- available readout channels
+- working devices
+- device yield
+- array size
+- energy resolution
+- pulse-speed optimization
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+source_supported_relationships: []
+unreported_variables: []
+extraction_notes: []

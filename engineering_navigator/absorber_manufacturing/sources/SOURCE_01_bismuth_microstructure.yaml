@@ -1,0 +1,33 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+record_status: scaffold
+extraction_status: not_started
+source_id: SOURCE_01_bismuth_microstructure
+title: Microstructure analysis of bismuth absorbers for transition-edge sensor X-ray microcalorimeters
+year: 2017
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:1711.02215
+source_url: https://arxiv.org/abs/1711.02215
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+priority_variables_to_extract:
+- bismuth deposition method
+- grain size
+- crystallographic structure
+- absorber morphology
+- spectral tail response
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+source_supported_relationships: []
+unreported_variables: []
+extraction_notes: []

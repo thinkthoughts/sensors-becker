@@ -1,0 +1,34 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+record_status: scaffold
+extraction_status: not_started
+source_id: SOURCE_04_tes_array_development
+title: Transition Edge Sensor Array Development
+year: 2001
+source_type: journal_article
+publisher_or_archive: IEEE Transactions on Applied Superconductivity / NIST
+identifier: ''
+source_url: https://www.nist.gov/publications/transition-edge-sensor-array-development
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+priority_variables_to_extract:
+- multi-pixel array fabrication
+- surface micromachining
+- close-packed geometry
+- SQUID multiplexing
+- digital feedback electronics
+- array scalability
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+source_supported_relationships: []
+unreported_variables: []
+extraction_notes: []
