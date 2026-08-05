@@ -1,8 +1,8 @@
 schema_version: 1.0.0
 repository: sensors-becker
 engineering_driver: absorber_manufacturing
-record_status: scaffold
-extraction_status: not_started
+record_status: evidence_extracted
+extraction_status: complete_for_source_record_v1
 source_id: SOURCE_00_becker_transition_models
 title: Use of Transition Models to Design High Performance TESs for the LCLS-II Soft X-Ray Spectrometer
 year: 2019
@@ -20,14 +20,495 @@ priority_variables_to_extract:
 - transition shape
 - energy resolution
 - pulse decay-time constant
-authors: []
-materials: []
-fabrication_methods: []
-design_variables: []
-reported_values: []
-measured_outcomes: []
-equations: []
-assumptions: []
-source_supported_relationships: []
-unreported_variables: []
-extraction_notes: []
+authors:
+- Kelsey M. Morgan
+- Dan T. Becker
+- Douglas A. Bennett
+- William B. Doriese
+- Johnathon D. Gard
+- Kent D. Irwin
+- Sang Jun Lee
+- Dale Li
+- John A. B. Mates
+- Christine G. Pappas
+- Dan R. Schmidt
+- Charles J. Titus
+- Dan D. Van Winkle
+- Joel N. Ullom
+- Abigail Wessels
+- Daniel S. Swetz
+materials:
+- name: Mo/Cu bilayer
+  role: TES film
+  source_pages:
+  - 5
+  - 8
+  - 10
+- name: SiNx membrane
+  role: 1 µm thermal-isolation membrane
+  source_pages:
+  - 3
+- name: Cu normal-metal bars
+  role: transition and critical-current engineering
+  source_pages:
+  - 3
+  - 6
+  - 10
+- name: Cu banks
+  role: prevent superconducting shorts
+  source_pages:
+  - 10
+- name: Mo leads
+  role: superconducting electrical leads
+  source_pages:
+  - 10
+- name: Evaporated bismuth
+  role: x-ray absorber
+  source_pages:
+  - 6
+  - 10
+fabrication_methods:
+- method: Mo/Cu bilayer TES fabrication on suspended SiNx membrane
+  purpose: form the thermally isolated sensor
+  source_pages:
+  - 3
+  - 10
+- method: Patterning of perpendicular Cu bars and edge banks
+  purpose: modify transition behavior and prevent superconducting shorts
+  source_pages:
+  - 3
+  - 6
+  - 10
+- method: Evaporated bismuth deposition
+  purpose: increase x-ray absorption efficiency
+  source_pages:
+  - 6
+  - 10
+- method: Multiple pixel geometries fabricated on a test array
+  purpose: test geometric scaling of C and G
+  source_pages:
+  - 6
+design_variables:
+- id: Tc
+  name: critical temperature
+  unit: mK
+  role: primary design variable
+- id: TES_length
+  name: TES length
+  unit: µm
+  role: geometry
+- id: TES_width
+  name: TES width
+  unit: µm
+  role: geometry
+- id: TES_area
+  name: TES area
+  unit: µm²
+  role: heat capacity and collection area
+- id: bar_count
+  name: number of Cu bars
+  unit: count
+  role: transition control
+- id: bar_spacing
+  name: Cu-bar spacing
+  unit: µm
+  role: critical-current control
+- id: Bi_thickness
+  name: bismuth thickness
+  unit: µm
+  role: absorption
+- id: C
+  name: heat capacity
+  unit: pJ/K
+  role: dynamic range and timing
+- id: G
+  name: thermal conductance
+  unit: pW/K
+  role: timing and isolation
+- id: n
+  name: thermal exponent
+  unit: dimensionless
+  role: thermal-link model
+- id: Rn
+  name: normal resistance
+  unit: mΩ
+  role: bias and transition model
+- id: alpha
+  name: temperature sensitivity α
+  unit: dimensionless
+  role: transition sharpness
+- id: beta
+  name: current sensitivity β
+  unit: dimensionless
+  role: transition response
+- id: pulse_tau
+  name: 1/e pulse decay time
+  unit: µs
+  role: throughput
+- id: delta_E
+  name: energy resolution FWHM
+  unit: eV
+  role: performance
+- id: linear_range
+  name: linear energy range
+  unit: relative
+  role: dynamic range
+reported_values:
+- object: LCLS-II specification
+  variable: pixel_count
+  value: 1000
+  unit: pixels
+  source_page: 2
+- object: LCLS-II specification
+  variable: delta_E
+  value: 0.5
+  unit: eV FWHM
+  condition: below 1 keV
+  source_page: 2
+- object: LCLS-II specification
+  variable: pulse_tau
+  value: 100
+  unit: µs
+  comparison: <
+  source_page: 2
+- object: previous device
+  variable: geometry
+  value: 212 × 106
+  unit: µm
+  source_page: 5
+- object: previous device
+  variable: bar_count
+  value: 4
+  unit: count
+  source_page: 5
+- object: previous device
+  variable: Tc
+  value: 76
+  unit: mK
+  source_page: 5
+- object: previous device
+  variable: delta_E
+  value: 1.02
+  unit: eV FWHM
+  condition: 1.25 keV
+  source_page: 5
+- object: previous device
+  variable: C
+  value: 0.11
+  unit: pJ/K
+  source_page: 5
+- object: previous device
+  variable: Rn
+  value: 14.5
+  unit: mΩ
+  source_page: 5
+- object: previous device
+  variable: G
+  value: 130
+  unit: pW/K
+  condition: at Tc
+  source_page: 5
+- object: previous device
+  variable: n
+  value: 3.52
+  unit: dimensionless
+  source_page: 5
+- object: 200 µm 4-bar device
+  variable: geometry
+  value: 200 × 200
+  unit: µm
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: bar_count
+  value: 4
+  unit: count
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: Bi_thickness
+  value: 1.1
+  unit: µm
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: Tc
+  value: 54.5
+  unit: mK
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: G
+  value: 61
+  unit: pW/K
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: n
+  value: 3.55
+  unit: dimensionless
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: C
+  value: 0.166
+  unit: pJ/K
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: pulse_tau
+  value: 280
+  unit: µs
+  condition: 10.5% Rn
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: critically_damped_tau
+  value: 87
+  unit: µs
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: alpha_over_noise_factor
+  value: 81.2
+  unit: dimensionless
+  condition: 9.5% Rn
+  source_page: 6
+- object: 200 µm 4-bar device
+  variable: delta_E
+  value: 0.87
+  unit: eV FWHM
+  uncertainty: 0.07
+  condition: 1.254 keV
+  source_page: 7
+- object: 200 µm 4-bar device
+  variable: delta_E
+  value: 1.29
+  unit: eV FWHM
+  uncertainty: 0.05
+  condition: 1.487 keV
+  source_page: 7
+- object: 180 µm 3-bar device
+  variable: geometry
+  value: 180 × 180
+  unit: µm
+  source_page: 7
+- object: 180 µm 3-bar device
+  variable: bar_count
+  value: 3
+  unit: count
+  source_page: 7
+- object: 180 µm 3-bar device
+  variable: Tc
+  value: 54.5
+  unit: mK
+  source_page: 10
+- object: 180 µm 3-bar device
+  variable: Bi_thickness
+  value: 1.1
+  unit: µm
+  source_page: 10
+- object: 180 µm 3-bar device
+  variable: delta_E
+  value: 0.75
+  unit: eV FWHM
+  uncertainty: 0.07
+  condition: 1.254 keV
+  source_page: 7
+- object: 180 µm 3-bar device
+  variable: delta_E
+  value: 0.94
+  unit: eV FWHM
+  uncertainty: 0.03
+  condition: 1.487 keV
+  source_page: 7
+- object: proposed next generation
+  variable: geometry
+  value: 220 × 220
+  unit: µm
+  source_page: 8
+- object: proposed next generation
+  variable: Tc
+  value: 30
+  unit: mK
+  source_page: 8
+- object: proposed next generation
+  variable: predicted_delta_E
+  value: 0.5
+  unit: eV FWHM
+  condition: 1 keV
+  source_page: 8
+measured_outcomes:
+- outcome: Sub-eV resolution demonstrated
+  result: 0.75 ± 0.07 eV FWHM at 1.254 keV
+  device: 180 × 180 µm, 3 bars, Tc = 54.5 mK
+  source_pages:
+  - 7
+  - 11
+- outcome: Pulse requirement met by critically damped estimate
+  result: 87 µs, below the 100 µs requirement
+  device: 200 × 200 µm, 4 bars
+  source_pages:
+  - 6
+- outcome: Heat capacity exceeded simple scaling
+  result: 0.166 pJ/K, 18% higher than expected
+  device: 200 × 200 µm, 4 bars
+  source_pages:
+  - 6
+  - 8
+- outcome: Thermal conductance below scaling prediction
+  result: 61 pW/K, 14% lower than expected
+  device: 200 × 200 µm, 4 bars
+  source_pages:
+  - 6
+- outcome: Next model-guided design specified
+  result: 220 × 220 µm, Tc = 30 mK, predicted 0.5 eV FWHM at 1 keV
+  device: proposed next generation
+  source_pages:
+  - 7
+  - 8
+equations:
+- id: thermal_conductance
+  expression: G(T) = n * kappa * T**(n - 1)
+  display: G(T)=n\kappa T^{n-1}
+  variables:
+  - G
+  - n
+  - kappa
+  - T
+  source_page: 3
+  role: thermal-link parameterization
+- id: pulse_decay_scaling
+  expression: tau proportional_to C / G
+  display: \tau \propto C/G
+  variables:
+  - pulse_tau
+  - C
+  - G
+  source_page: 3
+  role: timing scaling
+- id: linear_range_scaling
+  expression: linear_range proportional_to C * T / alpha
+  display: E_{\mathrm{linear}} \propto CT/\alpha
+  variables:
+  - linear_range
+  - C
+  - T
+  - alpha
+  source_page: 3
+  role: dynamic-range scaling
+- id: joule_power_balance
+  expression: I**2 * R = kappa * (T**n - Tb**n)
+  display: I^2R=\kappa(T^n-T_b^n)
+  variables:
+  - I
+  - R
+  - kappa
+  - T
+  - Tb
+  - n
+  source_page: 5
+  role: steady-state thermal balance
+- id: energy_resolution_scaling
+  expression: delta_E**2 proportional_to (C*T**2/alpha)*J*(1+2*beta)
+  display: \Delta E^2 \propto (CT^2/\alpha)J(1+2\beta)
+  variables:
+  - delta_E
+  - C
+  - T
+  - alpha
+  - J
+  - beta
+  source_page: 5
+  role: energy-resolution scaling
+- id: critical_current_temperature
+  expression: Ic(T) = Ic0 * (1 - T / Tc)**(3/2)
+  display: I_c(T)=I_{c0}(1-T/T_c)^{3/2}
+  variables:
+  - Ic
+  - Ic0
+  - T
+  - Tc
+  source_page: 4
+  role: thin-film critical-current model
+assumptions:
+- assumption: Metal heat capacity scales approximately linearly with temperature.
+  source_pages:
+  - 3
+  - 5
+  - 8
+- assumption: n is typically between 3 and 4 for a thin SiNx membrane.
+  source_pages:
+  - 3
+- assumption: The two-fluid model is useful where weak-link effects are minimal.
+  source_pages:
+  - 4
+- assumption: The 30 mK prediction depends on excess heat capacity not invalidating area scaling.
+  source_pages:
+  - 8
+unreported_variables:
+- wafer-to-wafer yield
+- device-to-device distributions of Tc, C, G, alpha, beta, and energy resolution
+- formal fabrication tolerances for TES dimensions and Cu-bar placement
+- measured absorber-thickness variation
+- process-step attribution for excess heat capacity
+- manufacturing rework or failure rates
+extraction_notes:
+- Page references use manuscript page numbers visible in the PDF.
+- Formal manufacturing distributions and tolerances are not reported.
+- Next-generation performance is a model-guided prediction, not a measurement.
+engineering_relationships:
+- relationship: Reducing Tc reduces C and G, with G expected to fall faster.
+  engineering_effect: Pulse decay tends to lengthen because tau scales with C/G.
+  source_pages:
+  - 3
+- relationship: Lower Tc must be co-designed with geometry and transition parameters.
+  engineering_effect: Copying the same geometry would reduce linear range and slow pulses.
+  source_pages:
+  - 3
+  - 5
+- relationship: Increasing TES area increases heat capacity and collecting area.
+  engineering_effect: Geometry can compensate for reduced heat capacity per volume.
+  source_pages:
+  - 5
+  - 7
+  - 8
+- relationship: Cu-bar spacing is reported to scale with zero-temperature critical current.
+  engineering_effect: Preserving spacing helps preserve critical current.
+  source_pages:
+  - 6
+- relationship: Geometry and perimeter changes were expected to increase alpha by 1.23.
+  engineering_effect: Resolution improves at some cost to linear range.
+  source_pages:
+  - 5
+  - 6
+- relationship: Excess heat capacity may arise from low-temperature copper behavior or process variability.
+  engineering_effect: Additional devices are required before fixing lower-temperature area scaling.
+  source_pages:
+  - 8
+engineering_constraints:
+- constraint: Energy resolution
+  specification: 0.5 eV FWHM below 1 keV
+  source_pages:
+  - 2
+  - 7
+- constraint: Array scale
+  specification: 1000 TES pixels
+  source_pages:
+  - 2
+- constraint: Pulse decay
+  specification: 1/e decay shorter than 100 µs
+  source_pages:
+  - 2
+- constraint: Cryogenic platform
+  specification: 55 mK tests at 35 mK bath; LCLS-II base about 8 mK
+  source_pages:
+  - 5
+  - 7
+- constraint: Linear range
+  specification: Adequate through 1 keV; about 20% reduction considered acceptable
+  source_pages:
+  - 6
+  - 7
+- constraint: Development cost
+  specification: Reduce fabricated wafers and tested variants
+  source_pages:
+  - 3
+future_questions:
+- What fabrication variables caused the measured 18% excess heat capacity?
+- Does excess heat capacity persist or increase below 55 mK?
+- How repeatable are C, G, alpha, beta, and Tc across devices and wafers?
+- What absorber-thickness tolerance preserves absorption without adding measurable heat capacity?
+- Which geometry and bar-layout tolerances dominate energy-resolution variability?
+- Does the proposed 220 × 220 µm, 30 mK device meet resolution and pulse-time requirements?
