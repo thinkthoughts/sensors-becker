@@ -16,6 +16,13 @@ Reading Points document engineering sessions.
 Engineering Drivers organize those sessions into a coherent engineering
 program.
 
+# Engineering Navigator
+
+- [Engineering Drivers](drivers.md)
+- [Engineering Graph](graph.md)
+
+...
+
 ## Repository-Wide Engineering Graph
 
 [Open the Engineering Graph](graph.md)
