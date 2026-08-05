@@ -1,0 +1,48 @@
+[
+  {
+    "relationship": "Reducing Tc reduces C and G, with G expected to fall faster.",
+    "engineering_effect": "Pulse decay tends to lengthen because tau scales with C/G.",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "relationship": "Lower Tc must be co-designed with geometry and transition parameters.",
+    "engineering_effect": "Copying the same geometry would reduce linear range and slow pulses.",
+    "source_pages": [
+      3,
+      5
+    ]
+  },
+  {
+    "relationship": "Increasing TES area increases heat capacity and collecting area.",
+    "engineering_effect": "Geometry can compensate for reduced heat capacity per volume.",
+    "source_pages": [
+      5,
+      7,
+      8
+    ]
+  },
+  {
+    "relationship": "Cu-bar spacing is reported to scale with zero-temperature critical current.",
+    "engineering_effect": "Preserving spacing helps preserve critical current.",
+    "source_pages": [
+      6
+    ]
+  },
+  {
+    "relationship": "Geometry and perimeter changes were expected to increase alpha by 1.23.",
+    "engineering_effect": "Resolution improves at some cost to linear range.",
+    "source_pages": [
+      5,
+      6
+    ]
+  },
+  {
+    "relationship": "Excess heat capacity may arise from low-temperature copper behavior or process variability.",
+    "engineering_effect": "Additional devices are required before fixing lower-temperature area scaling.",
+    "source_pages": [
+      8
+    ]
+  }
+]
