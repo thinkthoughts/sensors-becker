@@ -5,7 +5,14 @@
 ## Engineering Question
 
 Which engineering refinements produce a repeatable absorber manufacturing process?
+## Related Engineering Questions
 
+- [Fabrication Sequence](fabrication_sequence.md)
+- [Manufacturing Tolerances](manufacturing_tolerances.md)
+- [Absorber Yield](absorber_yield.md)
+- [Detector Variability](detector_variability.md)
+- [Process Validation](process_validation.md)
+  
 ## Why It Matters
 
 Repeatable manufacturing is required before detector modules can be
