@@ -1,0 +1,208 @@
+"""SOURCE_01: Bismuth absorber microstructure evidence."""
+
+from __future__ import annotations
+
+
+def extract(scaffold: dict) -> dict:
+    record = dict(scaffold)
+    record.update(
+        {
+            "record_status": "evidence_extracted",
+            "extraction_status": "complete_for_source_record_v1",
+            "authors": [
+                "Daikang Yan", "Ralu Divan", "Lisa M. Gades", "Peter Kenesei",
+                "Timothy J. Madden", "Antonino Miceli", "Jun-Sang Park",
+                "Umeshkumar M. Patel", "Orlando Quaranta", "Hemant Sharma",
+                "Douglas A. Bennett", "William B. Doriese", "Joseph W. Fowler",
+                "Johnathon Gard", "James Hays-Wehle", "Kelsey M. Morgan",
+                "Daniel R. Schmidt", "Daniel S. Swetz", "Joel N. Ullom",
+            ],
+            "materials": [
+                {"name": "Bismuth", "role": "x-ray absorber", "source_pages": [1, 2, 5]},
+                {"name": "Gold", "role": "seed layer", "source_pages": [2]},
+                {"name": "Titanium", "role": "adhesion layer", "source_pages": [2]},
+                {"name": "Silicon", "role": "sample substrate", "source_pages": [2]},
+            ],
+            "fabrication_methods": [
+                {
+                    "method": "Thermal evaporation of bismuth",
+                    "purpose": "produce the evaporated-Bi sample",
+                    "parameters": {
+                        "Bi_thickness_um": 3.0,
+                        "Au_seed_layer_nm": 80,
+                        "Ti_adhesion_layer_nm": 5,
+                        "deposition_rate_A_per_s": 100,
+                        "temperature": "room temperature",
+                    },
+                    "source_pages": [2],
+                },
+                {
+                    "method": "Electroplating of bismuth",
+                    "purpose": "produce the electroplated-Bi sample",
+                    "parameters": {
+                        "Bi_thickness_um": 3.0,
+                        "Au_seed_layer_um": 1.0,
+                        "plating_rate_nm_per_min": 283,
+                        "current_density_mA_per_cm2": 6.0,
+                        "bias_voltage_V": 1.4,
+                        "temperature": "room temperature",
+                        "agitation": "none",
+                    },
+                    "source_pages": [2],
+                },
+                {
+                    "method": "Scanning electron microscopy",
+                    "purpose": "compare surface morphology and grain scale",
+                    "source_pages": [2, 3],
+                },
+                {
+                    "method": "FF-HEDM",
+                    "purpose": "measure large electroplated-Bi grains",
+                    "source_pages": [3, 4, 5],
+                },
+                {
+                    "method": "WAXS with Scherrer analysis",
+                    "purpose": "measure small evaporated-Bi grains",
+                    "source_pages": [4, 5],
+                },
+            ],
+            "design_variables": [
+                {"id": "deposition_method", "name": "deposition method", "unit": "category", "role": "manufacturing input"},
+                {"id": "Bi_thickness", "name": "bismuth thickness", "unit": "µm", "role": "absorption and tailing"},
+                {"id": "Au_seed_thickness", "name": "gold seed thickness", "unit": "nm or µm", "role": "deposition support"},
+                {"id": "Ti_adhesion_thickness", "name": "titanium adhesion thickness", "unit": "nm", "role": "film adhesion"},
+                {"id": "deposition_rate", "name": "evaporation rate", "unit": "Å/s", "role": "process parameter"},
+                {"id": "plating_rate", "name": "plating rate", "unit": "nm/min", "role": "process parameter"},
+                {"id": "current_density", "name": "plating current density", "unit": "mA/cm²", "role": "process parameter"},
+                {"id": "bias_voltage", "name": "plating bias voltage", "unit": "V", "role": "process parameter"},
+                {"id": "grain_size", "name": "average grain size", "unit": "nm or µm", "role": "microstructure"},
+                {"id": "crystal_phase", "name": "crystallographic phase", "unit": "category", "role": "material structure"},
+                {"id": "low_energy_tail", "name": "low-energy spectral tail", "unit": "response feature", "role": "detector outcome"},
+            ],
+            "reported_values": [
+                {"object": "evaporated Bi", "variable": "Bi_thickness", "value": 3.0, "unit": "µm", "source_page": 2},
+                {"object": "evaporated Bi", "variable": "Au_seed_thickness", "value": 80, "unit": "nm", "source_page": 2},
+                {"object": "evaporated Bi", "variable": "Ti_adhesion_thickness", "value": 5, "unit": "nm", "source_page": 2},
+                {"object": "evaporated Bi", "variable": "deposition_rate", "value": 100, "unit": "Å/s", "source_page": 2},
+                {"object": "electroplated Bi", "variable": "Bi_thickness", "value": 3.0, "unit": "µm", "source_page": 2},
+                {"object": "electroplated Bi", "variable": "Au_seed_thickness", "value": 1.0, "unit": "µm", "source_page": 2},
+                {"object": "electroplated Bi", "variable": "plating_rate", "value": 283, "unit": "nm/min", "source_page": 2},
+                {"object": "electroplated Bi", "variable": "current_density", "value": 6.0, "unit": "mA/cm²", "source_page": 2},
+                {"object": "electroplated Bi", "variable": "bias_voltage", "value": 1.4, "unit": "V", "source_page": 2},
+                {"object": "evaporated Bi", "variable": "SEM_grain_size", "value": 100, "unit": "nm approximately", "source_page": 3},
+                {"object": "electroplated Bi", "variable": "SEM_grain_size", "value": 1.0, "unit": "µm approximately", "source_page": 3},
+                {"object": "evaporated Bi", "variable": "diffraction_grain_size", "value": 30, "unit": "nm approximately", "source_page": 5},
+                {"object": "electroplated Bi", "variable": "diffraction_grain_size", "value": 1.4, "unit": "µm approximately", "source_page": 5},
+                {"object": "diffraction beam", "variable": "photon_energy", "value": 80, "unit": "keV", "source_page": 4},
+                {"object": "bismuth", "variable": "mean_excitation_energy", "value": 823, "unit": "eV", "source_page": 2},
+            ],
+            "measured_outcomes": [
+                {
+                    "outcome": "Both films share the same major crystallographic phase",
+                    "result": "monoclinic Bi, symmetry group C2/m",
+                    "source_pages": [4, 5],
+                },
+                {
+                    "outcome": "Electroplated Bi has substantially larger grains",
+                    "result": "about 1.4 µm versus about 30 nm by diffraction analysis",
+                    "source_pages": [5],
+                },
+                {
+                    "outcome": "Evaporated Bi is associated with a low-energy spectral tail",
+                    "result": "authors identify grain-boundary trapping as the likely mechanism",
+                    "source_pages": [1, 2, 5],
+                },
+            ],
+            "equations": [
+                {
+                    "id": "scherrer_grain_size",
+                    "expression": "B = K * lambda / (L * cos(theta))",
+                    "display": r"B=K\lambda/(L\cos\theta)",
+                    "variables": ["B", "K", "lambda", "L", "theta"],
+                    "source_page": 5,
+                    "role": "estimate evaporated-Bi average grain size",
+                },
+            ],
+            "assumptions": [
+                {
+                    "assumption": "Electroplated grains are treated as spherical for the FF-HEDM size estimate.",
+                    "source_pages": [5],
+                },
+                {
+                    "assumption": "Grain-boundary trapping is the likely cause of the low-energy spectral tail.",
+                    "source_pages": [2, 5],
+                },
+                {
+                    "assumption": "The samples approximate conditions used in device fabrication.",
+                    "source_pages": [2],
+                },
+            ],
+            "engineering_relationships": [
+                {
+                    "relationship": "Deposition method strongly changes absorber grain size.",
+                    "engineering_effect": "Electroplating produced grains about 40 times larger than evaporation.",
+                    "source_pages": [1, 5],
+                },
+                {
+                    "relationship": "Smaller grains increase the density of grain boundaries encountered by energy carriers.",
+                    "engineering_effect": "Evaporated Bi has a greater probability of carrier trapping.",
+                    "source_pages": [2, 5],
+                },
+                {
+                    "relationship": "Carrier trapping lowers reconstructed event energy.",
+                    "engineering_effect": "Trapping contributes to a non-Gaussian low-energy spectral tail.",
+                    "source_pages": [2],
+                },
+                {
+                    "relationship": "Both films share the same major monoclinic phase.",
+                    "engineering_effect": "Microstructure, rather than phase identity alone, is the leading differentiator.",
+                    "source_pages": [4, 5],
+                },
+                {
+                    "relationship": "Tail fraction has been reported to increase with absorber thickness and photon energy.",
+                    "engineering_effect": "Thickness and operating energy must be evaluated together with grain size.",
+                    "source_pages": [2],
+                },
+            ],
+            "engineering_constraints": [
+                {
+                    "constraint": "Quantum efficiency",
+                    "specification": "Hard-x-ray TESs require sufficiently thick, high-stopping-power absorbers.",
+                    "source_pages": [1],
+                },
+                {
+                    "constraint": "Spectral response",
+                    "specification": "Manufacturing should minimize incomplete-thermalization tailing.",
+                    "source_pages": [1, 2, 5],
+                },
+                {
+                    "constraint": "Microstructure scale",
+                    "specification": "Grains should be large relative to relevant carrier-transport scales where practical.",
+                    "source_pages": [2, 5],
+                },
+            ],
+            "future_questions": [
+                "Which electroplating parameters control the final grain-size distribution?",
+                "What grain-size threshold measurably suppresses the low-energy tail?",
+                "How do absorber thickness and grain size interact across x-ray energies?",
+                "How repeatable are grain size and roughness across wafers and plating batches?",
+                "What microstructure metric should become the manufacturing acceptance criterion?",
+            ],
+            "unreported_variables": [
+                "grain-size distribution width",
+                "device-to-device spectral-tail distribution",
+                "manufacturing yield by deposition method",
+                "quantitative roughness",
+                "electroplating bath chemistry",
+                "process tolerances for plating current, voltage, and rate",
+                "paired spectral measurements for the exact characterized samples",
+            ],
+            "extraction_notes": [
+                "Page references use manuscript page numbers visible in the PDF.",
+                "The paper does not establish a final grain-size manufacturing tolerance.",
+                "SEM estimates and diffraction-derived grain sizes are recorded separately.",
+            ],
+        }
+    )
+    record.pop("source_supported_relationships", None)
+    return record
