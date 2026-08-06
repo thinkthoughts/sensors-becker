@@ -1,0 +1,40 @@
+[
+  {
+    "relationship": "Deposition method strongly changes absorber grain size.",
+    "engineering_effect": "Electroplating produced grains about 40 times larger than evaporation.",
+    "source_pages": [
+      1,
+      5
+    ]
+  },
+  {
+    "relationship": "Smaller grains increase the density of grain boundaries encountered by energy carriers.",
+    "engineering_effect": "Evaporated Bi has a greater probability of carrier trapping.",
+    "source_pages": [
+      2,
+      5
+    ]
+  },
+  {
+    "relationship": "Carrier trapping lowers reconstructed event energy.",
+    "engineering_effect": "Trapping contributes to a non-Gaussian low-energy spectral tail.",
+    "source_pages": [
+      2
+    ]
+  },
+  {
+    "relationship": "Both films share the same major monoclinic phase.",
+    "engineering_effect": "Microstructure, rather than phase identity alone, is the leading differentiator.",
+    "source_pages": [
+      4,
+      5
+    ]
+  },
+  {
+    "relationship": "Tail fraction has been reported to increase with absorber thickness and photon energy.",
+    "engineering_effect": "Thickness and operating energy must be evaluated together with grain size.",
+    "source_pages": [
+      2
+    ]
+  }
+]

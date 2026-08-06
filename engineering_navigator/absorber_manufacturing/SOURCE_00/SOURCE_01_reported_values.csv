@@ -1,0 +1,16 @@
+object,variable,value,unit,source_page
+evaporated Bi,Bi_thickness,3.0,µm,2
+evaporated Bi,Au_seed_thickness,80,nm,2
+evaporated Bi,Ti_adhesion_thickness,5,nm,2
+evaporated Bi,deposition_rate,100,Å/s,2
+electroplated Bi,Bi_thickness,3.0,µm,2
+electroplated Bi,Au_seed_thickness,1.0,µm,2
+electroplated Bi,plating_rate,283,nm/min,2
+electroplated Bi,current_density,6.0,mA/cm²,2
+electroplated Bi,bias_voltage,1.4,V,2
+evaporated Bi,SEM_grain_size,100,nm approximately,3
+electroplated Bi,SEM_grain_size,1.0,µm approximately,3
+evaporated Bi,diffraction_grain_size,30,nm approximately,5
+electroplated Bi,diffraction_grain_size,1.4,µm approximately,5
+diffraction beam,photon_energy,80,keV,4
+bismuth,mean_excitation_energy,823,eV,2
