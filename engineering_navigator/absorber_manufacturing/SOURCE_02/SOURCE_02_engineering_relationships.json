@@ -1,0 +1,50 @@
+[
+  {
+    "relationship": "Absorber morphology is linked to spectral response under matched thermal coupling.",
+    "engineering_effect": "Electroplated Bi preserves Gaussian response while evaporated Bi introduces a low-energy tail.",
+    "source_pages": [
+      1,
+      2,
+      4
+    ]
+  },
+  {
+    "relationship": "Bismuth adds negligible heat capacity relative to the Au base.",
+    "engineering_effect": "3 µm Bi increases quantum efficiency without measured resolution penalty.",
+    "source_pages": [
+      2,
+      4
+    ]
+  },
+  {
+    "relationship": "Small columnar evaporated-Bi grains increase boundary scattering and trapping.",
+    "engineering_effect": "Incomplete thermalization lowers reconstructed event energy.",
+    "source_pages": [
+      3,
+      4
+    ]
+  },
+  {
+    "relationship": "Tail fraction increases with incident photon energy.",
+    "engineering_effect": "Larger secondary-electron clouds encounter more grains and boundaries.",
+    "source_pages": [
+      2,
+      4
+    ]
+  },
+  {
+    "relationship": "Tail fraction increases with evaporated-Bi thickness.",
+    "engineering_effect": "Events farther from the Au layer have greater trapping probability.",
+    "source_pages": [
+      3
+    ]
+  },
+  {
+    "relationship": "Thermal conductance scales with TES-plus-absorber perimeter.",
+    "engineering_effect": "Membrane geometry remains distinct from absorber material.",
+    "source_pages": [
+      2,
+      3
+    ]
+  }
+]

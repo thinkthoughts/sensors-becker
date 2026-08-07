@@ -1,0 +1,27 @@
+object,variable,value,unit,source_page,condition
+all absorber variants,Au_thickness,1.0,µm,1,
+Au/Bi absorbers,Bi_thickness,3.0,µm,1,
+TES,Tc,100,mK approximately,1,
+TES-to-absorber connection,Au_link_thickness,0.2,µm,1,
+absorber base,additional_Au_thickness,0.8,µm,1,
+small absorber,dimensions,340 × 340,µm,2,
+large absorber,dimensions,530 × 720,µm,2,
+3 µm Bi absorber,quantum_efficiency,76,percent approximately,2,6 keV
+3 µm Bi absorber,quantum_efficiency,8,percent approximately,2,30 keV
+small Au pixel,G,254.7,pW/K,3,
+small Au/evap-Bi pixel,G,254.3,pW/K,3,
+small Au/elp-Bi pixel,G,263.0,pW/K,3,
+large Au pixel,G,384.0,pW/K,3,
+large Au/evap-Bi pixel,G,392.3,pW/K,3,
+large Au/elp-Bi pixel,G,400.3,pW/K,3,
+small Au pixel,C,1.2,pJ/K,3,
+small Au/evap-Bi pixel,C,1.2,pJ/K,3,
+small Au/elp-Bi pixel,C,1.1,pJ/K,3,
+large Au pixel,C,3.1,pJ/K,3,
+large Au/evap-Bi pixel,C,2.9,pJ/K,3,
+large Au/elp-Bi pixel,C,3.0,pJ/K,3,
+evaporated Bi,average_grain_size,30,nm approximately,3,
+electroplated Bi,average_grain_radius,630,nm approximately,3,
+evaporated Bi,residual_resistance_ratio,0.4,dimensionless,3,
+secondary-electron cloud in Bi,cloud_size,60,nm approximately,4,6 keV
+TES response,typical_response_time,1,ms approximately,2,
