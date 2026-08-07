@@ -1,0 +1,53 @@
+schema_version: 1.0.0
+repository: sensors-becker
+object_status: active
+id: tes
+title: Transition-Edge Sensor
+engineering_driver: detector_performance
+object_type: sensor
+objective: Convert absorber thermalization into a measurable current response while meeting energy-resolution, timing,
+  and stability constraints.
+evidence_sources:
+- SOURCE_00_becker_transition_models
+- SOURCE_02
+variables:
+- id: Tc
+  unit: mK
+- id: C
+  unit: pJ/K
+- id: G
+  unit: pW/K
+- id: Rn
+  unit: mOhm
+- id: alpha
+  unit: dimensionless
+- id: beta
+  unit: dimensionless
+- id: geometry
+  unit: um
+- id: pulse_decay_time
+  unit: us
+- id: energy_resolution
+  unit: eV_FWHM
+current_evidence:
+- statement: Lower critical temperature must be co-designed with geometry and transition parameters because C, G,
+    timing, linear range, and energy resolution remain coupled.
+  sources:
+  - SOURCE_00_becker_transition_models
+- statement: Matched TES and membrane thermal conditions are required for controlled absorber comparisons.
+  sources:
+  - SOURCE_02
+candidate_specifications:
+- Validate absorber-manufacturing changes with measured C and G.
+- Preserve matched TES conditions across absorber process comparisons.
+open_specifications:
+- device_to_device_parameter_distributions
+- wafer_to_wafer_repeatability
+- coupled_absorber_tes_process_window
+relationships:
+- to: absorber
+  type: receives_thermal_energy_from
+- to: membrane
+  type: thermally_linked_by
+- to: detector_module
+  type: integrates_into

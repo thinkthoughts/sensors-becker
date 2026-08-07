@@ -1,0 +1,66 @@
+schema_version: 1.0.0
+repository: sensors-becker
+object_status: active
+id: absorber
+title: Absorber
+engineering_driver: absorber_manufacturing
+object_type: detector_component
+objective: Provide x-ray stopping power while preserving thermalization, energy resolution, and Gaussian-like spectral
+  response.
+evidence_sources:
+- SOURCE_00_becker_transition_models
+- SOURCE_01
+- SOURCE_02
+materials:
+- gold
+- evaporated_bismuth
+- electroplated_bismuth
+variables:
+- id: material_stack
+  unit: category
+- id: thickness
+  unit: um
+- id: area
+  unit: um^2
+- id: grain_size
+  unit: nm_or_um
+- id: morphology
+  unit: category
+- id: heat_capacity
+  unit: pJ/K
+- id: quantum_efficiency
+  unit: percent
+- id: low_energy_tail_fraction
+  unit: percent
+current_evidence:
+- statement: Electroplated bismuth preserves a Gaussian-like spectral response under matched thermal coupling, while
+    evaporated bismuth exhibits low-energy tailing.
+  sources:
+  - SOURCE_02
+- statement: Evaporated bismuth has substantially smaller grains than electroplated bismuth in the reviewed source
+    set.
+  sources:
+  - SOURCE_01
+  - SOURCE_02
+- statement: Three-micrometer bismuth layers add useful x-ray stopping power with little reported heat-capacity
+    penalty relative to the gold base in SOURCE_02.
+  sources:
+  - SOURCE_02
+candidate_specifications:
+- Track grain size and morphology as manufacturing acceptance variables.
+- Treat absorber thickness as a coupled stopping-power and thermalization variable.
+- Use low-energy spectral tailing as a validation measurement for absorber thermalization.
+open_specifications:
+- grain_size_acceptance_range
+- electroplated_bismuth_thickness_process_window
+- manufacturing_repeatability
+- manufacturing_yield
+relationships:
+- to: electroplating
+  type: manufactured_by
+- to: tes
+  type: thermally_coupled_to
+- to: membrane
+  type: thermally_supported_by
+- to: detector_module
+  type: integrates_into

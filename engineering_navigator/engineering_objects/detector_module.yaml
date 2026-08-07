@@ -1,0 +1,41 @@
+schema_version: 1.0.0
+repository: sensors-becker
+object_status: planned
+id: detector_module
+title: Detector Module
+engineering_driver: detector_module
+object_type: assembly
+objective: Integrate absorber, TES, thermal-isolation structure, and readout interfaces into a repeatable validated
+  detector module.
+evidence_sources:
+- SOURCE_00_becker_transition_models
+- SOURCE_02
+components:
+- absorber
+- tes
+- membrane
+variables:
+- id: pixel_count
+  unit: count
+- id: energy_resolution
+  unit: eV_FWHM
+- id: pulse_decay_time
+  unit: us
+- id: working_device_fraction
+  unit: fraction
+candidate_specifications:
+- Integrate absorber validation with detector-level C, G, timing, and spectral-response measurements.
+open_specifications:
+- module_integration_sequence
+- component_acceptance_criteria
+- module_yield
+- module_repeatability
+relationships:
+- to: absorber
+  type: contains
+- to: tes
+  type: contains
+- to: membrane
+  type: contains
+- to: instrument_scaling
+  type: supports

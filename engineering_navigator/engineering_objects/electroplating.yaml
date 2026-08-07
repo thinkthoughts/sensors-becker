@@ -1,0 +1,52 @@
+schema_version: 1.0.0
+repository: sensors-becker
+object_status: active
+id: electroplating
+title: Electroplating
+engineering_driver: absorber_manufacturing
+object_type: manufacturing_process
+objective: Produce repeatable bismuth absorber microstructure that supports tail-free detector response and scalable
+  manufacturing.
+evidence_sources:
+- SOURCE_01
+- SOURCE_02
+variables:
+- id: current_density
+  unit: mA/cm^2
+- id: bias_voltage
+  unit: V
+- id: plating_rate
+  unit: nm/min
+- id: bath_temperature
+  unit: category_or_K
+- id: bath_agitation
+  unit: category
+- id: seed_layer_thickness
+  unit: nm_or_um
+- id: bismuth_thickness
+  unit: um
+- id: grain_size
+  unit: nm_or_um
+reported_process_points:
+- source: SOURCE_01
+  current_density_mA_per_cm2: 6.0
+  bias_voltage_V: 1.4
+  plating_rate_nm_per_min: 283
+  bismuth_thickness_um: 3.0
+  bath_temperature: room_temperature
+  agitation: none
+candidate_specifications:
+- Treat deposition method as a controlled absorber-manufacturing variable.
+- Link plating-process parameters to measured grain size, morphology, and spectral response.
+open_specifications:
+- current_density_tolerance
+- bias_voltage_tolerance
+- plating_rate_tolerance
+- bath_chemistry
+- bath_temperature_tolerance
+- batch_to_batch_repeatability
+relationships:
+- to: absorber
+  type: produces
+- to: detector_module
+  type: constrains_component_quality

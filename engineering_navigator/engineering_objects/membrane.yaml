@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+repository: sensors-becker
+object_status: active
+id: membrane
+title: Thermal-Isolation Membrane
+engineering_driver: detector_performance
+object_type: thermal_structure
+objective: Provide controlled thermal conductance between the detector and heat bath while maintaining electrothermal
+  stability.
+evidence_sources:
+- SOURCE_00_becker_transition_models
+- SOURCE_02
+materials:
+- SiNx
+variables:
+- id: geometry
+  unit: um
+- id: thermal_conductance
+  unit: pW/K
+- id: thermal_exponent
+  unit: dimensionless
+current_evidence:
+- statement: Thermal conductance is a detector design variable coupled to pulse timing and energy resolution.
+  sources:
+  - SOURCE_00_becker_transition_models
+- statement: SOURCE_02 reports thermal conductance scaling with TES-plus-absorber perimeter under the tested membrane
+    design.
+  sources:
+  - SOURCE_02
+candidate_specifications:
+- Preserve matched membrane conditions across absorber comparisons.
+- Measure G after absorber geometry or process changes.
+open_specifications:
+- membrane_geometry_tolerance
+- thermal_conductance_repeatability
+relationships:
+- to: tes
+  type: thermally_links
+- to: absorber
+  type: supports_detector_thermal_path
+- to: detector_module
+  type: integrates_into
