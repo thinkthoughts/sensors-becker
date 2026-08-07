@@ -1,0 +1,134 @@
+schema_version: 1.0.0
+concepts:
+- id: deposition_to_microstructure
+  category: absorber_manufacturing
+  aliases:
+  - deposition method
+  - electroplating
+  - evaporation
+  required_keyword_groups:
+  - - deposition
+    - electroplat
+    - evaporat
+  - - grain
+    - microstructure
+    - morphology
+  description: Manufacturing deposition method changes absorber microstructure.
+- id: microstructure_to_trapping
+  category: absorber_manufacturing
+  aliases:
+  - grain size
+  - grain boundaries
+  - carrier trapping
+  required_keyword_groups:
+  - - grain
+    - microstructure
+    - morphology
+  - - trap
+    - scatter
+    - thermalization
+  description: Absorber microstructure changes carrier scattering, trapping, or thermalization.
+- id: trapping_to_spectral_response
+  category: detector_response
+  aliases:
+  - low-energy tail
+  - spectral response
+  - incomplete energy collection
+  required_keyword_groups:
+  - - trap
+    - thermalization
+    - incomplete energy
+  - - tail
+    - spectral
+    - reconstructed event energy
+  description: Incomplete thermalization or trapping changes measured spectral response.
+- id: thickness_to_detector_response
+  category: absorber_manufacturing
+  aliases:
+  - absorber thickness
+  - quantum efficiency
+  - stopping power
+  required_keyword_groups:
+  - - thickness
+  - - tail
+    - quantum efficiency
+    - stopping power
+    - spectral
+  description: Absorber thickness couples stopping power to detector-response behavior.
+- id: thermal_design_coupling
+  category: detector_thermal_design
+  aliases:
+  - heat capacity
+  - thermal conductance
+  - timing
+  - energy resolution
+  required_keyword_groups:
+  - - heat capacity
+    - thermal conductance
+    - ' c '
+    - ' g '
+  - - resolution
+    - pulse
+    - thermal
+    - geometry
+  description: Absorber changes remain coupled to TES thermal-design variables.
+engineering_axes:
+- id: critical_temperature
+  aliases:
+  - Tc
+  keywords:
+  - critical temperature
+- id: absorber_thickness
+  aliases:
+  - Bi_thickness
+  - Au_thickness
+  keywords:
+  - thickness
+  - absorber thickness
+- id: deposition_method
+  aliases:
+  - deposition_method
+  keywords:
+  - deposition
+  - electroplat
+  - evaporat
+- id: grain_size
+  aliases:
+  - grain_size
+  - SEM_grain_size
+  - diffraction_grain_size
+  - average_grain_size
+  - average_grain_radius
+  keywords:
+  - grain size
+  - grain-size
+  - microstructure
+  - morphology
+- id: heat_capacity
+  aliases:
+  - C
+  keywords:
+  - heat capacity
+- id: thermal_conductance
+  aliases:
+  - G
+  keywords:
+  - thermal conductance
+- id: spectral_response
+  aliases:
+  - delta_E
+  - tail_fraction
+  - low_energy_tail
+  keywords:
+  - spectral
+  - low-energy tail
+  - tail fraction
+  - energy resolution
+- id: photon_energy
+  aliases:
+  - photon_energy
+  - secondary_electron_cloud_size
+  keywords:
+  - photon energy
+  - x-ray energy
+  - secondary-electron

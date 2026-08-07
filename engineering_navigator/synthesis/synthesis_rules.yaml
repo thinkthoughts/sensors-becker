@@ -1,0 +1,85 @@
+schema_version: 1.0.0
+candidate_specifications:
+- concept: deposition_to_microstructure
+  min_sources: 2
+  specification: Treat bismuth deposition method as a controlled absorber-manufacturing variable because it changes
+    microstructure.
+  next_validation: Quantify process-to-process and batch-to-batch microstructure distributions.
+- concept: microstructure_to_trapping
+  min_sources: 2
+  specification: Track absorber grain size and morphology as manufacturing acceptance variables.
+  next_validation: Determine a quantitative grain-size or morphology threshold tied to detector response.
+- concept: trapping_to_spectral_response
+  min_sources: 2
+  specification: Use low-energy spectral tailing as a validation measurement for absorber thermalization.
+  next_validation: Measure spectral-tail fraction across replicated absorber batches.
+- concept: thickness_to_detector_response
+  min_sources: 2
+  specification: Treat absorber thickness as a coupled stopping-power and thermalization variable.
+  next_validation: Run a controlled thickness series with efficiency and spectral-response measurements.
+- concept: thermal_design_coupling
+  min_sources: 2
+  specification: Validate absorber-manufacturing changes with detector thermal variables rather than absorber geometry
+    alone.
+  next_validation: Preserve matched TES and membrane conditions while measuring C, G, timing, and spectral response.
+open_specifications:
+- concept: grain_size_acceptance
+  keywords:
+  - grain
+  - morphology
+  open_specification: Absorber grain-size / morphology acceptance range
+  next_measurement: Measure grain-size distributions against spectral-tail fraction across replicated devices.
+- concept: thickness_process_window
+  keywords:
+  - thickness
+  open_specification: Electroplated-Bi thickness process window
+  next_measurement: Run a controlled thickness series measuring quantum efficiency, tailing, C, and energy resolution.
+- concept: process_tolerances
+  keywords:
+  - tolerance
+  - current
+  - voltage
+  - plating
+  - bath
+  - rate
+  open_specification: Electroplating process tolerances
+  next_measurement: Link process-parameter variation to grain size, morphology, yield, and spectral response.
+- concept: repeatability
+  keywords:
+  - wafer-to-wafer
+  - batch-to-batch
+  - repeatability
+  - distribution
+  open_specification: Manufacturing repeatability
+  next_measurement: Measure replicated wafer/batch distributions for key process and detector variables.
+- concept: yield
+  keywords:
+  - yield
+  - failure
+  - rework
+  open_specification: Manufacturing yield
+  next_measurement: Define pass/fail criteria and measure yield across process batches.
+next_notebooks:
+- open_concept: thickness_process_window
+  id: NB_02_ELECTROPLATED_BI_PROCESS_WINDOW
+  engineering_question: What electroplated-Bi thickness and microstructure window preserves tail-free spectral response
+    while increasing x-ray stopping power?
+  input_prefixes:
+  - SOURCE_01
+  - SOURCE_02
+  outputs:
+  - candidate thickness range
+  - candidate grain-size acceptance metric
+  - required process measurements
+  - validation experiment design
+- open_concept: process_tolerances
+  id: NB_02_ELECTROPLATING_PROCESS_TOLERANCES
+  engineering_question: Which electroplating process variables most strongly constrain absorber microstructure and
+    detector response?
+  input_prefixes:
+  - SOURCE_01
+  - SOURCE_02
+  outputs:
+  - candidate process variables
+  - measurement matrix
+  - process-window experiment design
