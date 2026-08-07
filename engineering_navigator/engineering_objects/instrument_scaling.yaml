@@ -1,0 +1,55 @@
+schema_version: 1.0.0
+
+repository: sensors-becker
+
+id: instrument_scaling
+
+title: Instrument Scaling
+
+engineering_driver: instrument_scaling
+
+object_type: system_scaling
+
+object_status: planned
+
+objective: >
+  Scale validated detector modules toward instrument-scale
+  systems while preserving detector performance, manufacturing
+  repeatability, integration requirements, and operational
+  constraints.
+
+evidence_sources: []
+
+variables:
+  - id: detector_module_count
+    unit: count
+
+  - id: pixel_count
+    unit: count
+
+  - id: module_yield
+    unit: fraction
+
+  - id: integration_density
+    unit: category
+
+  - id: system_heat_load
+    unit: W
+
+  - id: readout_scaling
+    unit: category
+
+current_evidence: []
+
+candidate_specifications: []
+
+open_specifications:
+  - module_to_instrument_integration
+  - instrument_scale_yield
+  - thermal_scaling
+  - readout_scaling
+  - assembly_repeatability
+
+relationships:
+  - to: detector_module
+    type: contains
