@@ -1,0 +1,30 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+source_id: SOURCE_02
+title: Eliminating the non-Gaussian spectral response of X-ray absorbers for transition-edge sensors
+year: 2018
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:1708.08481v1
+paper:
+  pdf: 1708.08481v1.pdf
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes: []
