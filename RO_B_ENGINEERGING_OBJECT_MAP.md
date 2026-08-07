@@ -2,36 +2,38 @@
 
 ## Engineering Purpose
 
-This document specifies the Engineering Object through increasing specification.
+This document specifies the Engineering Object through increasing engineering specification.
 
-Engineering Objects develop from general engineering intent toward technically meaningful engineering systems through continued specification.
+Engineering Objects develop from general engineering intent toward physically realized engineering systems through continued specification.
+
+Engineering Purpose specifies why an Engineering Object is developed. Engineering Objects support continued engineering understanding through measurable engineering improvement.
 
 ---
 
 ## Engineering Object
 
 ```text
-Sensor Development
+Radiation Detection
         │
         ▼
-Quantum Sensing
+Cryogenic Radiation Detection
         │
         ▼
-Cryogenic Sensing
+Superconducting Radiation Detection
         │
         ▼
-Superconducting Detectors
+Transition-Edge Sensor (TES) Detection
         │
         ▼
-Transition-Edge Sensing
+TES Microcalorimeter Arrays
         │
         ▼
-Microcalorimeter Spectroscopy
+High-Resolution Gamma-Ray Spectroscopy
 ```
 
 Each level specifies the Engineering Object more precisely than the previous level.
 
-The Engineering Object supports continued engineering development through increasing specification.
+The Engineering Object develops through increasing engineering specification toward physically realized engineering systems.
 
 ---
 
@@ -41,6 +43,9 @@ Engineering specification develops through increasing technical specificity.
 
 ```text
 Engineering Object
+        │
+        ▼
+Engineering Purpose
         │
         ▼
 Engineering System
@@ -55,13 +60,12 @@ Engineering Constraints
 Engineering Refinements
         │
         ▼
-Measured Engineering Improvement
-        │
-        ▼
 Leading Specifications
 ```
 
-Engineering Objects support continued engineering understanding through this progression.
+Each level further constrains engineering understanding.
+
+Engineering specification develops through measurable engineering refinement rather than isolated engineering activities.
 
 ---
 
@@ -70,16 +74,17 @@ Engineering Objects support continued engineering understanding through this pro
 Current Engineering Object:
 
 ```text
-Microcalorimeter Spectroscopy
+Transition-Edge-Sensor (TES) microcalorimeter arrays for
+high-resolution gamma-ray spectroscopy.
 ```
 
 Current engineering work develops:
 
+- Engineering Purpose
 - Engineering System
 - Measured Engineering States
 - Engineering Constraints
 - Engineering Refinements
-- Measured Engineering Improvement
 - Leading Specifications
 
 Additional engineering specification develops through continued engineering work.
@@ -94,6 +99,9 @@ Engineering Objects support the following engineering relationships.
 Engineering Object
         │
         ▼
+Engineering Purpose
+        │
+        ▼
 Engineering System
         │
         ▼
@@ -104,9 +112,14 @@ Engineering Constraints
         │
         ▼
 Engineering Refinements
+        │
+        ▼
+Leading Specifications
 ```
 
-Engineering Objects support continued engineering specification rather than isolated engineering activities.
+Engineering relationships develop through increasing engineering specification.
+
+Each relationship further constrains admissible engineering development.
 
 ---
 
@@ -114,10 +127,13 @@ Engineering Objects support continued engineering specification rather than isol
 
 Current leading engineering questions include:
 
-- Which Engineering System best represents the current Engineering Object?
-- Which measured engineering states characterize the current Engineering Object?
-- Which engineering constraints currently limit the Engineering Object?
-- Which engineering refinements most directly improve the Engineering Object?
+- What physical Engineering Object is being developed?
+- Which Engineering Purpose specifies this Engineering Object?
+- Which Engineering System realizes this Engineering Object?
+- Which measured engineering states characterize current performance?
+- Which engineering constraints currently limit measured performance?
+- Which engineering refinements most directly improve measured performance?
+- Which leading specifications should guide continued engineering development?
 
 Additional leading engineering questions develop through continued engineering work.
 
@@ -125,20 +141,23 @@ Additional leading engineering questions develop through continued engineering w
 
 ## Engineering Development
 
-Engineering Objects support:
+Engineering Objects support continued development through:
 
-- engineering understanding
-- engineering systems
-- measured engineering states
-- engineering constraints
-- engineering refinements
-- measured engineering improvement
-- leading specifications
+- Engineering Purpose
+- Engineering Systems
+- Measured Engineering States
+- Engineering Constraints
+- Engineering Refinements
+- Leading Specifications
 
-Engineering Objects support continued engineering specification.
+Engineering development proceeds through increasing specification.
+
+Engineering understanding develops through measurable engineering improvement supported by continued specification.
 
 ---
 
 *Engineering Objects support Engineering Systems through continued specification.*
+
+*Leading specifications constrain admissible engineering development.*
 
 *Admissible generalizations trail leading specifications.*
