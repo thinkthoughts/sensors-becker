@@ -9,6 +9,7 @@ objective: Convert absorber thermalization into a measurable current response wh
   and stability constraints.
 evidence_sources:
 - SOURCE_00_becker_transition_models
+- SOURCE_01
 - SOURCE_02
 variables:
 - id: Tc
@@ -30,20 +31,106 @@ variables:
 - id: energy_resolution
   unit: eV_FWHM
 current_evidence:
-- statement: Lower critical temperature must be co-designed with geometry and transition parameters because C, G,
-    timing, linear range, and energy resolution remain coupled.
-  sources:
-  - SOURCE_00_becker_transition_models
-- statement: Matched TES and membrane thermal conditions are required for controlled absorber comparisons.
-  sources:
-  - SOURCE_02
-candidate_specifications:
-- Validate absorber-manufacturing changes with measured C and G.
-- Preserve matched TES conditions across absorber process comparisons.
-open_specifications:
-- device_to_device_parameter_distributions
-- wafer_to_wafer_repeatability
-- coupled_absorber_tes_process_window
+- statement: Reducing Tc reduces C and G, with G expected to fall faster.
+  engineering_effect: Pulse decay tends to lengthen because tau scales with C/G.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 3
+- statement: Lower Tc must be co-designed with geometry and transition parameters.
+  engineering_effect: Copying the same geometry would reduce linear range and slow pulses.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 3
+  - 5
+- statement: Increasing TES area increases heat capacity and collecting area.
+  engineering_effect: Geometry can compensate for reduced heat capacity per volume.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 5
+  - 7
+  - 8
+- statement: Cu-bar spacing is reported to scale with zero-temperature critical current.
+  engineering_effect: Preserving spacing helps preserve critical current.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 6
+- statement: Geometry and perimeter changes were expected to increase alpha by 1.23.
+  engineering_effect: Resolution improves at some cost to linear range.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 5
+  - 6
+- statement: Excess heat capacity may arise from low-temperature copper behavior or process variability.
+  engineering_effect: Additional devices are required before fixing lower-temperature area scaling.
+  source: SOURCE_00_becker_transition_models
+  source_pages:
+  - 8
+- statement: Deposition method strongly changes absorber grain size.
+  engineering_effect: Electroplating produced grains about 40 times larger than evaporation.
+  source: SOURCE_01
+  source_pages:
+  - 1
+  - 5
+- statement: Smaller grains increase the density of grain boundaries encountered by energy carriers.
+  engineering_effect: Evaporated Bi has a greater probability of carrier trapping.
+  source: SOURCE_01
+  source_pages:
+  - 2
+  - 5
+- statement: Carrier trapping lowers reconstructed event energy.
+  engineering_effect: Trapping contributes to a non-Gaussian low-energy spectral tail.
+  source: SOURCE_01
+  source_pages:
+  - 2
+- statement: Both films share the same major monoclinic phase.
+  engineering_effect: Microstructure, rather than phase identity alone, is the leading differentiator.
+  source: SOURCE_01
+  source_pages:
+  - 4
+  - 5
+- statement: Tail fraction has been reported to increase with absorber thickness and photon energy.
+  engineering_effect: Thickness and operating energy must be evaluated together with grain size.
+  source: SOURCE_01
+  source_pages:
+  - 2
+- statement: Absorber morphology is linked to spectral response under matched thermal coupling.
+  engineering_effect: Electroplated Bi preserves Gaussian response while evaporated Bi introduces a low-energy tail.
+  source: SOURCE_02
+  source_pages:
+  - 1
+  - 2
+  - 4
+- statement: Bismuth adds negligible heat capacity relative to the Au base.
+  engineering_effect: 3 µm Bi increases quantum efficiency without measured resolution penalty.
+  source: SOURCE_02
+  source_pages:
+  - 2
+  - 4
+- statement: Small columnar evaporated-Bi grains increase boundary scattering and trapping.
+  engineering_effect: Incomplete thermalization lowers reconstructed event energy.
+  source: SOURCE_02
+  source_pages:
+  - 3
+  - 4
+- statement: Tail fraction increases with incident photon energy.
+  engineering_effect: Larger secondary-electron clouds encounter more grains and boundaries.
+  source: SOURCE_02
+  source_pages:
+  - 2
+  - 4
+- statement: Tail fraction increases with evaporated-Bi thickness.
+  engineering_effect: Events farther from the Au layer have greater trapping probability.
+  source: SOURCE_02
+  source_pages:
+  - 3
+- statement: Thermal conductance scales with TES-plus-absorber perimeter.
+  engineering_effect: Membrane geometry remains distinct from absorber material.
+  source: SOURCE_02
+  source_pages:
+  - 2
+  - 3
+candidate_specifications: []
+open_specifications: []
 relationships:
 - to: absorber
   type: receives_thermal_energy_from
@@ -51,3 +138,18 @@ relationships:
   type: thermally_linked_by
 - to: detector_module
   type: integrates_into
+evidence_summary:
+  object_id: tes
+  source_count: 3
+  relationship_count: 17
+  candidate_specification_count: 0
+  open_specification_count: 0
+object_build:
+  builder: engineering-objects-object-builder-v1
+  managed_fields:
+  - candidate_specifications
+  - current_evidence
+  - evidence_sources
+  - evidence_summary
+  - object_build
+  - open_specifications
