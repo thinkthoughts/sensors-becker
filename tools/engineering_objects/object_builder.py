@@ -1,30 +1,10 @@
 """Build and refresh Engineering Object YAML files.
 
-The object builder sits between structured source records / synthesis outputs
-and repository-wide engineering objects.
+Version 2 integrates source-level `reported_process_points` into process
+Engineering Objects, beginning with `electroplating.yaml`.
 
-It preserves the stable identity and manually curated structure of each
-engineering object while refreshing evidence-derived fields.
-
-Expected repository layout:
-
-engineering_navigator/
-    absorber_manufacturing/
-        source_records/
-            SOURCE_*.yaml
-
-    engineering_objects/
-        absorber.yaml
-        electroplating.yaml
-        tes.yaml
-        membrane.yaml
-        detector_module.yaml
-
-outputs/
-    engineering_questions/
-        absorber_manufacturing/
-            SYNTHESIS_01/
-                synthesis_summary.json
+The builder preserves stable/manual object structure while refreshing only
+evidence-derived fields.
 
 Usage:
 
@@ -32,22 +12,11 @@ Usage:
 
 Preview one object:
 
-    python3 tools/engineering_objects/object_builder.py --object absorber
+    python3 tools/engineering_objects/object_builder.py --object electroplating
 
 Write all refreshed objects:
 
     python3 tools/engineering_objects/object_builder.py --write
-
-Write one object:
-
-    python3 tools/engineering_objects/object_builder.py \
-        --object absorber \
-        --write
-
-The builder is conservative:
-- it does not invent source evidence;
-- it preserves object fields that are not generated;
-- it refreshes only fields explicitly managed by this module.
 """
 
 from __future__ import annotations
@@ -67,6 +36,7 @@ MANAGED_FIELDS = {
     "current_evidence",
     "candidate_specifications",
     "open_specifications",
+    "reported_process_points",
     "evidence_summary",
     "object_build",
 }
@@ -100,6 +70,7 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
             "repeatability",
             "yield",
         },
+        "collect_reported_process_points": False,
     },
     "electroplating": {
         "source_keywords": {
@@ -125,6 +96,7 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
             "grain_size_acceptance",
             "thickness_process_window",
         },
+        "collect_reported_process_points": True,
     },
     "tes": {
         "source_keywords": {
@@ -147,6 +119,7 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
             "repeatability",
             "yield",
         },
+        "collect_reported_process_points": False,
     },
     "membrane": {
         "source_keywords": {
@@ -163,6 +136,7 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
         "open_concepts": {
             "repeatability",
         },
+        "collect_reported_process_points": False,
     },
     "detector_module": {
         "source_keywords": {
@@ -186,12 +160,29 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
             "yield",
             "process_tolerances",
         },
+        "collect_reported_process_points": False,
+    },
+    "instrument_scaling": {
+        "source_keywords": {
+            "instrument",
+            "array",
+            "module",
+            "pixel count",
+            "scaling",
+            "readout",
+            "heat load",
+        },
+        "relationship_concepts": set(),
+        "open_concepts": {
+            "repeatability",
+            "yield",
+        },
+        "collect_reported_process_points": False,
     },
 }
 
 
 def find_repo_root(start: Path | None = None) -> Path:
-    """Find repository root containing engineering_navigator/."""
     start = (start or Path.cwd()).resolve()
 
     for candidate in (start, *start.parents):
@@ -204,7 +195,6 @@ def find_repo_root(start: Path | None = None) -> Path:
 
 
 def load_yaml(path: Path) -> dict[str, Any]:
-    """Load one YAML mapping."""
     if not path.exists():
         raise FileNotFoundError(path)
 
@@ -217,7 +207,6 @@ def load_yaml(path: Path) -> dict[str, Any]:
 
 
 def dump_yaml(data: dict[str, Any]) -> str:
-    """Serialize repository YAML consistently."""
     return yaml.safe_dump(
         data,
         sort_keys=False,
@@ -227,7 +216,6 @@ def dump_yaml(data: dict[str, Any]) -> str:
 
 
 def normalize_text(value: Any) -> str:
-    """Convert arbitrary nested evidence to searchable lowercase text."""
     if value is None:
         return ""
 
@@ -244,23 +232,23 @@ def normalize_text(value: Any) -> str:
 
 
 def source_search_text(record: dict[str, Any]) -> str:
-    """Build searchable text from source-record engineering evidence."""
     fields = [
         record.get("title"),
         record.get("materials"),
         record.get("fabrication_methods"),
         record.get("design_variables"),
+        record.get("reported_values"),
         record.get("measured_outcomes"),
         record.get("engineering_relationships"),
         record.get("engineering_constraints"),
         record.get("future_questions"),
         record.get("unreported_variables"),
+        record.get("reported_process_points"),
     ]
     return normalize_text(fields)
 
 
 def load_source_records(source_dir: Path) -> dict[str, dict[str, Any]]:
-    """Load completed SOURCE_*.yaml records from one source-record directory."""
     records: dict[str, dict[str, Any]] = {}
 
     for path in sorted(source_dir.glob("SOURCE_*.yaml")):
@@ -287,7 +275,6 @@ def load_source_records(source_dir: Path) -> dict[str, dict[str, Any]]:
 
 
 def load_synthesis_summary(path: Path) -> dict[str, Any]:
-    """Load synthesis_summary.json if present."""
     if not path.exists():
         return {
             "relationship_concepts": [],
@@ -307,7 +294,6 @@ def source_matches_object(
     record: dict[str, Any],
     rule: dict[str, Any],
 ) -> bool:
-    """Return True where source evidence is relevant to the object."""
     text = source_search_text(record)
 
     return any(
@@ -320,7 +306,6 @@ def relevant_sources(
     records: dict[str, dict[str, Any]],
     rule: dict[str, Any],
 ) -> list[str]:
-    """Return canonical source IDs relevant to one object."""
     return sorted(
         source_id
         for source_id, record in records.items()
@@ -332,7 +317,6 @@ def relevant_relationships(
     records: dict[str, dict[str, Any]],
     source_ids: Iterable[str],
 ) -> list[dict[str, Any]]:
-    """Collect source-derived engineering relationships for an object."""
     results: list[dict[str, Any]] = []
 
     for source_id in source_ids:
@@ -348,14 +332,18 @@ def relevant_relationships(
             if not relationship:
                 continue
 
-            results.append(
-                {
-                    "statement": relationship,
-                    "engineering_effect": effect,
-                    "source": source_id,
-                    "source_pages": item.get("source_pages", []),
-                }
-            )
+            result = {
+                "statement": relationship,
+                "engineering_effect": effect,
+                "source": source_id,
+            }
+
+            if "source_pages" in item:
+                result["source_pages"] = item.get("source_pages", [])
+            if "source_sections" in item:
+                result["source_sections"] = item.get("source_sections", [])
+
+            results.append(result)
 
     return results
 
@@ -364,7 +352,6 @@ def relevant_candidate_specs(
     synthesis: dict[str, Any],
     rule: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    """Select synthesis candidate specifications for one object."""
     allowed = set(rule.get("relationship_concepts", set()))
     results: list[dict[str, Any]] = []
 
@@ -393,7 +380,6 @@ def relevant_open_specs(
     synthesis: dict[str, Any],
     rule: dict[str, Any],
 ) -> list[dict[str, Any]]:
-    """Select synthesis open specifications for one object."""
     allowed = set(rule.get("open_concepts", set()))
     results: list[dict[str, Any]] = []
 
@@ -417,20 +403,59 @@ def relevant_open_specs(
     return results
 
 
+def collect_reported_process_points(
+    records: dict[str, dict[str, Any]],
+    source_ids: Iterable[str],
+) -> list[dict[str, Any]]:
+    """Collect and de-duplicate source-supported process operating points."""
+
+    points: list[dict[str, Any]] = []
+    seen: set[str] = set()
+
+    for source_id in source_ids:
+        record = records[source_id]
+
+        for raw in record.get("reported_process_points", []):
+            if not isinstance(raw, dict):
+                continue
+
+            point = copy.deepcopy(raw)
+
+            # Preserve source identity even where an older record omitted it.
+            point.setdefault("source", source_id)
+
+            # Stable de-duplication across rebuilds and overlapping records.
+            fingerprint = json.dumps(
+                point,
+                sort_keys=True,
+                ensure_ascii=False,
+                default=str,
+            )
+
+            if fingerprint in seen:
+                continue
+
+            seen.add(fingerprint)
+            points.append(point)
+
+    return points
+
+
 def build_evidence_summary(
     object_id: str,
     evidence_sources: list[str],
     evidence: list[dict[str, Any]],
     candidate_specs: list[dict[str, Any]],
     open_specs: list[dict[str, Any]],
+    process_points: list[dict[str, Any]],
 ) -> dict[str, Any]:
-    """Create a compact machine-readable object status summary."""
     return {
         "object_id": object_id,
         "source_count": len(evidence_sources),
         "relationship_count": len(evidence),
         "candidate_specification_count": len(candidate_specs),
         "open_specification_count": len(open_specs),
+        "reported_process_point_count": len(process_points),
     }
 
 
@@ -439,7 +464,6 @@ def refresh_object(
     records: dict[str, dict[str, Any]],
     synthesis: dict[str, Any],
 ) -> dict[str, Any]:
-    """Return one refreshed Engineering Object mapping."""
     object_id = current.get("id")
 
     if not object_id:
@@ -459,19 +483,36 @@ def refresh_object(
     candidate_specs = relevant_candidate_specs(synthesis, rule)
     open_specs = relevant_open_specs(synthesis, rule)
 
+    if rule.get("collect_reported_process_points", False):
+        process_points = collect_reported_process_points(
+            records,
+            evidence_sources,
+        )
+    else:
+        process_points = []
+
     updated["evidence_sources"] = evidence_sources
     updated["current_evidence"] = evidence
     updated["candidate_specifications"] = candidate_specs
     updated["open_specifications"] = open_specs
+
+    # Only process Engineering Objects receive this generated field.
+    if rule.get("collect_reported_process_points", False):
+        updated["reported_process_points"] = process_points
+    else:
+        updated.pop("reported_process_points", None)
+
     updated["evidence_summary"] = build_evidence_summary(
         object_id,
         evidence_sources,
         evidence,
         candidate_specs,
         open_specs,
+        process_points,
     )
+
     updated["object_build"] = {
-        "builder": "engineering-objects-object-builder-v1",
+        "builder": "engineering-objects-object-builder-v2",
         "managed_fields": sorted(MANAGED_FIELDS),
     }
 
@@ -483,7 +524,6 @@ def unified_diff(
     old_text: str,
     new_text: str,
 ) -> str:
-    """Return a unified diff for preview mode."""
     return "".join(
         difflib.unified_diff(
             old_text.splitlines(keepends=True),
@@ -500,7 +540,6 @@ def build_objects(
     object_id: str | None = None,
     write: bool = False,
 ) -> int:
-    """Preview or write refreshed Engineering Object YAML files."""
     source_dir = (
         repo_root
         / "engineering_navigator"
@@ -528,12 +567,6 @@ def build_objects(
         paths = [object_dir / f"{object_id}.yaml"]
     else:
         paths = sorted(object_dir.glob("*.yaml"))
-
-    paths = [
-        path
-        for path in paths
-        if path.name != "README.yaml"
-    ]
 
     if not paths:
         raise FileNotFoundError(
@@ -580,7 +613,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--object",
         dest="object_id",
-        help="Refresh one object by id, e.g. absorber",
+        help="Refresh one object by id, e.g. electroplating",
     )
     parser.add_argument(
         "--write",
@@ -597,6 +630,7 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+
     repo_root = (
         args.repo_root.resolve()
         if args.repo_root
