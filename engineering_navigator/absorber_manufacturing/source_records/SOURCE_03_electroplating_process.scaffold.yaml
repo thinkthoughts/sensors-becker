@@ -1,1 +1,45 @@
-ok
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+source_id: SOURCE_03
+title: Electroplating Deposition of Bismuth Absorbers for X-ray Superconducting Transition Edge Sensors
+year: 2021
+source_type: journal_article
+publisher_or_archive: Materials (MDPI)
+identifier: doi:10.3390/ma14237169
+paper:
+  doi: 10.3390/ma14237169
+  pmcid: PMC8658586
+  pmid: '34885323'
+  pdf: null
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+priority_variables_to_extract:
+- electroplating current density
+- bath temperature
+- deposition time
+- bismuth thickness
+- grain size
+- crystal orientation
+- residual resistance ratio
+- x-ray absorptivity
+- electrolyte composition
+- seed layer
+- plating rate
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes: []
