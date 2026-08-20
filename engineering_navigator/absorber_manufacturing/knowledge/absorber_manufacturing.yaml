@@ -1,0 +1,250 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+knowledge_id: absorber_manufacturing
+knowledge_status: working_v1
+purpose: Human-readable synthesis connecting absorber manufacturing variables to absorber state and detector response.
+source_records:
+- source_id: SOURCE_00_becker_transition_models
+  role: TES thermal, transition, geometry, and performance coupling
+- source_id: SOURCE_01
+  role: Bi deposition method, microstructure, carrier trapping, and spectral tailing
+- source_id: SOURCE_02
+  role: absorber morphology, thermalization, spectral response, and Bi heat-capacity comparison
+- source_id: SOURCE_03
+  role: electroplating process variables, Bi microstructure, transport, and X-ray absorptivity
+reading_path:
+- manufacturing_inputs
+- absorber_state
+- detector_response
+- engineering_decisions
+manufacturing_inputs:
+- deposition_method
+- electroplating_current_density
+- bath_temperature
+- deposition_time
+- absorber_thickness
+- seed_layer
+- TES_geometry
+- TES_critical_temperature
+absorber_state:
+- grain_size
+- grain_boundary_density
+- crystal_orientation
+- electrical_transport
+- heat_capacity
+- X_ray_absorptivity
+detector_response:
+- carrier_trapping
+- thermalization
+- reconstructed_event_energy
+- low_energy_tail
+- quantum_efficiency
+- energy_resolution
+- pulse_decay_time
+- linear_range
+relationships:
+- id: KREL_001
+  from: deposition_method
+  to: grain_size
+  status: supported
+  statement: Bi deposition method strongly changes absorber grain size.
+  effect: Electroplating produced substantially larger grains than evaporation in the characterized samples.
+  sources:
+  - SOURCE_01
+- id: KREL_002
+  from: electroplating_current_density
+  to: grain_size
+  status: supported
+  statement: Electroplating current density influences Bi grain size.
+  effect: Average grain size increased with current density in the reported SOURCE_03 series.
+  sources:
+  - SOURCE_03
+- id: KREL_003
+  from: absorber_thickness
+  to: grain_size
+  status: supported
+  statement: Bi film thickness influences grain size.
+  effect: Average grain size increased with film thickness in SOURCE_03.
+  sources:
+  - SOURCE_03
+- id: KREL_004
+  from: bath_temperature
+  to: crystal_orientation
+  status: supported
+  statement: Electroplating bath temperature influences Bi crystal orientation.
+  effect: Grain orientation changed as bath temperature increased.
+  sources:
+  - SOURCE_03
+- id: KREL_005
+  from: grain_size
+  to: grain_boundary_density
+  status: supported
+  statement: Smaller grains increase the density of grain boundaries encountered by energy carriers.
+  effect: Evaporated Bi presents more grain-boundary encounters than the larger-grained electroplated material.
+  sources:
+  - SOURCE_01
+- id: KREL_006
+  from: grain_boundary_density
+  to: carrier_trapping
+  status: supported_interpretation
+  statement: Greater grain-boundary exposure is associated with greater carrier trapping.
+  effect: Grain-boundary trapping is identified as the likely incomplete-thermalization mechanism for evaporated Bi.
+  sources:
+  - SOURCE_01
+  - SOURCE_02
+- id: KREL_007
+  from: carrier_trapping
+  to: low_energy_tail
+  status: supported_interpretation
+  statement: Carrier trapping lowers reconstructed event energy and contributes to a non-Gaussian low-energy tail.
+  effect: Incomplete thermalization shifts events below the Gaussian photopeak.
+  sources:
+  - SOURCE_01
+  - SOURCE_02
+- id: KREL_008
+  from: deposition_method
+  to: spectral_response
+  status: supported
+  statement: Absorber morphology produced by deposition method is linked to spectral response under matched thermal coupling.
+  effect: Electroplated Bi preserved Gaussian-like response while evaporated Bi introduced a low-energy tail.
+  sources:
+  - SOURCE_02
+- id: KREL_009
+  from: absorber_thickness
+  to: X_ray_absorptivity
+  status: supported
+  statement: Increasing Bi thickness increases measured X-ray absorptivity.
+  effect: SOURCE_03 measured increased stopping power with thickness at 10 and 15.6 keV.
+  sources:
+  - SOURCE_03
+- id: KREL_010
+  from: Bi_absorber
+  to: heat_capacity
+  status: supported
+  statement: The tested 3 µm Bi layer added negligible heat capacity relative to the Au base.
+  effect: Bi increased absorption without a measured energy-resolution penalty in SOURCE_02.
+  sources:
+  - SOURCE_02
+- id: KREL_011
+  from: photon_energy
+  to: low_energy_tail
+  status: supported
+  statement: Tail fraction increases with incident photon energy for the evaporated-Bi response.
+  effect: Larger secondary-electron clouds encounter more grains and boundaries.
+  sources:
+  - SOURCE_02
+- id: KREL_012
+  from: TES_critical_temperature
+  to: heat_capacity_and_thermal_conductance
+  status: supported_model
+  statement: Reducing TES critical temperature reduces both heat capacity C and thermal conductance G, with G expected
+    to fall faster.
+  effect: Pulse decay tends to lengthen because the relevant thermal timescale scales with C/G.
+  sources:
+  - SOURCE_00_becker_transition_models
+- id: KREL_013
+  from: TES_geometry
+  to: heat_capacity_and_collection_area
+  status: supported_model
+  statement: Increasing TES area increases heat capacity and collecting area.
+  effect: Geometry can compensate for reduced heat capacity per volume at lower operating temperature.
+  sources:
+  - SOURCE_00_becker_transition_models
+- id: KREL_014
+  from: TES_geometry_and_transition_parameters
+  to: energy_resolution_linear_range_and_pulse_decay
+  status: supported_model
+  statement: Lower-Tc operation must be co-designed with TES geometry and transition parameters.
+  effect: Simply copying the same geometry at lower Tc reduces linear range and slows pulse decay.
+  sources:
+  - SOURCE_00_becker_transition_models
+reported_process_points:
+- source: SOURCE_01
+  current_density_mA_per_cm2: 6.0
+  bias_voltage_V: 1.4
+  plating_rate_nm_per_min: 283
+  bismuth_thickness_um: 3.0
+  bath_temperature: room_temperature
+  agitation: none
+- source: SOURCE_03
+  current_density_mA_per_cm2: 9
+  bath_temperature_C: 40
+  deposition_time_min: 2
+  bismuth_thickness_um: 0.431
+  grain_size_nm: 567
+  process_interpretation: reported high-quality film condition
+engineering_decisions:
+  supported_now:
+  - decision: Treat deposition method and electroplating conditions as microstructure-control variables.
+    sources:
+    - SOURCE_01
+    - SOURCE_03
+  - decision: Track Bi thickness jointly as a stopping-power and microstructure variable.
+    sources:
+    - SOURCE_01
+    - SOURCE_03
+  - decision: Evaluate spectral response together with absorber morphology rather than absorber composition alone.
+    sources:
+    - SOURCE_01
+    - SOURCE_02
+  - decision: Co-design TES temperature, geometry, transition behavior, and thermal parameters.
+    sources:
+    - SOURCE_00_becker_transition_models
+  open_specifications:
+  - id: OPEN_001
+    specification: numeric electroplating current-density tolerance
+    status: open
+    reason: Reported operating points and parameter sweeps do not establish a replicated manufacturing tolerance.
+    sources:
+    - SOURCE_01
+    - SOURCE_03
+  - id: OPEN_002
+    specification: numeric bath-temperature tolerance
+    status: open
+    reason: SOURCE_03 reports temperature-dependent orientation but no validated production interval.
+    sources:
+    - SOURCE_03
+  - id: OPEN_003
+    specification: grain-size or morphology acceptance criterion
+    status: open
+    reason: Microstructure is linked to spectral tailing, but a quantitative acceptance threshold is unestablished.
+    sources:
+    - SOURCE_01
+    - SOURCE_02
+    - SOURCE_03
+  - id: OPEN_004
+    specification: absorber-thickness process window
+    status: open
+    reason: Thickness affects stopping power and is associated with microstructure/tailing, but a validated joint detector-performance
+      window is unestablished.
+    sources:
+    - SOURCE_01
+    - SOURCE_02
+    - SOURCE_03
+  - id: OPEN_005
+    specification: batch and wafer repeatability
+    status: open
+    reason: The current source set does not establish process distributions across replicated wafers and batches.
+    sources:
+    - SOURCE_00_becker_transition_models
+    - SOURCE_01
+    - SOURCE_03
+  - id: OPEN_006
+    specification: manufacturing yield
+    status: open
+    reason: Yield by absorber process is not established by the current source set.
+    sources:
+    - SOURCE_00_becker_transition_models
+    - SOURCE_01
+    - SOURCE_03
+next_evidence_needed:
+- Replicated current-density × bath-temperature × thickness process study.
+- Paired microstructure and completed-TES spectral-response measurements on the same absorber populations.
+- Wafer-to-wafer and batch-to-batch distributions for thickness, grain metrics, and detector response.
+- Evidence sufficient to establish numerical manufacturing acceptance intervals rather than isolated operating points.
+completion_criteria_v1:
+- Manufacturing-input → absorber-state → detector-response relationships are traceable to source records.
+- Supported relationships and interpretations are distinguished from open specifications.
+- At least one reproducible process-window analysis consumes the synthesized knowledge.
+- Remaining manufacturing tolerances and validation measurements are explicit.
