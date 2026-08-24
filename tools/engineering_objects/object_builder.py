@@ -85,6 +85,16 @@ OBJECT_RULES: dict[str, dict[str, Any]] = {
             "grain",
             "morphology",
         },
+        "relationship_keywords": {
+            "current density",
+            "grain size",
+            "film thickness",
+            "bath temperature",
+            "crystal orientation",
+            "electrical transport",
+            "plating rate",
+            "deposition",
+        },
         "relationship_concepts": {
             "deposition_to_microstructure",
             "microstructure_to_trapping",
@@ -313,9 +323,90 @@ def relevant_sources(
     )
 
 
+def relationship_search_text(item: dict[str, Any]) -> str:
+    """Return normalized searchable text for one source relationship."""
+    fields = [
+        item.get("concept"),
+        item.get("relationship"),
+        item.get("engineering_effect"),
+        item.get("from"),
+        item.get("to"),
+        item.get("basis"),
+        item.get("status"),
+    ]
+    return normalize_text(fields)
+
+
+def relationship_matches_object(
+    item: dict[str, Any],
+    rule: dict[str, Any],
+) -> bool:
+    """Return True where a source relationship belongs to this Engineering Object."""
+    text = relationship_search_text(item)
+
+    relationship_keywords = set(
+        rule.get(
+            "relationship_keywords",
+            rule.get("source_keywords", set()),
+        )
+    )
+
+    return any(
+        keyword.lower() in text
+        for keyword in relationship_keywords
+    )
+
+
+def normalize_relationship(
+    item: dict[str, Any],
+    source_id: str,
+) -> dict[str, Any] | None:
+    """Normalize supported source-relationship schemas for Engineering Objects."""
+
+    relationship = str(item.get("relationship", "")).strip()
+    engineering_effect = str(item.get("engineering_effect", "")).strip()
+
+    # Existing SOURCE_00-SOURCE_03-style relationship record.
+    if relationship and engineering_effect:
+        result: dict[str, Any] = {
+            "statement": relationship,
+            "engineering_effect": engineering_effect,
+            "source": source_id,
+        }
+
+    # SOURCE_04-style directional engineering relationship.
+    elif relationship and item.get("from") and item.get("to"):
+        source_variable = str(item.get("from")).strip()
+        target_variable = str(item.get("to")).strip()
+        basis = str(item.get("basis", "")).strip()
+
+        result = {
+            "statement": (
+                f"{source_variable} -> {target_variable}: {relationship}"
+            ),
+            "engineering_effect": basis,
+            "source": source_id,
+        }
+
+        if item.get("status"):
+            result["evidence_status"] = item["status"]
+
+    else:
+        return None
+
+    if "source_pages" in item:
+        result["source_pages"] = item.get("source_pages", [])
+
+    if "source_sections" in item:
+        result["source_sections"] = item.get("source_sections", [])
+
+    return result
+
+
 def relevant_relationships(
     records: dict[str, dict[str, Any]],
     source_ids: Iterable[str],
+    rule: dict[str, Any],
 ) -> list[dict[str, Any]]:
     results: list[dict[str, Any]] = []
 
@@ -326,27 +417,15 @@ def relevant_relationships(
             if not isinstance(item, dict):
                 continue
 
-            relationship = str(item.get("relationship", "")).strip()
-            effect = str(item.get("engineering_effect", "")).strip()
-
-            if not relationship:
+            if not relationship_matches_object(item, rule):
                 continue
 
-            result = {
-                "statement": relationship,
-                "engineering_effect": effect,
-                "source": source_id,
-            }
+            normalized = normalize_relationship(item, source_id)
 
-            if "source_pages" in item:
-                result["source_pages"] = item.get("source_pages", [])
-            if "source_sections" in item:
-                result["source_sections"] = item.get("source_sections", [])
-
-            results.append(result)
+            if normalized is not None:
+                results.append(normalized)
 
     return results
-
 
 def relevant_candidate_specs(
     synthesis: dict[str, Any],
@@ -479,7 +558,11 @@ def refresh_object(
     updated = copy.deepcopy(current)
 
     evidence_sources = relevant_sources(records, rule)
-    evidence = relevant_relationships(records, evidence_sources)
+    evidence = relevant_relationships(
+        records,
+        evidence_sources,
+        rule,
+    )
     candidate_specs = relevant_candidate_specs(synthesis, rule)
     open_specs = relevant_open_specs(synthesis, rule)
 
