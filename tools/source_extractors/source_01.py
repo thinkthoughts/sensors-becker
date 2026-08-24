@@ -197,6 +197,18 @@ def extract(scaffold: dict) -> dict:
                 "process tolerances for plating current, voltage, and rate",
                 "paired spectral measurements for the exact characterized samples",
             ],
+            "reported_process_points": [
+                {
+                    "source": "SOURCE_01",
+                    "current_density_mA_per_cm2": 6.0,
+                    "bias_voltage_V": 1.4,
+                    "plating_rate_nm_per_min": 283,
+                    "bismuth_thickness_um": 3.0,
+                    "bath_temperature": "room_temperature",
+                    "agitation": "none",
+                    "process_interpretation": "reported electroplated-Bi sample condition",
+                }
+            ],
             "extraction_notes": [
                 "Page references use manuscript page numbers visible in the PDF.",
                 "The paper does not establish a final grain-size manufacturing tolerance.",
