@@ -263,6 +263,8 @@ def _observed_values_for(
     quantitative_evidence: pd.DataFrame,
     variable_names: Sequence[str],
 ) -> list[str]:
+    """Return readable observed evidence with object and source provenance."""
+
     if quantitative_evidence.empty:
         return []
 
@@ -271,17 +273,25 @@ def _observed_values_for(
     ]
 
     values: list[str] = []
+
     for _, row in subset.iterrows():
         value = row.get("value")
         unit = row.get("unit") or ""
         source = row.get("source_id") or ""
+        obj = row.get("object")
         condition = row.get("condition")
 
         text = f"{value} {unit}".strip()
-        if condition:
+
+        if obj and not pd.isna(obj):
+            text += f" — {obj}"
+
+        if condition and not pd.isna(condition):
             text += f" ({condition})"
+
         if source:
             text += f" [{source}]"
+
         values.append(text)
 
     return values
