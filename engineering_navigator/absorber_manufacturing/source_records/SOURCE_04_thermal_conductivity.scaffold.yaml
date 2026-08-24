@@ -1,0 +1,50 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+source_id: SOURCE_04
+title: Devices for Thermal Conductivity Measurements of Electroplated Bi for X-ray TES Absorbers
+year: 2021
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:2111.02503v1
+paper:
+  pdf: 2111.02503v1.pdf
+  arxiv: '2111.02503'
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+priority_variables_to_extract:
+- electroplating current density
+- electroplating time
+- plating rate
+- bath pH
+- bath temperature
+- agitation
+- bismuth thickness
+- test-structure length
+- test-structure width
+- resistance at 300 K
+- resistivity versus temperature
+- residual resistance ratio
+- thermal conductivity at 3 K
+- gold seed-layer thickness
+- titanium adhesion-layer thickness
+- photoresist mold thickness
+- grain size
+- thermalization relative to Au and SiN
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes: []
