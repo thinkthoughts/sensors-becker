@@ -1,0 +1,268 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: absorber_manufacturing
+source_id: SOURCE_04
+title: Devices for Thermal Conductivity Measurements of Electroplated Bi for X-ray TES Absorbers
+year: 2021
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:2111.02503v1
+paper:
+  pdf: 2111.02503v1.pdf
+  arxiv: '2111.02503'
+record_status: evidence_extracted
+extraction_status: complete_for_source_record_v1
+engineering_questions:
+- EQ_02_manufacturing_tolerances
+- EQ_04_detector_variability
+- EQ_05_process_validation
+authors:
+- Orlando Quaranta
+- Lisa M. Gades
+- Cindy Xue
+- Ralu Divan
+- Umeshkumar M. Patel
+- Tejas Guruswamy
+- Antonino Miceli
+materials:
+- material: bismuth
+  role: electroplated absorber and resistivity-test microwire
+- material: gold
+  role: conductive seed layer, measurement leads, and comparison absorber
+- material: titanium
+  role: adhesion layer beneath Au
+- material: silicon_dioxide_on_silicon
+  role: electrically insulating test-device substrate
+- material: AZ_P4620_photoresist
+  role: thick electroplating mold and temporary protective layer
+- material: silicon_nitride
+  role: TES membrane material used in the thermal-conductivity comparison
+fabrication_methods:
+- method: sputter_deposition
+  details: 100 nm Au deposited over a 5 nm Ti adhesion layer
+- method: photolithography_and_liftoff
+  details: Au measurement leads patterned using Heidelberg MLA150 lithography and liftoff
+- method: thick_photoresist_mold
+  details: ~23 um AZ P4620 mold formed with a two-layer spin process, cooler/longer soft bakes, and multiple exposures
+- method: surface_preparation
+  details: 1 min O2 plasma RIE descum followed by 10 s dilute nitric-acid dip
+- method: bismuth_electroplating
+  details: low-throw room-temperature plating in an unagitated acidic Bi electrolyte
+- method: four_wire_resistance_measurement
+  details: Bi bridge geometry isolates the Bi electrical resistance from the underlying Au seed layer
+design_variables:
+- id: electroplating_current_density
+  unit: mA/cm2
+- id: bath_pH
+  unit: dimensionless
+- id: bath_temperature
+  unit: qualitative_or_C
+- id: agitation
+  unit: categorical
+- id: initial_plating_time
+  unit: min
+- id: additional_bridge_plating_time
+  unit: min
+- id: plating_rate
+  unit: nm/min
+- id: Bi_microwire_length
+  unit: um
+- id: Bi_microwire_width
+  unit: um
+- id: Bi_microwire_thickness
+  unit: um
+- id: Au_seed_thickness
+  unit: nm
+- id: Ti_adhesion_thickness
+  unit: nm
+- id: photoresist_mold_thickness
+  unit: um
+- id: measurement_temperature
+  unit: K
+reported_values:
+- id: Au_seed_thickness
+  value: 100
+  unit: nm
+  context: Au conductive seed layer and four-wire leads
+- id: Ti_adhesion_thickness
+  value: 5
+  unit: nm
+  context: Ti adhesion layer beneath Au
+- id: photoresist_mold_thickness
+  value: 23
+  unit: um
+  qualifier: approximately
+- id: electrolyte_pH
+  value: 0.15
+  unit: dimensionless
+  qualifier: approximately
+- id: precipitation_avoidance_pH_upper_bound
+  value: 0.3
+  unit: dimensionless
+  qualifier: approximately_below
+- id: electroplating_current_density
+  value: 7.7
+  unit: mA/cm2
+- id: initial_plating_time
+  value: 60
+  unit: min
+- id: additional_bridge_plating_time
+  value_range:
+  - 90
+  - 120
+  unit: min
+- id: plating_rate
+  value_range:
+  - 220
+  - 250
+  unit: nm/min
+  qualifier: estimated_in_larger_Bi_structures
+- id: maximum_reliable_voltage_lead_spacing
+  value: 100
+  unit: um
+- id: test_structure_widths
+  values:
+  - 20
+  - 50
+  - 100
+  unit: um
+- id: test_structure_Bi_thickness
+  value: 30
+  unit: um
+  qualifier: approximately
+- id: device_100x20_resistance_300K
+  value: 0.19
+  unit: ohm
+- id: device_100x20_RRR
+  value: 0.41
+  unit: dimensionless
+- id: device_100x20_thermal_conductivity_3K
+  value: 0.0462
+  unit: W_m-1_K-1
+- id: device_100x50_resistance_300K
+  value: 0.086
+  unit: ohm
+- id: device_100x50_RRR
+  value: 0.35
+  unit: dimensionless
+- id: device_100x50_thermal_conductivity_3K
+  value: 0.0347
+  unit: W_m-1_K-1
+- id: device_100x100_resistance_300K
+  value: 0.042
+  unit: ohm
+- id: device_100x100_RRR
+  value: 0.32
+  unit: dimensionless
+- id: device_100x100_thermal_conductivity_3K
+  value: 0.0344
+  unit: W_m-1_K-1
+- id: Au_thermal_conductivity_comparison
+  value: 7.8
+  unit: W_m-1_K-1
+  qualifier: approximately
+- id: SiN_thermal_conductivity_comparison
+  value: 1.2e-05
+  unit: W_m-1_K-1
+  qualifier: approximately
+measured_outcomes:
+- outcome: Bi_resistance_vs_temperature
+  result: Resistivity falls from 300 K to about 230 K, then rises to about 10 K and saturates at lower temperature.
+- outcome: room_temperature_resistance_scaling
+  result: Measured 300 K resistance closely matches values expected from bulk Bi resistivity for the three test
+    geometries.
+- outcome: thermal_conductivity_at_3K
+  result: Estimated kappa values span 3.44e-2 to 4.62e-2 W m^-1 K^-1 across the three reported geometries.
+- outcome: absorber_thermalization
+  result: Electroplated Bi thermal conductivity is judged sufficient for X-ray heat to thermalize in the TES before
+    escape through the SiN membrane.
+equations:
+- id: wiedemann_franz
+  expression: kappa = sigma * L * T
+  variables:
+    kappa: thermal conductivity
+    sigma: electrical conductivity
+    L: Lorenz number
+    T: temperature
+  use: Estimate low-temperature Bi thermal conductivity from electrical conductivity.
+assumptions:
+- assumption: bulk_Bi_Lorenz_number_estimate
+  description: The Lorenz number is estimated using literature bulk-Bi thermal conductivity and resistivity at 300
+    K.
+- assumption: Wiedemann_Franz_applicability
+  description: Low-temperature thermal conductivity is estimated from measured electrical conductivity using the
+    Wiedemann-Franz relation.
+- assumption: four_wire_geometry_isolates_Bi
+  description: Electrical continuity between the Au leads occurs through the electroplated Bi bridge, allowing the
+    measured voltage drop to represent Bi resistance.
+engineering_relationships:
+- from: electrical_resistivity
+  to: thermal_conductivity
+  relationship: inverse_via_electrical_conductivity
+  basis: Wiedemann-Franz estimate
+  status: supported_model
+- from: electroplated_Bi_thermal_conductivity
+  to: absorber_thermalization
+  relationship: sufficient_for_TES_thermalization
+  basis: Bi conductivity lies between the much higher Au conductivity and much lower SiN membrane conductivity
+  status: supported
+- from: Bi_grain_size
+  to: test_structure_dimensional_uncertainty
+  relationship: larger_grains_increase_geometric_uncertainty
+  basis: authors attribute the largest resistance discrepancy in the 20 um-wide device to difficulty defining dimensions
+    because grains are several um wide
+  status: supported_interpretation
+- from: substrate_Bi_differential_thermal_contraction
+  to: mechanical_stress_in_Bi_grains
+  relationship: may_induce_stress_during_cooling
+  basis: authors' hypothesis
+  status: candidate
+- from: mechanical_stress_in_Bi_grains
+  to: low_temperature_resistivity_behavior
+  relationship: possible_contributor
+  basis: authors' hypothesis; further study required
+  status: candidate
+engineering_constraints:
+- constraint: electrolyte_pH
+  statement: pH must remain below about 0.3 to prevent Bi precipitates, while plating is inhibited as pH approaches
+    0.
+- constraint: test_structure_length
+  statement: 100 um between voltage leads was the maximum length achieved reliably for this bridge geometry.
+- constraint: seed_layer_measurement_convolution
+  statement: A conventional Bi/Au stack cannot directly reveal Bi resistivity because the more conductive Au layer
+    dominates the electrical measurement.
+- constraint: absorber_thermal_path
+  statement: For acceptable TES operation, absorber heat must thermalize before escaping through the SiN membrane
+    to the bath.
+future_questions:
+- Does the Bi microwire undergo a semimetal-to-semiconductor transition below about 250 K?
+- How much does differential thermal contraction contribute to mechanical stress and the observed resistivity curve?
+- How do electroplating conditions alter low-temperature Bi resistivity and thermal conductivity?
+- How repeatable are these thermal-conductivity values across wafers, absorber geometries, and production batches?
+unreported_variables:
+- validated production tolerance for electroplating current density
+- validated production tolerance for bath pH
+- wafer-to-wafer distribution of low-temperature thermal conductivity
+- batch-to-batch distribution of low-temperature thermal conductivity
+- direct thermal-conductivity measurement at TES operating temperature
+- manufacturing yield for the reported electroplating process
+extraction_notes:
+- The paper measures electrical resistance directly; low-temperature thermal conductivity is estimated using the
+  Wiedemann-Franz relation rather than measured calorimetrically.
+- The reported ~30 um Bi thickness belongs to the resistivity test microwires and should not be interpreted as a
+  general TES absorber specification.
+- The 7.7 mA/cm2 process point is a reported fabrication condition, not a validated manufacturing tolerance.
+- The conclusion that thermalization is adequate is based on the relative thermal conductivities of Au, Bi, and
+  the SiN membrane.
+- Candidate mechanical-stress explanations are retained as hypotheses rather than promoted to established engineering
+  relationships.
+reported_process_points:
+- source: SOURCE_04
+  current_density_mA_per_cm2: 7.7
+  bath_temperature: room_temperature
+  agitation: none
+  bath_pH: 0.15
+  initial_plating_time_min: 60
+  additional_bridge_plating_time_min: 90-120
+  plating_rate_nm_per_min: 220-250
+  process_interpretation: reported test-structure electroplating condition
