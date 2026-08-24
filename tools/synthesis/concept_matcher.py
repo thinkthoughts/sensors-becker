@@ -8,20 +8,40 @@ from typing import Any
 import pandas as pd
 
 
+def normalize_text(value: Any) -> str:
+    """Normalize nested source content to lowercase searchable text."""
+    if value is None:
+        return ""
+
+    if isinstance(value, Mapping):
+        return " ".join(
+            f"{normalize_text(key)} {normalize_text(item)}"
+            for key, item in value.items()
+        ).lower()
+
+    if isinstance(value, (list, tuple, set)):
+        return " ".join(normalize_text(item) for item in value).lower()
+
+    return str(value).lower()
+
+
 def searchable_record_text(record: Mapping[str, Any]) -> str:
     """Return normalized searchable text from synthesis-relevant record fields."""
-    chunks: list[str] = []
+    chunks: list[Any] = []
 
     for field in (
         "design_variables",
+        "reported_values",
+        "measured_outcomes",
         "engineering_relationships",
         "engineering_constraints",
         "future_questions",
         "unreported_variables",
+        "reported_process_points",
     ):
-        chunks.append(str(record.get(field, "")))
+        chunks.append(record.get(field, ""))
 
-    return " ".join(chunks).lower()
+    return normalize_text(chunks)
 
 
 def build_engineering_axis_matrix(
@@ -69,11 +89,49 @@ def build_engineering_axis_matrix(
 
 
 def relationship_text(item: Mapping[str, Any]) -> str:
-    """Normalize one source relationship for concept matching."""
-    return (
-        f"{item.get('relationship', '')} "
-        f"{item.get('engineering_effect', '')}"
-    ).lower()
+    """Normalize one source relationship for concept matching across schemas."""
+    fields = [
+        item.get("concept"),
+        item.get("relationship"),
+        item.get("engineering_effect"),
+        item.get("from"),
+        item.get("to"),
+        item.get("basis"),
+        item.get("status"),
+    ]
+    return normalize_text(fields)
+
+
+def normalized_relationship_statement(item: Mapping[str, Any]) -> str:
+    """Return a readable relationship statement across supported schemas."""
+
+    relationship = str(item.get("relationship", "")).strip()
+    source_variable = str(item.get("from", "")).strip()
+    target_variable = str(item.get("to", "")).strip()
+
+    if source_variable and target_variable and relationship:
+        return f"{source_variable} -> {target_variable}: {relationship}"
+
+    if relationship:
+        return relationship
+
+    if source_variable and target_variable:
+        return f"{source_variable} -> {target_variable}"
+
+    return ""
+
+
+def normalized_engineering_effect(item: Mapping[str, Any]) -> str:
+    """Return the best available engineering-effect text."""
+    effect = str(item.get("engineering_effect", "")).strip()
+    if effect:
+        return effect
+
+    basis = str(item.get("basis", "")).strip()
+    if basis:
+        return basis
+
+    return ""
 
 
 def concept_matches(text: str, concept: Mapping[str, Any]) -> bool:
@@ -112,9 +170,10 @@ def collect_source_relationships(
                 {
                     "source_id": source_id,
                     "relationship_index": index,
-                    "relationship": item.get("relationship", ""),
-                    "engineering_effect": item.get("engineering_effect", ""),
+                    "relationship": normalized_relationship_statement(item),
+                    "engineering_effect": normalized_engineering_effect(item),
                     "source_pages": item.get("source_pages", []),
+                    "source_sections": item.get("source_sections", []),
                     "concepts": matched,
                 }
             )
@@ -127,6 +186,7 @@ def collect_source_relationships(
             "relationship",
             "engineering_effect",
             "source_pages",
+            "source_sections",
             "concepts",
         ],
     )
