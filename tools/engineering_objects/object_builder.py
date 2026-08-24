@@ -520,6 +520,40 @@ def collect_reported_process_points(
     return points
 
 
+
+def contributing_source_ids(
+    evidence: list[dict[str, Any]],
+    candidate_specs: list[dict[str, Any]],
+    open_specs: list[dict[str, Any]],
+    process_points: list[dict[str, Any]],
+) -> list[str]:
+    """Return source ids that actually contribute managed evidence to an object."""
+
+    sources: set[str] = set()
+
+    for item in evidence:
+        source = item.get("source")
+        if isinstance(source, str) and source:
+            sources.add(source)
+
+    for item in candidate_specs:
+        for source in item.get("evidence", []):
+            if isinstance(source, str) and source:
+                sources.add(source)
+
+    for item in open_specs:
+        for source in item.get("gap_sources", []):
+            if isinstance(source, str) and source:
+                sources.add(source)
+
+    for item in process_points:
+        source = item.get("source")
+        if isinstance(source, str) and source:
+            sources.add(source)
+
+    return sorted(sources)
+
+
 def build_evidence_summary(
     object_id: str,
     evidence_sources: list[str],
@@ -557,10 +591,10 @@ def refresh_object(
 
     updated = copy.deepcopy(current)
 
-    evidence_sources = relevant_sources(records, rule)
+    matched_source_ids = relevant_sources(records, rule)
     evidence = relevant_relationships(
         records,
-        evidence_sources,
+        matched_source_ids,
         rule,
     )
     candidate_specs = relevant_candidate_specs(synthesis, rule)
@@ -569,10 +603,17 @@ def refresh_object(
     if rule.get("collect_reported_process_points", False):
         process_points = collect_reported_process_points(
             records,
-            evidence_sources,
+            matched_source_ids,
         )
     else:
         process_points = []
+
+    evidence_sources = contributing_source_ids(
+        evidence,
+        candidate_specs,
+        open_specs,
+        process_points,
+    )
 
     updated["evidence_sources"] = evidence_sources
     updated["current_evidence"] = evidence
@@ -595,7 +636,7 @@ def refresh_object(
     )
 
     updated["object_build"] = {
-        "builder": "engineering-objects-object-builder-v2",
+        "builder": "engineering-objects-object-builder-v2.1",
         "managed_fields": sorted(MANAGED_FIELDS),
     }
 
