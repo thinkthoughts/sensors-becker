@@ -12,7 +12,7 @@
 
 - Added source-derived engineering extraction.
 - Generated cumulative RP_37_A, RP_37_B, and RP_37_C specifications.
-- Standardized YAML generation from NB_00_SOURCE_EXTRACTION.
+- Standardized YAML generation from NB_00_RP_37_SOURCE_EXTRACTION.
 - Eliminated manual editing of generated Reading Point YAML.
 
 ### Engineering Dialogue
@@ -55,7 +55,7 @@ Fabricate · Characterize · Validate
 
 ### Source Extraction
 
-NB_00_SOURCE_EXTRACTION now directly generates:
+NB_00_RP_37_SOURCE_EXTRACTION now directly generates:
 
 - RP_37_A.yaml
 - RP_37_B.yaml
