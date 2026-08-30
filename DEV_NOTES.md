@@ -1,5 +1,14 @@
 Engineering Artifact Naming (DEV NOTES)
 
+> **Status note (added):** This document records an earlier repository
+> architecture (the RO/ES/NB/SR/ER artifact-family plan below). The
+> repository's current development chain — Reading Order → Engineering
+> Statements → Reading Point Specifications → Notebook Compiler →
+> Notebook Bundles — is described in `RO_A_READING_ORDER.md`, which
+> reflects what the repository actually does today. This document is
+> preserved as historical/provenance context, not as the live
+> architecture. Where the two disagree, `RO_A_READING_ORDER.md` governs.
+
 Purpose
 
 Capture the current engineering artifact architecture while repository
