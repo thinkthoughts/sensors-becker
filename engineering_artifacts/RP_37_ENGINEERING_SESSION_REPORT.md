@@ -9,7 +9,7 @@
 
 # Engineering Source
 
-**Author:** Daniel Becker
+**Author:** Dan Becker
 
 **Organization:** University of Colorado
 
