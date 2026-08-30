@@ -11,7 +11,7 @@
 
 **Author:** Daniel Becker
 
-**Organization:** Idaho National Laboratory (INL)
+**Organization:** University of Colorado
 
 **Direction:**
 Toward next-generation microcalorimeters.
@@ -134,7 +134,7 @@ Generated metadata:
 ```
 Engineering source
         ↓
-NB_00_SOURCE_EXTRACTION
+NB_00_RP_37_SOURCE_EXTRACTION
         ↓
 RP_37_A.yaml
 RP_37_B.yaml
