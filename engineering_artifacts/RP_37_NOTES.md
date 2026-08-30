@@ -82,7 +82,7 @@ Current repository workflow:
 ```
 Engineering source
         ↓
-NB_00_SOURCE_EXTRACTION
+NB_00_RP_37_SOURCE_EXTRACTION
         ↓
 RP_A.yaml
 RP_B.yaml
