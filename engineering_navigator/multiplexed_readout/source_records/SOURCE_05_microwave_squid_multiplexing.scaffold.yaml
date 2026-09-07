@@ -1,0 +1,100 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: multiplexed_readout
+source_id: SOURCE_05
+title: A Scalable Readout for Microwave SQUID Multiplexing of Transition-Edge Sensors
+year: 2018
+source_type: journal_article
+publisher_or_archive: Journal of Low Temperature Physics / NIST
+identifier: DOI:10.1007/s10909-018-2012-2
+paper:
+  nist: https://www.nist.gov/publications/scalable-readout-microwave-squid-multiplexing-transition-edge-sensors
+  doi: 10.1007/s10909-018-2012-2
+  pdf: A_Scalable_Readout_for_Microwave_SQUID_Multiplexing_of_Transition_Edge_Sensors.pdf
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_06_multiplexed_readout_scaling
+- EQ_07_channel_allocation_and_crosstalk
+- EQ_08_discrete_readout_architecture
+- EQ_09_gdt_applicability
+priority_variables_to_extract:
+- TES channel count
+- resonator channel index
+- resonator center frequency
+- resonator bandwidth
+- resonator spacing
+- readout bandwidth
+- number of channels per readout band
+- number of channels per ROACH2
+- number of ROACH2 units
+- microwave feedline count
+- ADC sample rate
+- DAC sample rate
+- FFT bin count
+- FFT frame structure
+- channel-to-bin mapping
+- fine FIR tap count
+- digital FIR suppression
+- crosstalk or pulse-height error
+- flux-ramp repetition rate
+- integer number of flux quanta per ramp
+- flux-ramp modulation frequency
+- flux-ramp synchronization
+- channel-index synchronization
+- data rate
+- FPGA resource use
+- scaling limit
+- frequency-placement resolution
+gdt_applicability_priorities:
+- candidate_structure: channel_index
+  extract:
+  - definition of channel index
+  - index range
+  - counter or frame synchronization rule
+  - any periodic channel assignment rule
+  - any excluded index classes
+- candidate_structure: fft_bin_to_channel_mapping
+  extract:
+  - number of FFT bins
+  - bin-selection rule
+  - channel-to-bin assignment
+  - periodicity of bin allocation
+  - forbidden or collision-prone assignments
+- candidate_structure: flux_ramp_integer_quanta
+  extract:
+  - integer number nPhi of flux quanta per ramp
+  - relation between nPhi and modulation frequency
+  - allowed values of nPhi
+  - any factor, divisibility, aliasing, or compatibility constraints on nPhi
+- candidate_structure: frequency_slot_allocation
+  extract:
+  - tone or resonator placement rule
+  - bandwidth and spacing constraints
+  - integer slot or bin representation if explicitly used
+  - collision or crosstalk exclusion rules
+- candidate_structure: direct_GDT_hypotheses
+  extract:
+  - physically natural integer state n
+  - natural modulus m
+  - residue condition n ≡ a mod m
+  - factor-exclusion or coprimality rule gcd(n,N)=1
+  instruction: Do not infer a GDT mapping from indexing alone; require explicit physical or firmware justification.
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes:
+- SOURCE_05 opens the multiplexed-readout branch rather than extending absorber manufacturing.
+- The paper explicitly uses a channel index synchronized to the FFT frame.
+- The paper explicitly describes a linear flux ramp containing an integer number of flux quanta nPhi, with modulation
+  frequency equal to flux-ramp rate times nPhi.
+- These discrete structures are GDT candidates only; no coprimality constraint is assumed at scaffold stage.
