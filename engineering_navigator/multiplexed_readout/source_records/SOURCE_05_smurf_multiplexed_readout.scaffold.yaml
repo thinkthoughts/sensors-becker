@@ -1,0 +1,81 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: multiplexed_readout
+source_id: SOURCE_05
+title: Highly-multiplexed microwave SQUID readout using the SLAC Microresonator Radio Frequency (SMuRF) Electronics for Future CMB and Sub-millimeter Surveys
+year: 2018
+source_type: preprint
+publisher_or_archive: arXiv
+identifier: arXiv:1809.03689v1
+paper:
+  pdf: 1809.03689v1.pdf
+  arxiv: '1809.03689'
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_06_multiplexed_readout_scaling
+- EQ_07_channel_allocation_and_crosstalk
+- EQ_08_discrete_readout_architecture
+- EQ_09_gdt_applicability
+priority_variables_to_extract:
+- TES channel count
+- resonator center frequency
+- resonator bandwidth
+- adjacent resonator spacing
+- readout bandwidth
+- channels per RF line
+- channels per multiplexer chip
+- analog block bandwidth
+- analysis filter-bank sub-band count
+- tones per sub-band
+- baseband data rate
+- flux-ramp reset rate
+- flux quanta per ramp
+- flux-ramp carrier frequency
+- Fourier harmonic order
+- coarse resonator-search step
+- fine resonator-scan step
+- collision-related exclusions
+- band-edge exclusions
+- channel quality cuts
+- readout noise
+- scaling limit
+gdt_applicability_priorities:
+- candidate_structure: filterbank_subband_index
+  extract:
+  - number of sub-bands
+  - sub-band width
+  - tones per sub-band
+  - any periodic assignment rule
+  - any forbidden index classes
+- candidate_structure: harmonic_order
+  extract:
+  - tracked harmonic indices
+  - relation between harmonic index and demodulated phase
+  - any divisibility or factor-exclusion rule
+- candidate_structure: resonator_grouping
+  extract:
+  - chip channel count
+  - number of resonator groups per chip
+  - collision-avoidance grouping rule
+  - whether grouping is explicitly modular
+- candidate_structure: direct_GDT_hypotheses
+  extract:
+  - physically natural integer state n
+  - natural modulus m
+  - residue condition n ≡ a mod m
+  - factor-exclusion or coprimality rule gcd(n,N)=1
+  instruction: Do not infer a GDT mapping from indexing or decimal scaling alone.
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes: []
