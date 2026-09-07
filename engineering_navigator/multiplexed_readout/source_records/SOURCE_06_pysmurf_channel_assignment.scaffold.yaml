@@ -1,0 +1,76 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: multiplexed_readout
+source_id: SOURCE_06
+title: PySMuRF tuning and channel-assignment documentation
+year: 2026
+source_type: software_documentation
+publisher_or_archive: PySMuRF Read the Docs / SLAC
+identifier: pysmurf.client.tune.smurf_tune
+paper:
+  documentation: https://pysmurf.readthedocs.io/en/main/client/tune.html
+  repository: https://github.com/slaclab/pysmurf
+record_status: scaffold
+extraction_status: not_started
+engineering_questions:
+- EQ_10_channel_assignment_rule
+- EQ_11_resonator_exclusion_rule
+- EQ_12_subband_channel_indexing
+- EQ_13_gdt_channel_assignment_applicability
+priority_variables_to_extract:
+- channel_per_subband
+- minimum resonator frequency offset
+- assigned subband index
+- assigned channel number
+- frequency offset from subband center
+- band index
+- 500 MHz band structure
+- tracking quality limits
+- channel disable conditions
+- flux-ramp n_phi0 type
+- resonator search and assignment logic
+gdt_applicability_priorities:
+- candidate_structure: assigned_subband_index
+  extract:
+  - integer domain
+  - assignment rule
+  - whether assignment is periodic/modular
+  - whether any subband indices are systematically excluded
+- candidate_structure: assigned_channel_number
+  extract:
+  - integer domain
+  - channels per subband
+  - assignment rule
+  - whether channel numbers repeat by modulus
+  - whether exclusions are factor-based
+- candidate_structure: minimum_offset_exclusion
+  extract:
+  - exact threshold
+  - units
+  - whether exclusion is pairwise distance-based
+  - whether exclusion is arithmetic/divisibility-based
+- candidate_structure: direct_GDT_hypotheses
+  extract:
+  - physically meaningful integer state n
+  - natural modulus m
+  - physical residue condition n ≡ a mod m
+  - physical factor-exclusion rule gcd(n,N)=1
+  instruction: Treat integer subband/channel indices as candidate states only. Do not infer modular or coprimality
+    structure unless documented.
+authors: []
+materials: []
+fabrication_methods: []
+design_variables: []
+reported_values: []
+measured_outcomes: []
+equations: []
+assumptions: []
+engineering_relationships: []
+engineering_constraints: []
+future_questions: []
+unreported_variables: []
+extraction_notes:
+- SOURCE_06 is software/firmware-facing evidence rather than a journal article.
+- The key target is assign_channels(...), which maps resonator frequencies to integer subband and channel arrays.
+- The documentation explicitly states a minimum resonator offset rule and that closer pairs are ignored.
+- The documentation also confirms n_phi0 is float-valued; integer values are recommended but not required.
