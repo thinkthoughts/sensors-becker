@@ -1,0 +1,648 @@
+"""Source-specific extractor for SOURCE_05.
+
+Paper:
+    Henderson et al. (2018)
+    "Highly-multiplexed microwave SQUID readout using the
+    SLAC Microresonator Radio Frequency (SMuRF) Electronics
+    for Future CMB and Sub-millimeter Surveys"
+    arXiv:1809.03689v1
+
+SOURCE_05 opens the multiplexed_readout branch of sensors-becker.
+
+The extractor is intentionally conservative about General Divisor Theorem
+applicability. The paper contains genuinely discrete readout architecture
+(channels, chips, sub-bands, tones, harmonics), but it does not report a
+physical residue-class plus coprimality rule. Those structures remain
+application candidates rather than a claimed GDT mapping.
+"""
+
+from __future__ import annotations
+
+from copy import deepcopy
+
+
+def extract(scaffold: dict) -> dict:
+    """Complete the SOURCE_05 scaffold with evidence extracted from the paper."""
+
+    record = deepcopy(scaffold)
+
+    record.update(
+        {
+            "record_status": "evidence_extracted",
+            "extraction_status": "complete_for_source_record_v1",
+            "authors": [
+                "Shawn W. Henderson",
+                "Zeeshan Ahmed",
+                "Jason Austermann",
+                "Daniel Becker",
+                "Douglas A. Bennett",
+                "David Brown",
+                "Saptarshi Chaudhuri",
+                "Hsiao-Mei Sherry Cho",
+                "John M. D'Ewart",
+                "Bradley Dober",
+                "Shannon M. Duff",
+                "John E. Dusatko",
+                "Sofia Fatigoni",
+                "Josef C. Frisch",
+                "Jonathon D. Gard",
+                "Mark Halpern",
+                "Gene C. Hilton",
+                "Johannes Hubmayr",
+                "Kent D. Irwin",
+                "Ethan D. Karpel",
+                "Sarah S. Kernasovskiy",
+                "Stephen E. Kuenstner",
+                "Chao-Lin Kuo",
+                "Dale Li",
+                "John A. B. Mates",
+                "Carl D. Reintsema",
+                "Stephen R. Smith",
+                "Joel Ullom",
+                "Leila R. Vale",
+                "Daniel D. Van Winkle",
+                "Michael Vissers",
+                "Cyndia Yu",
+            ],
+            "materials": [
+                {
+                    "name": "transition-edge sensors",
+                    "role": "cryogenic sensors coupled to rf-SQUID readout channels",
+                    "source_pages": [1, 2],
+                },
+                {
+                    "name": "rf-SQUIDs",
+                    "role": "couple TES current to microwave-resonator frequency shifts",
+                    "source_pages": [1, 2, 3, 6],
+                },
+                {
+                    "name": "superconducting microwave resonators",
+                    "role": "frequency-domain channelization of TES/rf-SQUID signals",
+                    "source_pages": [1, 2, 7, 8],
+                },
+                {
+                    "name": "niobium coplanar-waveguide resonators",
+                    "role": "resonators in the NIST 528-channel multiplexer",
+                    "source_pages": [7],
+                },
+            ],
+            "fabrication_methods": [
+                {
+                    "method": "NIST microwave SQUID multiplexer fabrication",
+                    "purpose": "provide cryogenic resonator/rf-SQUID channel array",
+                    "parameters": {
+                        "chip_count": 8,
+                        "resonators_per_chip": 66,
+                        "rf_squid_coupled_resonators_per_chip": 65,
+                        "bare_resonators_per_chip": 1,
+                    },
+                    "source_pages": [7],
+                },
+                {
+                    "method": "four-sub-band resonator grouping",
+                    "purpose": "guard against intra-chip resonator-frequency collisions",
+                    "parameters": {
+                        "sub_bands_per_66_channel_chip": 4,
+                    },
+                    "source_pages": [8],
+                },
+            ],
+            "design_variables": [
+                {
+                    "id": "channel_count",
+                    "name": "readout channel count",
+                    "unit": "channels",
+                    "role": "multiplexing scale",
+                },
+                {
+                    "id": "rf_line_bandwidth",
+                    "name": "total RF-line bandwidth",
+                    "unit": "GHz",
+                    "role": "available multiplexing bandwidth",
+                },
+                {
+                    "id": "resonator_frequency",
+                    "name": "resonator center frequency",
+                    "unit": "GHz",
+                    "role": "channel frequency assignment",
+                },
+                {
+                    "id": "adjacent_resonator_spacing",
+                    "name": "adjacent resonator frequency spacing",
+                    "unit": "MHz",
+                    "role": "collision avoidance",
+                },
+                {
+                    "id": "resonator_linewidth",
+                    "name": "resonator linewidth",
+                    "unit": "kHz",
+                    "role": "minimum-spacing comparison scale",
+                },
+                {
+                    "id": "analog_block_bandwidth",
+                    "name": "analog front-end block bandwidth",
+                    "unit": "MHz",
+                    "role": "coarse RF partition",
+                },
+                {
+                    "id": "filterbank_subband_count",
+                    "name": "analysis-filter-bank sub-band count",
+                    "unit": "sub_bands",
+                    "role": "digital channelization",
+                },
+                {
+                    "id": "filterbank_subband_width",
+                    "name": "analysis-filter-bank sub-band width",
+                    "unit": "MHz",
+                    "role": "digital channelization",
+                },
+                {
+                    "id": "filterbank_usable_subband_width",
+                    "name": "usable bandwidth per analysis sub-band",
+                    "unit": "MHz",
+                    "role": "tone placement",
+                },
+                {
+                    "id": "tones_per_subband",
+                    "name": "tones downconverted per sub-band",
+                    "unit": "tones",
+                    "role": "firmware channel capacity",
+                },
+                {
+                    "id": "baseband_data_rate",
+                    "name": "complex-baseband data rate",
+                    "unit": "MHz",
+                    "role": "digital signal-processing rate",
+                },
+                {
+                    "id": "flux_ramp_reset_rate",
+                    "name": "flux-ramp reset rate",
+                    "unit": "kHz",
+                    "role": "SQUID modulation",
+                },
+                {
+                    "id": "flux_quanta_per_ramp",
+                    "name": "flux quanta swept per ramp period",
+                    "unit": "Phi0",
+                    "role": "SQUID modulation carrier frequency",
+                },
+                {
+                    "id": "flux_ramp_carrier_frequency",
+                    "name": "flux-ramp modulation carrier frequency",
+                    "unit": "kHz",
+                    "role": "SQUID modulation",
+                },
+                {
+                    "id": "harmonic_order",
+                    "name": "tracked Fourier harmonic order",
+                    "unit": "integer_index",
+                    "role": "tracking and demodulation model",
+                },
+                {
+                    "id": "coarse_frequency_step",
+                    "name": "coarse resonator-search frequency step",
+                    "unit": "kHz",
+                    "role": "resonator discovery",
+                },
+                {
+                    "id": "fine_frequency_step",
+                    "name": "fine resonance-scan step",
+                    "unit": "kHz",
+                    "role": "resonator transfer-function mapping",
+                },
+                {
+                    "id": "fine_scan_half_range",
+                    "name": "fine resonance-scan half-range",
+                    "unit": "kHz",
+                    "role": "resonator transfer-function mapping",
+                },
+                {
+                    "id": "tracking_channel_status",
+                    "name": "channel tracking quality state",
+                    "unit": "categorical",
+                    "role": "channel enable/disable decision",
+                },
+            ],
+            "reported_values": [
+                {
+                    "variable": "channel_count",
+                    "object": "planned full SMuRF system",
+                    "value": 4000,
+                    "unit": "channels",
+                    "condition": "target capacity over 4-8 GHz per RF line",
+                    "source_page": 1,
+                },
+                {
+                    "variable": "rf_line_bandwidth",
+                    "object": "planned full SMuRF system",
+                    "value": 4,
+                    "unit": "GHz",
+                    "condition": "4-8 GHz",
+                    "source_page": 1,
+                },
+                {
+                    "variable": "channel_count",
+                    "object": "NIST cryogenic multiplexer",
+                    "value": 528,
+                    "unit": "channels",
+                    "condition": "eight 66-channel chips connected in series",
+                    "source_page": 7,
+                },
+                {
+                    "variable": "channel_count",
+                    "object": "simultaneously tracked channels",
+                    "value": 426,
+                    "unit": "channels",
+                    "condition": "SMuRF tracking on NIST 528-channel multiplexer",
+                    "source_page": 10,
+                },
+                {
+                    "variable": "channel_count",
+                    "object": "resonators identifiable by VNA",
+                    "value": 512,
+                    "unit": "channels",
+                    "condition": "4.94-5.91 GHz VNA sweep",
+                    "source_page": 7,
+                },
+                {
+                    "variable": "channel_count",
+                    "object": "resonators inside usable SMuRF bandwidth",
+                    "value": 477,
+                    "unit": "channels",
+                    "condition": "usable 5-6 GHz bands",
+                    "source_page": 7,
+                },
+                {
+                    "variable": "adjacent_resonator_spacing",
+                    "object": "NIST 528-channel multiplexer",
+                    "value": 1.5,
+                    "unit": "MHz",
+                    "condition": "measured median adjacent spacing",
+                    "source_page": 7,
+                },
+                {
+                    "variable": "resonator_linewidth",
+                    "object": "colliding resonator comparison",
+                    "value": 100,
+                    "unit": "kHz",
+                    "condition": "approximate linewidth",
+                    "source_page": 10,
+                },
+                {
+                    "variable": "analog_block_bandwidth",
+                    "object": "SMuRF RF front end",
+                    "value": 500,
+                    "unit": "MHz",
+                    "condition": "4 GHz split into analog blocks",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "baseband_data_rate",
+                    "object": "SMuRF complex baseband",
+                    "value": 614.4,
+                    "unit": "MHz",
+                    "condition": "after digital downconversion",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "filterbank_subband_count",
+                    "object": "analysis filter bank",
+                    "value": 128,
+                    "unit": "sub_bands",
+                    "condition": "overlapping sub-bands",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "filterbank_subband_width",
+                    "object": "analysis filter bank",
+                    "value": 9.6,
+                    "unit": "MHz",
+                    "condition": "overlapping width",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "filterbank_usable_subband_width",
+                    "object": "analysis filter bank",
+                    "value": 5,
+                    "unit": "MHz",
+                    "condition": "usable width per sub-band",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "tones_per_subband",
+                    "object": "SMuRF firmware",
+                    "value": 4,
+                    "unit": "tones",
+                    "condition": "present downconversion capability",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "channel_count",
+                    "object": "SMuRF firmware per 614.4 MHz band",
+                    "value": 512,
+                    "unit": "tones",
+                    "condition": "128 sub-bands x up to 4 tones",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "flux_ramp_reset_rate",
+                    "object": "typical design",
+                    "value_range": [10, 30],
+                    "unit": "kHz",
+                    "condition": "typical reset-rate range",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "flux_quanta_per_ramp",
+                    "object": "typical design",
+                    "value_range": [3, 6],
+                    "unit": "Phi0",
+                    "condition": "typical swept flux-quanta range",
+                    "source_page": 6,
+                },
+                {
+                    "variable": "flux_ramp_reset_rate",
+                    "object": "noise measurement",
+                    "value": 4,
+                    "unit": "kHz",
+                    "condition": "426-channel measurement",
+                    "source_page": 10,
+                },
+                {
+                    "variable": "flux_quanta_per_ramp",
+                    "object": "noise measurement",
+                    "value": 3.3,
+                    "unit": "Phi0",
+                    "condition": "approximately swept per period",
+                    "source_page": 10,
+                },
+                {
+                    "variable": "flux_ramp_carrier_frequency",
+                    "object": "noise measurement",
+                    "value": 13,
+                    "unit": "kHz",
+                    "condition": "approximately 4 kHz x 3.3 Phi0",
+                    "source_page": 10,
+                },
+                {
+                    "variable": "harmonic_order",
+                    "object": "tracking model",
+                    "values": [1, 2, 3],
+                    "unit": "integer_index",
+                    "condition": "first three Fourier harmonics tracked",
+                    "source_pages": [6, 7],
+                },
+                {
+                    "variable": "coarse_frequency_step",
+                    "object": "resonator search",
+                    "value": 100,
+                    "unit": "kHz",
+                    "condition": "typical coarse sweep",
+                    "source_page": 9,
+                },
+                {
+                    "variable": "fine_frequency_step",
+                    "object": "resonator characterization",
+                    "value": 2,
+                    "unit": "kHz",
+                    "condition": "typical fine sweep",
+                    "source_page": 9,
+                },
+                {
+                    "variable": "fine_scan_half_range",
+                    "object": "resonator characterization",
+                    "value": 300,
+                    "unit": "kHz",
+                    "condition": "fine sweep about candidate resonance",
+                    "source_page": 9,
+                },
+            ],
+            "measured_outcomes": [
+                {
+                    "outcome": "simultaneous_tracking",
+                    "value": 426,
+                    "unit": "channels",
+                    "statement": "426 of 477 resonators in usable bandwidth were tracked simultaneously.",
+                    "source_pages": [10, 11],
+                },
+                {
+                    "outcome": "readout_noise_equivalent_current",
+                    "value": 32,
+                    "unit": "pA/sqrt(Hz)",
+                    "statement": "Median equivalent white TES-current noise over the 426 tracking channels.",
+                    "source_page": 11,
+                },
+                {
+                    "outcome": "readout_noise_equivalent_power",
+                    "value": 6.4,
+                    "unit": "aW/sqrt(Hz)",
+                    "statement": "Median equivalent readout NEP over the 426 tracking channels.",
+                    "source_page": 11,
+                },
+                {
+                    "outcome": "single_vs_many_channel_noise_agreement",
+                    "value": 1,
+                    "unit": "percent",
+                    "statement": "Median noise was consistent within 1% between single-channel and 426-channel tracking measurements.",
+                    "source_page": 11,
+                },
+                {
+                    "outcome": "collision_related_untracked_channels",
+                    "value": 36,
+                    "unit": "channels_approx",
+                    "statement": "Most non-tracking coupled resonators were adjacent pairs near or closer than one resonator linewidth.",
+                    "source_page": 10,
+                },
+                {
+                    "outcome": "full_system_expected_mux_factor",
+                    "value": 2000,
+                    "unit": "channels_greater_than",
+                    "statement": "The authors expect multiplexing factors exceeding 2000 with the full SMuRF system.",
+                    "source_page": 12,
+                },
+            ],
+            "equations": [
+                {
+                    "id": "EQ_SOURCE_05_01",
+                    "expression": "N_IMD3 = 2*N*(N-1)",
+                    "meaning": "theoretical number of third-order intermodulation tones in an N-tone readout",
+                    "source_page": 3,
+                },
+                {
+                    "id": "EQ_SOURCE_05_02",
+                    "expression": "f_c = f_ramp * n_Phi",
+                    "meaning": "carrier frequency is set by flux-ramp reset rate times flux quanta swept per ramp",
+                    "source_page": 6,
+                },
+                {
+                    "id": "EQ_SOURCE_05_03",
+                    "expression": "f(t) = a0 + sum_n[a_n cos(n*w_c*t) + b_n sin(n*w_c*t)]",
+                    "meaning": "Fourier representation of periodic resonator-frequency modulation",
+                    "source_pages": [6, 7],
+                },
+                {
+                    "id": "EQ_SOURCE_05_04",
+                    "expression": "Delta atan(b_n/a_n) = n*Delta_phi",
+                    "meaning": "harmonic phase changes scale with harmonic order",
+                    "source_page": 7,
+                },
+                {
+                    "id": "EQ_SOURCE_05_05",
+                    "expression": "I_TES = phi_demod*Phi0/(2*pi*M_in)",
+                    "meaning": "demodulated phase converts to equivalent TES current",
+                    "source_page": 10,
+                },
+            ],
+            "assumptions": [
+                {
+                    "assumption": "Resonator-frequency modulation from flux ramp is periodic and is approximated with the first three Fourier harmonics.",
+                    "source_pages": [6, 7],
+                },
+                {
+                    "assumption": "Tone tracking minimizes transmitted summed RF power by keeping probe tones on resonance.",
+                    "source_pages": [3, 6],
+                },
+                {
+                    "assumption": "The reported 426-channel noise measurement used no TESs connected to the multiplexer inputs; TES noise values are equivalent readout quantities.",
+                    "source_page": 10,
+                },
+            ],
+            "engineering_relationships": [
+                {
+                    "relationship": "unique_resonator_frequency_enables_channelization",
+                    "engineering_effect": "Each TES/rf-SQUID channel is associated with its own microwave resonator frequency for frequency-domain multiplexing.",
+                    "source_pages": [1, 2],
+                },
+                {
+                    "relationship": "resonator_spacing_constrains_trackable_channel_density",
+                    "engineering_effect": "Channels too close in frequency can collide and become untrackable.",
+                    "source_pages": [7, 8, 10],
+                },
+                {
+                    "relationship": "band_edges_constrain_resonator_placement",
+                    "engineering_effect": "Resonators too near 500 MHz band edges cannot be tracked reliably by SMuRF.",
+                    "source_page": 7,
+                },
+                {
+                    "relationship": "subband_partition_sets_digital_tone_capacity",
+                    "engineering_effect": "128 analysis sub-bands with up to four tones each provide 512 tones per 614.4 MHz band in the reported firmware.",
+                    "source_page": 6,
+                },
+                {
+                    "relationship": "flux_ramp_parameters_set_carrier_frequency",
+                    "engineering_effect": "Carrier frequency scales as flux-ramp reset rate times swept flux quanta per period.",
+                    "source_page": 6,
+                },
+                {
+                    "relationship": "resonator_grouping_reduces_collision_risk",
+                    "engineering_effect": "Four resonator sub-bands per 66-channel chip were intentionally used to guard against intra-chip frequency collisions.",
+                    "source_page": 8,
+                },
+                {
+                    "relationship": "tone_tracking_reduces_linearity_burden",
+                    "engineering_effect": "Closed-loop tracking keeps tones near resonance and reduces summed RF power variation relative to fixed-tone readout.",
+                    "source_pages": [1, 3],
+                },
+            ],
+            "engineering_constraints": [
+                {
+                    "constraint": "resonator_collision",
+                    "statement": "Adjacent resonators near or closer than roughly one resonator linewidth (~100 kHz) were commonly untrackable in the tested multiplexer.",
+                    "source_page": 10,
+                },
+                {
+                    "constraint": "band_edge_exclusion",
+                    "statement": "SMuRF cannot track resonators too near the edges of its 500 MHz bands.",
+                    "source_page": 7,
+                },
+                {
+                    "constraint": "usable_frequency_windows",
+                    "statement": "For the tested 5-6 GHz configuration, usable bands were [5.002, 5.498] and [5.502, 5.998] GHz.",
+                    "source_page": 7,
+                },
+                {
+                    "constraint": "firmware_tones_per_subband",
+                    "statement": "The reported firmware downconverts up to four tones per analysis sub-band.",
+                    "source_page": 6,
+                },
+                {
+                    "constraint": "channel_quality_cut",
+                    "statement": "Channels are disabled when tracking is improper, the IQ response is anomalous, or flux-ramp response is atypical.",
+                    "source_page": 10,
+                },
+                {
+                    "constraint": "readout_linearity",
+                    "statement": "Summed input power must remain well below amplifier IIP3 to avoid nonlinear readout degradation.",
+                    "source_page": 9,
+                },
+            ],
+            "future_questions": [
+                "Can resonator placement be specified to avoid collisions after accounting for wafer-scale frequency variation?",
+                "What frequency-allocation rule maximizes trackable channels while respecting 500 MHz band edges and resonator linewidth?",
+                "How do low-frequency noise, crosstalk, and TES-connected operation scale beyond the 426-channel demonstration?",
+                "Does the multiplexed-readout architecture contain a physically meaningful residue-class constraint on channel, sub-band, or harmonic indices?",
+                "Does any collision, aliasing, synchronization, or hardware-compatibility rule correspond exactly to a coprimality condition gcd(n,N)=1?",
+            ],
+            "unreported_variables": [
+                "closed-form production tolerance for resonator frequency placement",
+                "wafer-to-wafer distribution of resonator placement error",
+                "explicit integer channel-to-residue mapping",
+                "explicit modulus governing allowed channel indices",
+                "explicit coprimality or factor-exclusion condition on channel/sub-band indices",
+                "validated GDT mapping for multiplexed readout",
+            ],
+            "gdt_applicability": {
+                "status": "discrete_structure_present_but_direct_GDT_not_established",
+                "candidate_integer_structures": [
+                    {
+                        "structure": "filterbank_subband_index",
+                        "evidence": "128 analysis-filter-bank sub-bands",
+                        "source_page": 6,
+                        "gdt_status": "integer_index_present_no_residue_or_coprimality_rule_reported",
+                    },
+                    {
+                        "structure": "tones_per_subband",
+                        "evidence": "up to four tones per sub-band",
+                        "source_page": 6,
+                        "gdt_status": "bounded_integer_capacity_not_a_residue_rule",
+                    },
+                    {
+                        "structure": "harmonic_order",
+                        "evidence": "first three Fourier harmonics n=1..3 are tracked",
+                        "source_pages": [6, 7],
+                        "gdt_status": "integer_index_present_no_coprimality_rule_reported",
+                    },
+                    {
+                        "structure": "resonator_grouping",
+                        "evidence": "four sub-bands per 66-channel multiplexer chip",
+                        "source_page": 8,
+                        "gdt_status": "discrete_grouping_present_no_modular_assignment_formula_reported",
+                    },
+                ],
+                "important_negative_result": (
+                    "The paper reports approximately 3-6 flux quanta swept per ramp and "
+                    "examples near 3.3-3.4 Phi0. It does not support treating flux_quanta_per_ramp "
+                    "as an integer state for a direct GDT application."
+                ),
+                "missing_direct_hypotheses": [
+                    "physically justified state n with integer domain",
+                    "natural modulus m",
+                    "physical residue-class rule n ≡ a (mod m)",
+                    "physical factor-exclusion rule gcd(n,N)=1",
+                ],
+            },
+            "extraction_notes": [
+                "SOURCE_05 is a multiplexed-readout source, not an absorber-manufacturing source.",
+                "The paper supplies several real discrete structures: chips, resonators, sub-bands, tones, and Fourier harmonic indices.",
+                "Frequency collision and band-edge exclusions are physical engineering constraints, but the paper does not express them as divisibility or coprimality conditions.",
+                "The flux-quanta-per-ramp quantity should not be forced into an integer GDT state: the paper reports approximate values including ~3.3 and ~3.4 Phi0.",
+                "A direct GDT application therefore remains unestablished after extraction; a later synthesis must derive any mapping only from additional physical/firmware evidence.",
+            ],
+        }
+    )
+
+    # Scaffold-only planning fields are removed from the completed record.
+    record.pop("priority_variables_to_extract", None)
+    record.pop("gdt_applicability_priorities", None)
+
+    return record
