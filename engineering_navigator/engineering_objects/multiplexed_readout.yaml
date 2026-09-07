@@ -1,0 +1,134 @@
+schema_version: 1.0.0
+repository: sensors-becker
+id: multiplexed_readout
+title: Multiplexed Readout
+engineering_driver: multiplexed_readout
+object_type: readout_architecture
+object_status: evidence_bounded
+objective: Scale TES readout by assigning many resonator-coupled channels to shared RF bandwidth while preserving
+  trackability, low readout noise, and explicit collision/band-edge constraints.
+evidence_sources:
+- SOURCE_05
+variables:
+- id: channel_count
+  unit: channels
+- id: rf_line_bandwidth
+  unit: GHz
+- id: resonator_frequency
+  unit: GHz
+- id: adjacent_resonator_spacing
+  unit: MHz
+- id: resonator_linewidth
+  unit: kHz
+- id: analog_block_bandwidth
+  unit: MHz
+- id: filterbank_subband_count
+  unit: sub_bands
+- id: filterbank_subband_width
+  unit: MHz
+- id: filterbank_usable_subband_width
+  unit: MHz
+- id: tones_per_subband
+  unit: tones
+- id: baseband_data_rate
+  unit: MHz
+- id: flux_ramp_reset_rate
+  unit: kHz
+- id: flux_quanta_per_ramp
+  unit: Phi0
+- id: flux_ramp_carrier_frequency
+  unit: kHz
+- id: harmonic_order
+  unit: integer_index
+- id: tracking_channel_status
+  unit: categorical
+candidate_specifications: []
+open_specifications:
+- concept: gdt_readout_mapping
+  open_specification: A direct General Divisor Theorem mapping requires a physically justified integer state, natural
+    modulus, residue-class rule, and coprimality/factor-exclusion rule.
+  gap_sources:
+  - SOURCE_05
+  source_count: 1
+  next_measurement: Identify whether channel/sub-band allocation, collision avoidance, synchronization, or firmware
+    compatibility supplies a real modular plus factor-exclusion rule.
+relationships:
+- to: tes
+  type: supports
+- to: detector_module
+  type: supports
+- to: instrument_scaling
+  type: supports
+current_evidence:
+- statement: unique_resonator_frequency_enables_channelization
+  engineering_effect: Each TES/rf-SQUID channel is associated with its own microwave resonator frequency for frequency-domain
+    multiplexing.
+  source: SOURCE_05
+  source_pages:
+  - 1
+  - 2
+- statement: resonator_spacing_constrains_trackable_channel_density
+  engineering_effect: Channels too close in frequency can collide and become untrackable.
+  source: SOURCE_05
+  source_pages:
+  - 7
+  - 8
+  - 10
+- statement: band_edges_constrain_resonator_placement
+  engineering_effect: Resonators too near 500 MHz band edges cannot be tracked reliably by SMuRF.
+  source: SOURCE_05
+  source_pages:
+  - 7
+- statement: subband_partition_sets_digital_tone_capacity
+  engineering_effect: 128 analysis sub-bands with up to four tones each provide 512 tones per 614.4 MHz band in
+    the reported firmware.
+  source: SOURCE_05
+  source_pages:
+  - 6
+- statement: flux_ramp_parameters_set_carrier_frequency
+  engineering_effect: Carrier frequency scales as flux-ramp reset rate times swept flux quanta per period.
+  source: SOURCE_05
+  source_pages:
+  - 6
+- statement: resonator_grouping_reduces_collision_risk
+  engineering_effect: Four resonator sub-bands per 66-channel chip were intentionally used to guard against intra-chip
+    frequency collisions.
+  source: SOURCE_05
+  source_pages:
+  - 8
+- statement: tone_tracking_reduces_linearity_burden
+  engineering_effect: Closed-loop tracking keeps tones near resonance and reduces summed RF power variation relative
+    to fixed-tone readout.
+  source: SOURCE_05
+  source_pages:
+  - 1
+  - 3
+gdt_applicability:
+  status: discrete_structure_present_but_direct_GDT_not_established
+  candidate_integer_structures:
+  - filterbank_subband_index
+  - tones_per_subband
+  - harmonic_order
+  - resonator_grouping
+  missing_direct_hypotheses:
+  - physically justified integer state n
+  - natural modulus m
+  - physical residue-class rule n ≡ a (mod m)
+  - physical factor-exclusion rule gcd(n,N)=1
+evidence_summary:
+  object_id: multiplexed_readout
+  source_count: 1
+  relationship_count: 7
+  candidate_specification_count: 0
+  open_specification_count: 1
+  reported_process_point_count: 0
+object_build:
+  builder: engineering-objects-object-builder-v2.2
+  managed_fields:
+  - candidate_specifications
+  - current_evidence
+  - evidence_sources
+  - evidence_summary
+  - object_build
+  - open_specifications
+  - reported_process_points
