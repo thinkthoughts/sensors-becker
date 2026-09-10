@@ -1,6 +1,6 @@
 """Registered source extractors."""
 
-from . import source_00, source_01, source_02, source_03, source_04, source_05
+from . import source_00, source_01, source_02, source_03, source_04, source_05, source_06
 
 EXTRACTORS = {
     "SOURCE_00": source_00.extract,
@@ -9,6 +9,7 @@ EXTRACTORS = {
     "SOURCE_03": source_03.extract,
     "SOURCE_04": source_04.extract,
     "SOURCE_05": source_05.extract,
+    "SOURCE_06": source_06.extract,
 }
 
 
