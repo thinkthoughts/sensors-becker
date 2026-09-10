@@ -1,0 +1,163 @@
+schema_version: 1.0.0
+repository: sensors-becker
+engineering_driver: multiplexed_readout
+source_id: SOURCE_06
+title: PySMuRF tuning and channel-assignment documentation
+year: 2026
+source_type: software_documentation
+publisher_or_archive: PySMuRF Read the Docs / SLAC
+identifier: pysmurf.client.tune.smurf_tune
+paper:
+  documentation: https://pysmurf.readthedocs.io/en/main/client/tune.html
+  repository: https://github.com/slaclab/pysmurf
+record_status: evidence_extracted
+extraction_status: complete_for_source_record_v1
+engineering_questions:
+- EQ_10_channel_assignment_rule
+- EQ_11_resonator_exclusion_rule
+- EQ_12_subband_channel_indexing
+- EQ_13_gdt_channel_assignment_applicability
+authors:
+- SLAC PySMuRF developers
+materials:
+- name: microwave resonator channels
+  role: software-assigned readout channels
+  source_sections:
+  - assign_channels
+- name: SMuRF firmware bands and subbands
+  role: discrete digital readout structure
+  source_sections:
+  - assign_channels
+  - check_lock
+fabrication_methods: []
+design_variables:
+- id: band
+  name: SMuRF band index
+  unit: integer_index
+  role: select 500 MHz readout band
+- id: subband
+  name: assigned subband index
+  unit: integer_index
+  role: digital channelization
+- id: channel
+  name: assigned channel number
+  unit: integer_index
+  role: resonator readout assignment
+- id: channel_per_subband
+  name: channels assigned per subband
+  unit: channels
+  role: assignment capacity
+- id: min_offset
+  name: minimum resonator frequency offset
+  unit: MHz
+  role: pairwise collision exclusion
+- id: frequency_offset_from_subband_center
+  name: resonator offset from subband center
+  unit: MHz
+  role: continuous placement within subband
+- id: tracking_status
+  name: channel tracking quality state
+  unit: categorical
+  role: channel enable/disable decision
+- id: n_phi0
+  name: desired flux quanta per ramp cycle
+  unit: Phi0
+  role: flux-ramp amplitude target
+reported_values:
+- variable: channel_per_subband
+  value: 4
+  unit: channels
+  condition: default assign_channels argument
+  source_section: assign_channels
+- variable: min_offset
+  value: 0.1
+  unit: MHz
+  condition: default minimum offset between resonators
+  source_section: assign_channels
+- variable: band_width
+  value: 500
+  unit: MHz
+  condition: band parameter documentation describes the 500 MHz band
+  source_section: calculate_eta_svd / check_lock
+- variable: tone_power
+  value_range:
+  - 0
+  - 15
+  unit: integer_setting
+  condition: for most SMuRF firmware versions
+  source_section: eta_scan
+measured_outcomes: []
+equations: []
+assumptions:
+- assumption: Channel assignment is driven by resonator frequency positions and documented software rules rather
+    than by a published modular formula.
+  source_section: assign_channels
+engineering_relationships:
+- relationship: resonator_frequency_maps_to_subband_and_channel
+  engineering_effect: assign_channels maps resonator frequencies to integer subband and channel arrays.
+  source_sections:
+  - assign_channels
+- relationship: minimum_frequency_offset_excludes_close_pairs
+  engineering_effect: If two resonators are closer than the configured minimum offset, both are ignored.
+  source_sections:
+  - assign_channels
+- relationship: channel_capacity_is_bounded_per_subband
+  engineering_effect: The default assignment capacity is four channels per subband.
+  source_sections:
+  - assign_channels
+- relationship: tracking_quality_disables_bad_channels
+  engineering_effect: check_lock turns off channels that violate tracking quality limits.
+  source_sections:
+  - check_lock
+- relationship: flux_quanta_target_is_not_intrinsically_integer
+  engineering_effect: n_phi0 is float-valued; integer values are recommended but not required.
+  source_sections:
+  - estimate_flux_ramp_amp
+engineering_constraints:
+- constraint: minimum_resonator_offset
+  statement: The default minimum offset between resonators is 0.1 MHz; if closer, both resonators are ignored.
+  source_section: assign_channels
+- constraint: channels_per_subband
+  statement: assign_channels defaults to four channels per subband.
+  source_section: assign_channels
+- constraint: tracking_quality_limits
+  statement: check_lock turns off channels with bad tracking according to configured limits.
+  source_section: check_lock
+future_questions:
+- What exact formula maps resonator frequency to integer subband index?
+- What exact rule chooses channel number within each subband?
+- Are any subband/channel indices systematically skipped for clocking, aliasing, or synchronization reasons?
+- Can any software exclusion be expressed exactly as a residue-class rule?
+- Can any software exclusion be expressed exactly as gcd(n,N)=1?
+unreported_variables:
+- explicit closed-form subband assignment formula
+- explicit modular channel assignment rule
+- explicit factor-based index exclusion rule
+- documented coprimality condition on channel or subband indices
+extraction_notes:
+- SOURCE_06 advances the audit from published architecture to implementation-facing assignment rules.
+- The software confirms real integer subband and channel outputs.
+- The documented close-resonator exclusion is a frequency-distance threshold, not a coprimality rule.
+- A direct GDT application therefore remains unestablished after SOURCE_06.
+gdt_applicability:
+  status: real_integer_assignment_present_but_direct_GDT_not_established
+  candidate_integer_structures:
+  - structure: subband_index
+    evidence: assign_channels returns an integer subband array
+    gdt_status: integer_state_present_modular_rule_not_documented
+  - structure: channel_number
+    evidence: assign_channels returns an integer channel array
+    gdt_status: integer_state_present_residue_rule_not_documented
+  - structure: channels_per_subband
+    evidence: default value is 4
+    gdt_status: bounded_integer_capacity_not_a_residue_rule
+  physical_exclusion_rule:
+    type: pairwise_frequency_distance_threshold
+    rule: ignore both resonators if separation < 0.1 MHz
+    gdt_status: not_coprimality; documented exclusion is metric/threshold-based rather than factor-based
+  important_negative_result: n_phi0 is documented as float-valued. Integer values are recommended but not required,
+    so it is not an intrinsic integer state for direct GDT use.
+  missing_direct_hypotheses:
+  - natural modulus m tied to the assignment algorithm
+  - physical residue-class rule n ≡ a (mod m)
+  - physical factor-exclusion rule gcd(n,N)=1
