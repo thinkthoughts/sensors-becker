@@ -41,9 +41,9 @@ $$
 define
 
 $$
-d=\operatorname{rad}(\gcd(m,N)),
+d=\mathrm{rad}(\gcd(m,N)),
 \qquad
-R=\frac{\operatorname{rad}(N)}{d}.
+R=\frac{\mathrm{rad}(N)}{d}.
 $$
 
 The GDT gives an exact admissibility dichotomy and, in the admissible case, an exact period, count per period, density, and correction factor.
