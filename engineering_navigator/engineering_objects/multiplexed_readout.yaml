@@ -9,6 +9,7 @@ objective: Scale TES readout by assigning many resonator-coupled channels to sha
   trackability, low readout noise, and explicit collision/band-edge constraints.
 evidence_sources:
 - SOURCE_05
+- SOURCE_06
 variables:
 - id: channel_count
   unit: channels
@@ -103,6 +104,26 @@ current_evidence:
   source_pages:
   - 1
   - 3
+- statement: resonator_frequency_maps_to_subband_and_channel
+  engineering_effect: assign_channels maps resonator frequencies to integer subband and channel arrays.
+  source: SOURCE_06
+  source_sections:
+  - assign_channels
+- statement: minimum_frequency_offset_excludes_close_pairs
+  engineering_effect: If two resonators are closer than the configured minimum offset, both are ignored.
+  source: SOURCE_06
+  source_sections:
+  - assign_channels
+- statement: channel_capacity_is_bounded_per_subband
+  engineering_effect: The default assignment capacity is four channels per subband.
+  source: SOURCE_06
+  source_sections:
+  - assign_channels
+- statement: tracking_quality_disables_bad_channels
+  engineering_effect: check_lock turns off channels that violate tracking quality limits.
+  source: SOURCE_06
+  source_sections:
+  - check_lock
 gdt_applicability:
   status: discrete_structure_present_but_direct_GDT_not_established
   candidate_integer_structures:
@@ -117,8 +138,8 @@ gdt_applicability:
   - physical factor-exclusion rule gcd(n,N)=1
 evidence_summary:
   object_id: multiplexed_readout
-  source_count: 1
-  relationship_count: 7
+  source_count: 2
+  relationship_count: 11
   candidate_specification_count: 0
   open_specification_count: 1
   reported_process_point_count: 0
